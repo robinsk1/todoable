@@ -3,6 +3,8 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = Todo.all
+    @open = Todo.open
+    @closed = Todo.closed
 
     respond_to do |format|
       format.html # index.html.erb

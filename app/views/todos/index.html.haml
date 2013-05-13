@@ -5,18 +5,33 @@
   .large-7.columns
     %h2 Description
   .large-2.columns
-    %h2 Done?
+    %h2 Status
   .large-3.column
 
+- if !@open.nil?
+  .row
+    .large-12.columns
+      %h2 Open
 
-.row
-  - @todos.each do |todo|
-    .large-7.columns= todo.description
-    .large-2.columns= todo.status
-    .large-1.columns= link_to 'Show', todo
-    .large-1.columns= link_to 'Edit', edit_todo_path(todo)
-    .large-1.columns= link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  .row
+    - @open.each do |todo|
+      .large-7.columns= todo.description
+      .large-2.columns= todo.status
+      .large-1.columns= link_to 'Show', todo
+      .large-1.columns= link_to 'Edit', edit_todo_path(todo)
+      .large-1.columns= link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
+-if !@closed.nil?
+  .row
+    .large-12.columns
+      %h2 Closed
+  .row
+    - @closed.each do |todo|
+      .large-7.columns= todo.description
+      .large-2.columns= todo.status
+      .large-1.columns= link_to 'Show', todo
+      .large-1.columns= link_to 'Edit', edit_todo_path(todo)
+      .large-1.columns= link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 %br
