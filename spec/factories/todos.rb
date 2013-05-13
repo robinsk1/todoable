@@ -6,3 +6,5 @@ FactoryGirl.define do
     status false
   end
 end
+
+
