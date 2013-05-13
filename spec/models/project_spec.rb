@@ -17,15 +17,17 @@ describe Project do
       end
 
       it 'should check if a project is complete' do
-        puts @project.items.inspect.to_yaml
+        #puts @project.items.inspect.to_yaml
         @project.done?.should be_false
       end
 
       it 'should retrieve hash of grouped items by day' do
+        #puts @project.items_by_days.inspect
         @project.items_by_days.should ""
       end
 
       it 'should retrieve todos created today' do
+        #puts @project.recent_items.inspect
         @project.recent_items.should ""
       end
 
