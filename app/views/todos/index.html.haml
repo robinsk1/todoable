@@ -2,6 +2,14 @@
   .large-12.columns
     %h1 Todos
 .row
+  .large-7.columns
+    %h2 Description
+  .large-2.columns
+    %h2 Done?
+  .large-3.column
+
+
+.row
   - @todos.each do |todo|
     .large-7.columns= todo.description
     .large-2.columns= todo.status
