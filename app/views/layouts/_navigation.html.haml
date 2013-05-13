@@ -1,17 +1,139 @@
-= link_to "Todoable", root_path, :class => 'brand'
-%ul.nav
-  - if user_signed_in?
-    %li
-      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-  - else
-    %li
-      = link_to 'Login', new_user_session_path
-  - if user_signed_in?
-    %li
-      = link_to 'Edit account', edit_user_registration_path
-    - if current_user.has_role? :admin
+/ Header and Nav
+%nav.top-bar
+  %ul.title-area
+    / Title Area
+    %li.name
+      %h1
+        = link_to "SKELETOR", root_path
+    %li.toggle-topbar.menu-icon
+      %a{:href => "#"}
+        %span Menu
+  %section.top-bar-section
+    / Left Nav Section
+    %ul.left
+      %li.divider
       %li
-        = link_to 'Admin', users_path
-  - else
-    %li
-      = link_to 'Sign up', new_user_registration_path
+        =link_to 'Artists', artists_path
+      %li.divider
+      %li
+        =link_to 'Festivals', festivals_path
+    -#  %li.divider
+    -#  %li.has-dropdown
+    -#    %a.active{:href => "#"} Main Item 1
+    -#    %ul.dropdown
+    -#      %li
+    -#        %label Section Name
+    -#      %li
+    -#        %a{:href => "#"} Dropdown Level 1
+    -#      %li
+    -#        %a{:href => "#"} Dropdown Option
+    -#      %li
+    -#        %a{:href => "#"} Dropdown Option
+    -#      %li.divider
+    -#      %li
+    -#        %label Section Name
+    -#      %li
+    -#        %a{:href => "#"} Dropdown Option
+    -#      %li
+    -#        %a{:href => "#"} Dropdown Option
+    -#      %li
+    -#        %a{:href => "#"} Dropdown Option
+    -#      %li.divider
+    -#      %li
+    -#        %a{:href => "#"} See all →
+    -#  %li.divider
+    -#  %li
+    -#    %a{:href => "#"} Main Item 2
+    -#  %li.divider
+    -#  %li.has-dropdown
+    -#    %a{:href => "#"} Main Item 3
+    -#    %ul.dropdown
+    -#      %li
+    -#        %a{:href => "#"} Dropdown Option
+    -#      %li
+    -#        %a{:href => "#"} Dropdown Option
+    -#      %li
+    -#        %a{:href => "#"} Dropdown Option
+    -#      %li.divider
+    -#      %li
+    -#        %a{:href => "#"} See all →
+    / Right Nav Section
+    %ul.right
+      %li.divider
+      -#%li.has-dropdown
+      -#  %a{:href => "#"} Main Item 4
+      -#  %ul.dropdown
+      -#    %li
+      -#      %label Section Name
+      -#    %li.has-dropdown
+      -#      %a{:href => "#"} Has Dropdown, Level 1
+      -#      %ul.dropdown
+      -#        %li
+      -#          %a{:href => "#"} Dropdown Options
+      -#        %li
+      -#          %a{:href => "#"} Dropdown Options
+      -#        %li.has-dropdown
+      -#          %a{:href => "#"} Has Dropdown, Level 2
+      -#          %ul.dropdown.test
+      -#            %li
+      -#              %a{:href => "#"} Subdropdown Option
+      -#            %li
+      -#              %a{:href => "#"} Subdropdown Option
+      -#            %li
+      -#              %a{:href => "#"} Subdropdown Option
+      -#        %li
+      -#          %a{:href => "#"} Subdropdown Option
+      -#        %li
+      -#          %a{:href => "#"} Subdropdown Option
+      -#        %li
+      -#          %a{:href => "#"} Subdropdown Option
+      -#    %li
+      -#      %a{:href => "#"} Dropdown Option
+      -#    %li
+      -#      %a{:href => "#"} Dropdown Option
+      -#    %li.divider
+      -#    %li
+      -#      %label Section Name
+      -#    %li
+      -#      %a{:href => "#"} Dropdown Option
+      -#    %li
+      -#      %a{:href => "#"} Dropdown Option
+      -#    %li
+      -#      %a{:href => "#"} Dropdown Option
+      -#    %li.divider
+      -#    %li
+      -#      %a{:href => "#"} See all →
+      -#%li.divider
+      - if user_signed_in?
+        %li
+          = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+      - else
+        %li
+          = link_to 'Login', new_user_session_path
+      %li.divider
+      - if user_signed_in?
+        %li
+          = link_to 'Edit account', edit_user_registration_path
+          - if current_user.has_role? :admin
+            %li
+              = link_to 'Admin', users_path
+      - else
+        %li
+          = link_to 'Sign up', new_user_registration_path
+
+      -#%li.has-dropdown
+      -#  %a{:href => "#"} Main Item 6
+      -#  %ul.dropdown
+      -#    %li
+      -#      %a{:href => "#"} Dropdown Option
+      -#    %li
+      -#      %a{:href => "#"} Dropdown Option
+      -#    %li
+      -#      %a{:href => "#"} Dropdown Option
+      -#    %li.divider
+      -#    %li
+      -#      %a{:href => "#"} See all →
+/ End Header and Nav
+
+
+

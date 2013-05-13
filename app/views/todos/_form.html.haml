@@ -1,0 +1,9 @@
+= simple_form_for(@todo) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :description
+    = f.input :status
+
+  .form-actions
+    = f.button :submit

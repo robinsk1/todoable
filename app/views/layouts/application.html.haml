@@ -2,18 +2,20 @@
 %html
   %head
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-      %title= content_for?(:title) ? yield(:title) : "Todoable"
-      %meta{:content => content_for?(:description) ? yield(:description) : "Todoable", :name => "description"}
+      %title= content_for?(:title) ? yield(:title) : "Skeletor"
+      %meta{:content => content_for?(:description) ? yield(:description) : "Skeletor", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
         = javascript_include_tag "application"
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
-    #container.container
-      %header
-        = render 'layouts/navigation'
+    / Main Grid Section
+    = render 'layouts/navigation'
+    .row
+      .large-12.columns
         = render 'layouts/messages'
-      #main{:role => "main"}
-        = yield
-      %footer
+    = yield
+    / End Grid Section
+    = render 'layouts/footer'
+
     / ! end of #container

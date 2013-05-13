@@ -1,4 +1,7 @@
 Todoable::Application.routes.draw do
+  resources :todos
+
+
   authenticated :user do
     root :to => 'home#index'
   end
