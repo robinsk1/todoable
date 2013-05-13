@@ -1,4 +1,7 @@
 Todoable::Application.routes.draw do
+  resources :projects
+
+
   resources :todos
 
 
