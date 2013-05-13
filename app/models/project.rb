@@ -15,11 +15,10 @@ class Project < ActiveRecord::Base
 
   #items_by_days => hash of items grouped by day
   def items_by_days
-    items.group_by{|v|v[:created_at]}.collect{|a|a.reduce({}, :merge)}
+    items.group_by{|v|v[:created_at].to_date}
   end
 
   #recent_items => items that were created today
-
   def recent_items
     items.where(["DATE(created_at) = DATE(?)", Time.now]).all
   end
