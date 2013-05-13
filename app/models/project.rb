@@ -4,29 +4,25 @@ class Project < ActiveRecord::Base
 
 
   #items => all items of the project
-
   def items
     self.todos
   end
 
   #done? => true if all its items are 'closed'
-
   def done?
-
-    items.map {|a|a.closed} ? true : false
-
+    items.collect {|a|a.status}.include?(false) ? false : true
   end
 
   #items_by_days => hash of items grouped by day
-
   def items_by_days
+
 
   end
 
   #recent_items => items that were created today
 
   def recent_items
-
+    items.where(["DATE(created_at) = DATE(?)", Time.now]).all
   end
 
 
