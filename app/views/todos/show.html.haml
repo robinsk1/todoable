@@ -1,12 +1,15 @@
-%p#notice= notice
+.row
+  .large-12.columns
 
-%p
-  %b Description:
-  = @todo.description
-%p
-  %b Status:
-  = @todo.status
+    %p#notice= notice
 
-= link_to 'Edit', edit_todo_path(@todo)
-\|
-= link_to 'Back', todos_path
+    %p
+      %b Description:
+      = @todo.description
+    %p
+      %b Status:
+      = @todo.status
+
+    = link_to 'Edit', edit_todo_path(@todo)
+    \|
+    = link_to 'Back', todos_path

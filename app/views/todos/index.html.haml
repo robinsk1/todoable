@@ -1,21 +1,18 @@
-%h1 Listing todos
-
-%table
-  %tr
-    %th Description
-    %th Status
-    %th
-    %th
-    %th
-
+.row
+  .large-12.columns
+    %h1 Todos
+.row
   - @todos.each do |todo|
-    %tr
-      %td= todo.description
-      %td= todo.status
-      %td= link_to 'Show', todo
-      %td= link_to 'Edit', edit_todo_path(todo)
-      %td= link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .large-7.columns= todo.description
+    .large-2.columns= todo.status
+    .large-1.columns= link_to 'Show', todo
+    .large-1.columns= link_to 'Edit', edit_todo_path(todo)
+    .large-1.columns= link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
 
 %br
+%br
 
-= link_to 'New Todo', new_todo_path
+.row
+  .large-12.columns
+    = link_to 'New Todo', new_todo_path

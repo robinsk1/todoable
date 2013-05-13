@@ -2,8 +2,11 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :description
-    = f.input :status
-
-  .form-actions
-    = f.button :submit
+    .large-8.columns
+      = f.input :description
+    .large-4.columns
+      = f.input :status
+  .row
+    .large-12.columns
+      .form-actions
+        = f.button :submit
