@@ -1,6 +1,13 @@
 Todoable::Application.routes.draw do
   resources :projects
 
+  resources :projects  do
+   resources :todos
+  end
+
+
+
+
 
   resources :todos
 

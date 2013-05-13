@@ -13,7 +13,7 @@
 
       - @projects.each do |project|
         %tr
-          %td= project.name
+          %td= link_to project.name, project_todos_path(project)
           %td= project.description
           %td= link_to 'Show', project
           %td= link_to 'Edit', edit_project_path(project)
