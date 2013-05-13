@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
 
   #done? => true if all its items are 'closed'
   def done?
-    items.collect {|a|a.status}.include?(false) ? false : true
+    items.collect{|a|a.status}.include?(false) ? false : true
   end
 
   #items_by_days => hash of items grouped by day

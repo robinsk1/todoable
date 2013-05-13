@@ -9,7 +9,7 @@ describe Project do
 
     describe 'instance' do
       before(:each) do
-        @project = FactoryGirl.build(:project)
+        @project = FactoryGirl.create(:project)
       end
 
       it 'should retrieve project todos' do
