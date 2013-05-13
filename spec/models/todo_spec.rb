@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Todo do
 
-    describe 'associations' do
-      it { should belong_to :project }
-    end
+  it 'has valid factories' do
+      todo = FactoryGirl.build(:todo)
+      todo.valid?.should be_true
+  end
 
 end

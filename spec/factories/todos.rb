@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :todo do
     description "MyText"
     status false
+    project
   end
 end
 
