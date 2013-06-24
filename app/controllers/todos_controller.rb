@@ -1,10 +1,20 @@
 class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
+
+  load_and_authorize_resource
+
   def index
-    @todos = Todo.all
-    @open = Todo.open
-    @closed = Todo.closed
+
+    if params[:project_id].blank?
+      @todos = Todo.all
+      @open = Todo.open
+      @closed = Todo.closed
+    else
+      @todos = Project.find(params[:project_id]).todos
+      @open = @todos.where(:status=> false)
+      @closed = @todos.where(:status=> true)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,8 +36,12 @@ class TodosController < ApplicationController
   # GET /todos/new
   # GET /todos/new.json
   def new
+    if params[:project_id].blank?
     @todo = Todo.new
-
+    else
+    @project = Project.find(params[:project_id])
+    @todo = @project.todos.build
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @todo }
@@ -43,11 +57,13 @@ class TodosController < ApplicationController
   # POST /todos.json
   def create
     @todo = Todo.new(params[:todo])
-
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
-        format.json { render json: @todo, status: :created, location: @todo }
+        if !params[:todo][:project_id].blank?
+          format.html { redirect_to project_todos_path(:project_id=>params[:todo][:project_id]), notice: 'Todo was successfully created.' }
+        else
+          format.html { redirect_to :action => :index, notice: 'Todo was successfully created.' }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
@@ -62,8 +78,13 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
-        format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
-        format.json { head :no_content }
+        if !params[:todo][:project_id].blank?
+          format.html { redirect_to project_todos_path(:project_id => params[:todo][:project_id]), notice: 'Todo was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to todos_path, notice: 'Todo was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @todo.errors, status: :unprocessable_entity }

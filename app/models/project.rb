@@ -1,7 +1,9 @@
 class Project < ActiveRecord::Base
   attr_accessible :description, :name
   has_many :todos, :dependent => :destroy
+  belongs_to :user
 
+  resourcify
 
   #items => all items of the project
   def items

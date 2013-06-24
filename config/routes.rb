@@ -13,9 +13,9 @@ Todoable::Application.routes.draw do
 
 
   authenticated :user do
-    root :to => 'home#index'
+    root :to => 'todos#index'
   end
-  root :to => "home#index"
+  root :to => "todos#index"
   devise_for :users
   resources :users
 end

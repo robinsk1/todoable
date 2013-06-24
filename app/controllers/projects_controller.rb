@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
+  load_and_authorize_resource
+
   def index
     @projects = Project.all
 

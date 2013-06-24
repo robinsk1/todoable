@@ -21,7 +21,7 @@ gem "compass-rails", ">= 1.0.3", :group => :assets
 gem "zurb-foundation", ">= 4.0.9", :group => :assets
 gem "devise", ">= 2.2.3"
 gem "cancan", ">= 1.6.9"
-gem "rolify", ">= 3.2.0"
+gem "rolify"
 gem "simple_form", ">= 2.1.0"
 gem "quiet_assets", ">= 1.0.2", :group => :development
 gem "better_errors", ">= 0.7.2", :group => :development
