@@ -13,7 +13,7 @@
     %ul.left
       %li.divider
       %li
-        =link_to 'lists of things todo', projects_path
+        =link_to 'lists of todo lists', projects_path
     -#  %li.divider
     -#  %li.has-dropdown
     -#    %a.active{:href => "#"} Main Item 1
@@ -113,7 +113,7 @@
           =link_to "My lists", user_projects_path(current_user)
         %li.divider
         %li
-          = link_to 'Edit account', edit_user_registration_path
+          = link_to 'Edit account', edit_user_registration_path(current_user)
           - if current_user.has_role? :admin
             %li
               = link_to 'Admin', users_path

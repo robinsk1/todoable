@@ -36,12 +36,8 @@ class TodosController < ApplicationController
   # GET /todos/new
   # GET /todos/new.json
   def new
-    if params[:project_id].blank?
-    @todo = Todo.new
-    else
     @project = Project.find(params[:project_id])
-    @todo = @project.todos.build
-    end
+    @todo = current_user.projects.find(@project).todos.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @todo }
@@ -57,6 +53,7 @@ class TodosController < ApplicationController
   # POST /todos.json
   def create
     @todo = Todo.new(params[:todo])
+    @todo.user_id = current_user.id
     respond_to do |format|
       if @todo.save
         if !params[:todo][:project_id].blank?

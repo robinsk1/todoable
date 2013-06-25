@@ -5,9 +5,9 @@ Todoable::Application.routes.draw do
    resources :todos
   end
 
-  resources :users do
-    resources :projects, :path => "lists"
-  end
+  #resources :users do
+  #  resources :projects, :path => "lists"
+  #end
 
 
 
@@ -22,5 +22,7 @@ Todoable::Application.routes.draw do
   end
   root :to => "todos#index"
   devise_for :users
-  resources :users
+  resources :users do
+      resources :projects, :path => "lists"
+    end
 end

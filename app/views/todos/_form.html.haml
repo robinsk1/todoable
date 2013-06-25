@@ -1,7 +1,6 @@
 = simple_form_for(@todo) do |f|
   = f.error_notification
-  -if !params[:project_id].blank?
-    = f.input :project_id, :as => :hidden, :input_html => { :value => params[:project_id] }
+  = f.input :project_id, :as => :hidden, :input_html => { :value => params[:project_id] }
   = f.input :description
   = f.input :status
   = f.button :submit

@@ -3,14 +3,12 @@
     .large-12.columns
       %h1=Project.find(params[:project_id]).name
   .row
-    .large-12-columns
+    .large-12.columns
       =Project.find(params[:project_id]).description
-
-
 .row
   .large-12.columns
     %h1
-      -if can? :create, :todos
+      -if can? :create, Todo
         -if params[:project_id].blank?
           =link_to 'create new unassigned todo', new_todo_path
         -else
@@ -26,7 +24,7 @@
       .opened
         .large-8.columns= link_to todo.description, todo
         .large-1.columns= !todo.project.nil? ? todo.project.name : "none"
-        -if can? :manage, :todos
+        -if can? :update, Todo
           .large-1.columns.toggle= link_to("close", todo_toggle_path(todo), :method=> :put, :remote => true)
           .large-1.columns= link_to 'Edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo)
           .large-1.columns= link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
@@ -42,7 +40,7 @@
       .closed
         .large-8.columns= link_to todo.description, todo
         .large-1.columns= !todo.project.nil? ? todo.project.name : "none"
-        -if can? :manage, :todos
+        -if can? :update, Todo
           .large-1.columns.toggle= link_to("open", todo_toggle_path(todo), :method=> :put, :remote => true)
           .large-1.columns= link_to 'Edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo)
           .large-1.columns= link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }

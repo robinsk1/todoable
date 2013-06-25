@@ -1,4 +1,4 @@
-class Ability
+class   Ability
   include CanCan::Ability
 
   def initialize(user)
@@ -6,9 +6,39 @@ class Ability
     #
     unless user
       can :read, [Todo, Project]
+
       else
       # All registered users
-      can :manage, :all
+      # Projects
+      can :read, Project
+      can :create, Project
+
+      can :destroy, Project do |project|
+        project.try(:user) == user
+      end
+
+      can :update, Project do |project|
+        project.try(:user) == user
+      end
+
+      # Todos
+      can :create, Todo
+      can :read, Todo
+
+      can :destroy, Todo do |todo|
+         todo.try(:user) == user
+      end
+
+      can :toggle, Todo do |todo|
+         todo.try(:user) == user
+      end
+
+      can :update, Todo do |todo|
+         todo.try(:user) == user
+      end
+
+
+
       # Admins
       if user.has_role?(:admin)
         can :manage, :all
