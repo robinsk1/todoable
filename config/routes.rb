@@ -1,15 +1,20 @@
 Todoable::Application.routes.draw do
-  resources :projects
+  resources :projects, :path => "lists"
 
-  resources :projects  do
+  resources :projects, :path => "lists"  do
    resources :todos
+  end
+
+  resources :users do
+    resources :projects, :path => "lists"
   end
 
 
 
 
-
-  resources :todos
+  resources :todos do
+    put :toggle
+  end
 
 
   authenticated :user do

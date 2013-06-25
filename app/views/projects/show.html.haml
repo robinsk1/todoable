@@ -4,12 +4,11 @@
     %p#notice= notice
 
     %p
-      %b Name:
+      %b Project name:
       = @project.name
     %p
       %b Description:
       = @project.description
 
-    = link_to 'Edit', edit_project_path(@project)
-    \|
-    = link_to 'Back', projects_path
+    -if can? :manage, :project
+      = link_to 'Edit', edit_project_path(@project)

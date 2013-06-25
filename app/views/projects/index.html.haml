@@ -1,13 +1,17 @@
 .row
   .large-12.columns
     %h1
-      =link_to 'New Project', new_project_path
+      -if can? :manage, :projects
+        =link_to 'New list', new_project_path
+      -else
+        Current Projects
 
 -@projects.each do |project|
   .row
     .large-4.columns=link_to project.name, project_todos_path(project)
     .large-2.columns= project.description
-    .large-2.columns= link_to 'Show', project
-    .large-2.columns= link_to 'Edit', edit_project_path(project)
-    .large-2.columns= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+    -if can? :manage, :projects
+      .large-3.columns= link_to 'Edit', edit_project_path(project)
+      .large-3.columns= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    -else
+      .large-6.columns
