@@ -1,6 +1,6 @@
-= simple_form_for(@todo) do |f|
+= simple_form_for(@todo, :input_html => {"data-remote" => true, "data-type" => :json}) do |f|
   = f.error_notification
   = f.input :project_id, :as => :hidden, :input_html => { :value => params[:project_id] }
-  = f.input :description
-  = f.input :status
+  = f.input :description, :label => false, placeholder: 'Describe your to-do'
+  = f.input :status, :as => :hidden, :input_html =>{:value => false}
   = f.button :submit

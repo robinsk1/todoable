@@ -14,6 +14,7 @@ class TodosController < ApplicationController
       @todos = Project.find(params[:project_id]).todos
       @open = @todos.where(:status=> false)
       @closed = @todos.where(:status=> true)
+      @todo = current_user.projects.find(params[:project_id]).todos.build
     end
 
     respond_to do |format|

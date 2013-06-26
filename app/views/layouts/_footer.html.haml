@@ -1,16 +1,20 @@
+
+
 / Footer
-%footer.row
-  .large-12.columns
-    %hr/
-    .row
-      .large-6.columns
-        %p © Copyright Undoable.
-      .large-6.columns
-        %ul.inline-list.right
-          %li
-            %a{:href => "/todos"} todos
-          %li
-            %a{:href => "/todos"} projects
+
+#footer.full-width
+  .large-4.columns
+  .large-8.columns
+    %ul.inline-list.right
+      %li
+        = link_to 'todos', root_path
+      %li
+        = link_to 'cities', root_path
+      %li
+        = link_to 'about', root_path
+      %li
+        = link_to 'contact', root_path
+
 
 -#:javascript
 -#  document.write('<script src=js/vendor/' +

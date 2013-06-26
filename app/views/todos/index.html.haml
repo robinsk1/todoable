@@ -5,14 +5,20 @@
   .row
     .large-12.columns
       =Project.find(params[:project_id]).description
+
 .row
   .large-12.columns
-    %h1
-      -if can? :create, Todo
-        -if params[:project_id].blank?
-          =link_to 'create new unassigned todo', new_todo_path
-        -else
-          =link_to "new todo" , new_project_todo_path(:project_id => params[:project_id])
+    -if can? :create, Todo
+      -if !params[:project_id].blank?
+        -#=link_to "new todo" , new_project_todo_path(:project_id => params[:project_id])
+        = simple_form_for(@todo, :input_html => {"data-remote" => true, "data-type" => :json}) do |f|
+          = f.error_notification
+          = f.input :project_id, :as => :hidden, :input_html => { :value => params[:project_id] }
+          %h1
+            = f.input :description, :label => false, placeholder: 'Describe your to-do'
+          = f.input :status, :as => :hidden, :input_html =>{:value => false}
+          = f.button :submit, :class=>"button", :value=>"Create New To-do", :style =>"float:right;"
+
 
 - if !@open.nil?
   .row

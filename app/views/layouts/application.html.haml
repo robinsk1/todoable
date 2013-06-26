@@ -5,17 +5,18 @@
       %title= content_for?(:title) ? yield(:title) : "Todoable"
       %meta{:content => content_for?(:description) ? yield(:description) : "Todoable", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
+        %script{:src => "http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false", :type => "text/javascript"}
         = javascript_include_tag "application"
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
-    / Main Grid Section
-    = render 'layouts/navigation'
-    .row
-      .large-12.columns
-        = render 'layouts/messages'
-    = yield
-    / End Grid Section
+    #layout
+      = render 'layouts/navigation'
+      .row
+        .large-12.columns
+          = render 'layouts/messages'
+      = yield
+      #root_footer
     = render 'layouts/footer'
 
     / ! end of #container

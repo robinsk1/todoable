@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   has_many :todos, :dependent => :destroy
   belongs_to :user
 
+  attr_accessor :location_search
+
   resourcify
 
   #items => all items of the project

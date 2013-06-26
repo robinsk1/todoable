@@ -2,8 +2,9 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name
-    = f.input :description
+    = f.input :location_search, :label => false
+    = f.input :name, :label => false, placeholder: 'Give your list a name'
+    = f.input :description, :label => false, placeholder: 'Add some detail to your list (if required)'
 
   .form-actions
     = f.button :submit
