@@ -9,12 +9,19 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require foundation_and_overrides
  *= require_tree .
 */
 
-
-
+//$base-font-size: 100% !default;
+//
+//
+//$em-base: 16px !default;
+//
+//@function emCalc($pxWidth) {
+//  @return $pxWidth / $em-base * 1em;
+//}
+//
+//@import 'foundation';
 
 
 .brand {
