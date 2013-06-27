@@ -10,8 +10,8 @@
   .large-12.columns
     -if can? :create, Todo
       -if !params[:project_id].blank?
-        -#=link_to "new todo" , new_project_todo_path(:project_id => params[:project_id])
-        = simple_form_for(@todo, :input_html => {"data-remote" => true, "data-type" => :json}) do |f|
+        -#=link_to "new xtodo" , new_project_todo_path(:project_id => params[:project_id])
+        = simple_form_for(@todo)  do |f|
           = f.error_notification
           = f.input :project_id, :as => :hidden, :input_html => { :value => params[:project_id] }
           %h1

@@ -57,14 +57,11 @@ class TodosController < ApplicationController
     @todo.user_id = current_user.id
     respond_to do |format|
       if @todo.save
-        if !params[:todo][:project_id].blank?
-          format.html { redirect_to project_todos_path(:project_id=>params[:todo][:project_id]), notice: 'Todo was successfully created.' }
-        else
-          format.html { redirect_to :action => :index, notice: 'Todo was successfully created.' }
-        end
+          #format.js
+          format.html { redirect_to project_todos_path(:project_id=>@todo.project), notice: 'xTodo was successfully created.' }
+          #format.html { redirect_to :action => :index, notice: 'xTodo was successfully created.' }
       else
-        format.html { render action: "new" }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
+        format.js { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -97,7 +94,7 @@ class TodosController < ApplicationController
     @todo.destroy
 
     respond_to do |format|
-      format.html { redirect_to todos_url }
+      format.html { redirect_to project_todos_url(@todo.project) }
       format.json { head :no_content }
     end
   end
