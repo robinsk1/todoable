@@ -12,6 +12,10 @@ end
 module Todoable
   class Application < Rails::Application
 
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      "<div class=\"error\">#{html_tag}</div>".html_safe
+    }
+
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
       

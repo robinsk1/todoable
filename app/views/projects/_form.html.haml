@@ -1,17 +1,18 @@
 = simple_form_for(@project) do |f|
-  - if @project.errors.any?
-    #errorExplanation
-      %h2
-        = pluralize(@project.errors.count, "error")
-        prevented this user from being saved:
-      %ul
-        - @project.errors.full_messages.each do |msg|
-          %li
-            = msg
+  -#- if @project.errors.any?
+  -#  #errorExplanation
+  -#    %h2
+  -#      = pluralize(@project.errors.count, "error")
+  -#      prevented this user from being saved:
+  -#    %ul
+  -#      - @project.errors.full_messages.each do |msg|
+  -#        %li
+  -#          = msg
   .form-inputs
-    = f.input :location, :label => false
-    = f.input :name, :label => false, placeholder: 'Give your list a name'
-    = f.input :description, :label => false, placeholder: 'Add some detail to your list (if required)'
+    - error = @project.errors.any? ? 'error' : ''
+    = f.input :location, :label => false, :class=> error
+    = f.input :name, :label => false, placeholder: 'Give your list a name', :class=> error
+    = f.input :description, :label => false, placeholder: 'Add some detail to your list (if required)', :class=> error
 
   .form-actions
     -button_text =  @project.new_record? ? "Create list" : "Update list"
