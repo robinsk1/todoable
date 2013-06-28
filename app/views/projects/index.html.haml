@@ -2,16 +2,18 @@
   .large-12.columns
     %h1
       -if can? :create, Project
-        =link_to 'New list', new_project_path
+        =link_to 'Create new city to-do list', new_project_path
       -else
-        Todo list
+        To-do list
 
--@projects.each do |project|
-  .row
-    .large-4.columns=link_to project.name, project_todos_path(project)
-    .large-2.columns= project.description
-    -if can? :update, Project
-      .large-3.columns= link_to 'Edit', edit_project_path(project)
-      .large-3.columns= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
-    -else
-      .large-6.columns
+.large-12.columns
+  -@projects.each do |project|
+    .row
+      .large-2.columns= link_to project.name, project_todos_path(project)
+      .large-2.columns= project.location.blank? ? " blank" : project.location
+      .large-2.columns= project.description.blank? ? " blank " : project.description
+      -if can? :update, Project
+        .large-3.columns= link_to 'Edit', edit_project_path(project)
+        .large-3.columns= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      -else
+        .large-6.columns

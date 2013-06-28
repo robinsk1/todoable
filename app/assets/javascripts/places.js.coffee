@@ -1,5 +1,5 @@
 jQuery ($) ->
-  input = document.getElementById("project_location_search")
+  input = document.getElementById("project_location")
   options =
     types: ["(cities)"]
 #    componentRestrictions:

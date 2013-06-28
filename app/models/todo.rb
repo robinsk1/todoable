@@ -3,6 +3,8 @@ class Todo < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
+  validates_presence_of :description
+
   resourcify
 
   scope :closed, :conditions => ["status = ?", true]

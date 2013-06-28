@@ -21,6 +21,10 @@ $em-base: 16px !default;
   @return $pxWidth / $em-base * 1em;
 }
 
+.pacifico {
+  font-family: pacificoregular;
+}
+
 // Various global styles
 
 // $default-float: left;
@@ -1157,7 +1161,7 @@ $em-base: 16px !default;
 
 // Background color for the top bar
 
-// $topbar-bg: #111;
+//$topbar-bg: #5286fc;
 
 // Height and margin
 
@@ -1175,10 +1179,10 @@ $em-base: 16px !default;
 
 // Link colors and styles for top-level nav
 
-// $topbar-link-color: #fff;
+//$topbar-link-color: #40eabd;
 // $topbar-link-weight: bold;
 // $topbar-link-font-size: emCalc(13px);
-// $topbar-link-hover-lightness: -30% !default; // Darken by 30%
+//$topbar-link-hover-lightness: 30% !default; // Darken by 30%
 
 // Top bar dropdown elements
 

@@ -5,18 +5,12 @@ class TodosController < ApplicationController
   load_and_authorize_resource
 
   def index
-
-    if params[:project_id].blank?
-      @todos = Todo.all
-      @open = Todo.open
-      @closed = Todo.closed
-    else
       @todos = Project.find(params[:project_id]).todos
       @open = @todos.where(:status=> false)
       @closed = @todos.where(:status=> true)
-      @todo = current_user.projects.find(params[:project_id]).todos.build
-    end
-
+      if current_user
+        @todo = Project.find(params[:project_id]).todos.build
+      end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @todos }
@@ -58,10 +52,10 @@ class TodosController < ApplicationController
     respond_to do |format|
       if @todo.save
           #format.js
-          format.html { redirect_to project_todos_path(:project_id=>@todo.project), notice: 'xTodo was successfully created.' }
+        format.html { redirect_to project_todos_path(:project_id=>@todo.project), notice: 'xTodo was successfully created.' }
           #format.html { redirect_to :action => :index, notice: 'xTodo was successfully created.' }
       else
-        format.js { render json: @todo.errors, status: :unprocessable_entity }
+        format.html { redirect_to project_todos_path(:project_id=>@todo.project), warn: 'failed to create todo' }
       end
     end
   end

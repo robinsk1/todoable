@@ -4,7 +4,11 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @projects = Project.all
+    if params[:id]
+      @projects = User.find(params[:id]).projects.all
+    else
+      @projects = Project.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -62,7 +66,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to projects_url, notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -1,9 +1,9 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :name
+  attr_accessible :description, :name, :location
   has_many :todos, :dependent => :destroy
   belongs_to :user
 
-  attr_accessor :location_search
+  validates_presence_of :description, :name, :location
 
   resourcify
 
