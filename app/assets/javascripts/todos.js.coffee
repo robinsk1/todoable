@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ($) ->
-  jQuery(document).on 'click', '.toggle a', (event) ->
+  jQuery(document.body).on 'click', '.toggle a', (event) ->
     form_path = undefined
     link = undefined
     method = undefined

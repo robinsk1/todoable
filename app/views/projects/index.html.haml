@@ -9,11 +9,10 @@
 .large-12.columns
   -@projects.each do |project|
     .row
-      .large-2.columns= link_to project.name, project_todos_path(project)
-      .large-2.columns= project.location.blank? ? " blank" : project.location
-      .large-2.columns= project.description.blank? ? " blank " : project.description
+      .large-4.columns.index-column-element= link_to project.name, project_todos_path(project)
+      .large-2.columns.index-column-element= project.location
       -if can? :update, Project
-        .large-3.columns= link_to 'Edit', edit_project_path(project)
-        .large-3.columns= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        .large-3.columns.index-column-element= link_to 'Edit', edit_project_path(project)
+        .large-3.columns.index-column-element= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
       -else
-        .large-6.columns
+        .large-6.columns.index-column-element

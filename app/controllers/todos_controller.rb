@@ -48,14 +48,19 @@ class TodosController < ApplicationController
   # POST /todos.json
   def create
     @todo = Todo.new(params[:todo])
+    @todos = Project.find(params[:project_id]).todos
     @todo.user_id = current_user.id
+    @todo.status = false
     respond_to do |format|
       if @todo.save
-          #format.js
-        format.html { redirect_to project_todos_path(:project_id=>@todo.project), notice: 'xTodo was successfully created.' }
-          #format.html { redirect_to :action => :index, notice: 'xTodo was successfully created.' }
+        format.html { redirect_to project_todos_path(:project_id=>params[:project_id]), notice: 'To-do was successfully created.' }
+        format.json { render json: @todo, status: :created, location: @todo }
       else
-        format.html { redirect_to project_todos_path(:project_id=>@todo.project), warn: 'failed to create todo' }
+        @todo = @todo
+        @open = @todos.where(:status=> false)
+        @closed = @todos.where(:status=> true)
+        format.html { render action: "index", alert: 'To-do was not created.'}
+        format.json { render json: @todo, status: :unprocessable_entity }
       end
     end
   end

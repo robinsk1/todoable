@@ -7,17 +7,17 @@
       =Project.find(params[:project_id]).description
 
 .row
+  .large-12.columns.index-column-element
+
+.row
   .large-12.columns
     -if can? :create, Todo
       -if !params[:project_id].blank?
-        -#=link_to "new xtodo" , new_project_todo_path(:project_id => params[:project_id])
-        = simple_form_for(@todo)  do |f|
-          = f.error_notification
-          = f.input :project_id, :as => :hidden, :input_html => { :value => params[:project_id] }
-          %h1
-            = f.input :description, :label => false, placeholder: 'Describe your to-do'
-          = f.input :status, :as => :hidden, :input_html =>{:value => false}
-          = f.button :submit, :class=>"button", :value=>"Create New To-do", :style =>"float:right;"
+        = simple_form_for([:project, @todo])  do |f|
+          .form-inputs
+            = f.input :description, :class=>"prick", :label => false, placeholder: 'Describe your to-do'
+          .form-actions
+            = f.button :submit, :class=>"button prick", :value=>"Create New To-do", :style =>"float:right;"
 
 
 - if !@open.nil?
@@ -28,14 +28,14 @@
   .row.opened-container
     - @open.each do |todo|
       .opened
-        .large-8.columns= link_to todo.description, todo
-        .large-1.columns= !todo.project.nil? ? todo.project.name : "none"
+        .large-8.columns.index-column-element= link_to todo.description, todo
+        .large-1.columns.index-column-element= !todo.project.nil? ? todo.project.name : "none"
         -if can? :update, Todo
-          .large-1.columns.toggle= link_to("close", todo_toggle_path(todo), :method=> :put, :remote => true)
-          .large-1.columns= link_to 'Edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo)
-          .large-1.columns= link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          .large-1.columns.index-column-element.toggle= link_to("close", todo_toggle_path(todo), :method=> :put, :remote => true)
+          .large-1.columns.index-column-element= link_to 'edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo)
+          .large-1.columns.index-column-element= link_to 'destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
         -else
-          .large-2.columns
+          .large-2.columns.index-column-element
 
 -if !@closed.nil?
   .row
@@ -44,14 +44,14 @@
   .row.closed-container
     - @closed.each do |todo|
       .closed
-        .large-8.columns= link_to todo.description, todo
-        .large-1.columns= !todo.project.nil? ? todo.project.name : "none"
+        .large-8.columns.index-column-element= link_to todo.description, todo
+        .large-1.columns.index-column-element= !todo.project.nil? ? todo.project.name : "none"
         -if can? :update, Todo
-          .large-1.columns.toggle= link_to("open", todo_toggle_path(todo), :method=> :put, :remote => true)
-          .large-1.columns= link_to 'Edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo)
-          .large-1.columns= link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          .large-1.columns.index-column-element.toggle= link_to("open", todo_toggle_path(todo), :method=> :put, :remote => true)
+          .large-1.columns.index-column-element= link_to 'edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo)
+          .large-1.columns.index-column-element= link_to 'destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
         -else
-          .large-2.columns
+          .large-2.columns.index-column-element
 %br
 
 .row
