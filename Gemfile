@@ -31,3 +31,9 @@ gem "better_errors", ">= 0.7.2", :group => :development
 gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri_19, :rbx]
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem 'google-analytics-rails'
+
+gem 'google_places'
+gem 'figaro'
+
+gem 'acts-as-taggable-on'
+gem 'rails3-jquery-autocomplete', :git => 'https://github.com/lukaselmer/rails3-jquery-autocomplete.git'

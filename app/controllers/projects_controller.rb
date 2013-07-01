@@ -3,6 +3,9 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   load_and_authorize_resource
 
+  #autocomplete :tag, :name
+
+
   def index
     if params[:id]
       @projects = User.find(params[:id]).projects.all

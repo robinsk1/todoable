@@ -3,7 +3,7 @@
     .large-12.columns
       %h1=Project.find(params[:project_id]).name
   .row
-    .large-12.columns
+    .large-12.columns.todo-description
       =Project.find(params[:project_id]).description
 
 .row
@@ -15,43 +15,43 @@
       -if !params[:project_id].blank?
         = simple_form_for([:project, @todo])  do |f|
           .form-inputs
-            = f.input :description, :class=>"prick", :label => false, placeholder: 'Describe your to-do'
+            = f.input :description, :label => false, placeholder: 'Describe your to-do'
           .form-actions
-            = f.button :submit, :class=>"button prick", :value=>"Create New To-do", :style =>"float:right;"
-
+            = f.button :submit, :class=>"success button round", :value=>"Create New To-do", :style =>"float:right;"
 
 - if !@open.nil?
+  .row{:style=>"margin-top:10px;"}
+    .large-12.columns
+      %h2 To-do!
   .row
     .large-12.columns
-      %h2 Open
-
-  .row.opened-container
-    - @open.each do |todo|
-      .opened
-        .large-8.columns.index-column-element= link_to todo.description, todo
-        .large-1.columns.index-column-element= !todo.project.nil? ? todo.project.name : "none"
-        -if can? :update, Todo
-          .large-1.columns.index-column-element.toggle= link_to("close", todo_toggle_path(todo), :method=> :put, :remote => true)
-          .large-1.columns.index-column-element= link_to 'edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo)
-          .large-1.columns.index-column-element= link_to 'destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
-        -else
-          .large-2.columns.index-column-element
+      .opened-container
+        - @open.each do |todo|
+          .row.todo-element.opened
+            .large-9.columns.index-column-element= todo.description
+            -if can? :update, Todo
+              .large-1.columns.index-column-element.toggle= link_to "close", todo_toggle_path(todo), :method=> :put, :remote => true
+              .large-1.columns.index-column-element= link_to 'edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo), :class=>"tiny radius button"
+              .large-1.columns.index-column-element= link_to 'delete', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
+            -else
+              .large-2.columns.index-column-element
 
 -if !@closed.nil?
+  .row{:style=>"margin-top:20px;"}
+    .large-12.columns
+      %h2 Done!
   .row
     .large-12.columns
-      %h2 Closed
-  .row.closed-container
-    - @closed.each do |todo|
-      .closed
-        .large-8.columns.index-column-element= link_to todo.description, todo
-        .large-1.columns.index-column-element= !todo.project.nil? ? todo.project.name : "none"
-        -if can? :update, Todo
-          .large-1.columns.index-column-element.toggle= link_to("open", todo_toggle_path(todo), :method=> :put, :remote => true)
-          .large-1.columns.index-column-element= link_to 'edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo)
-          .large-1.columns.index-column-element= link_to 'destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
-        -else
-          .large-2.columns.index-column-element
+      .closed-container
+        - @closed.each do |todo|
+          .row.todo-element.closed
+            .large-9.columns.index-column-element= todo.description
+            -if can? :update, Todo
+              .large-1.columns.index-column-element.toggle= link_to "open", todo_toggle_path(todo), :method=> :put, :remote => true
+              .large-1.columns.index-column-element= link_to 'edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo), :class=>"tiny radius button"
+              .large-1.columns.index-column-element= link_to 'delete', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
+            -else
+              .large-2.columns.index-column-element
 %br
 
 .row

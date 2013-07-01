@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
 
-  has_many :todos
+  has_many :todos, :through => :projects
+  has_many :participations
   has_many :projects
 
   devise :database_authenticatable, :registerable,

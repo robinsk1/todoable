@@ -29,7 +29,46 @@
 //.search form {float:left !important; width:450px !important;}
 
 .index-column-element {
-  min-height: 30px;
+  min-height: 15px;
+}
+
+
+.row.todo-element.opened{
+  border-width: 1px;
+  border-color: rgba(224, 13, 11, 0.33);
+  background-color: rgba(255, 13, 11, 0.18);
+  border-style: solid;
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 13pt;
+}
+
+.row.todo-element.closed{
+  border-width: 1px;
+  border-color: #3edaaf;
+  background-color: #d5ffdf;
+  border-style: solid;
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 13pt;
+}
+
+.todo-description {
+  min-height: 200px;
+  background-color: #fffaf0;
+  padding: 20px;
+}
+
+
+
+.row.projects.list{
+  border-width: 1px;
+  border-color: #3edaaf;
+  background-color: #d5ffdf;
+  border-style: solid;
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 13pt;
 }
 
 

@@ -12,6 +12,7 @@ class   Ability
       # Projects
       can :read, Project
       can :create, Project
+      can :autocomplete_tag_name, Project
 
       can :destroy, Project do |project|
         project.try(:user) == user

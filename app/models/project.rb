@@ -1,11 +1,15 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :name, :location
+  attr_accessible :description, :name, :location, :tag_list
   has_many :todos, :dependent => :destroy
+  has_many :participations, :dependent => :destroy
   belongs_to :user
 
-  validates_presence_of :description, :name, :location
+  validates_presence_of :description, :name, :location, :tag_list
 
   resourcify
+
+  acts_as_taggable
+
 
   #items => all items of the project
   def items

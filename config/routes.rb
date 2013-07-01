@@ -1,5 +1,7 @@
 Todoable::Application.routes.draw do
-  resources :projects, :path => "lists"
+  resources :projects, :path => "lists" do
+    #get :autocomplete_tag_name, :on => :collection
+  end
 
   resources :projects, :path => "lists"  do
    resources :todos

@@ -33,11 +33,13 @@ jQuery ($) ->
         if method is "open"
           element = link.closest(".closed")
           element.removeClass("closed").addClass "opened"
+#          element.removeClass("alert").addClass "success"
           element.remove()
           $(".opened-container").append element
         else
           element = link.closest(".opened")
           element.removeClass("opened").addClass "closed"
+#          element.removeClass("success").addClass "alert"
           element.remove()
           $(".closed-container").append element
 
