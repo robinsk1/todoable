@@ -46,3 +46,8 @@ jQuery ($) ->
       beforeSend: ->
 
 
+
+  $("input").keypress (event) ->
+    if event.which is 13
+      event.preventDefault()
+      $("form").submit()

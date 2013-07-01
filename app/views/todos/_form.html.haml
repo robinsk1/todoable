@@ -1,13 +1,4 @@
 = simple_form_for(@todo, :input_html => {"data-remote" => true, "data-type" => :json}) do |f|
-  - if @todo.errors.any?
-    #errorExplanation
-      %h2
-        = pluralize(@todo.errors.count, "error")
-          prevented this user from being saved:
-        %ul
-          - @todo.errors.full_messages.each do |msg|
-            %li
-              = msg
   = f.input :project_id, :as => :hidden, :input_html => { :value => params[:project_id] }
   = f.input :description, :label => false, placeholder: 'Describe your to-do'
   = f.input :status, :as => :hidden, :input_html =>{:value => false}

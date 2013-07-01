@@ -2,14 +2,14 @@
   .large-12.columns
     %h3
       -if can? :create, Project
-        =link_to 'Create new city to-do list!', new_project_path, :class=>"button"
+        =link_to 'Create new city to-do list!', new_project_path, :class=>"button", :style=>"float:right;"
       -else
         City to-do lists
 .row
   .large-12.columns
     .row
       .large-4.columns.index-column-element
-        name
+        to-do list
       .large-2.columns.index-column-element
         tags
       .large-2.columns.index-column-element
@@ -22,7 +22,7 @@
         .large-4.columns.index-column-element= link_to project.name, project_todos_path(project)
         .large-2.columns.index-column-element= project.tag_list
         .large-2.columns.index-column-element= project.location
-        -if can? :update, Project
+        -if can? :update, project
           .large-2.columns.index-column-element= link_to 'Edit',  edit_project_path(project), :class=>"tiny radius button"
           .large-2.columns.index-column-element= link_to 'Delete', project, :class=>"alert tiny round button", :method => :delete, :data => { :confirm => 'Are you sure?' }
         -else

@@ -12,7 +12,7 @@ class   Ability
       # Projects
       can :read, Project
       can :create, Project
-      can :autocomplete_tag_name, Project
+      #can :autocomplete_tag_name, Project
 
       can :destroy, Project do |project|
         project.try(:user) == user
@@ -23,19 +23,22 @@ class   Ability
       end
 
       # Todos
-      can :create, Todo
+      can :create, Todo do |todo|
+         todo.project.try(:user) == user
+      end
+
       can :read, Todo
 
       can :destroy, Todo do |todo|
-         todo.try(:user) == user
+         todo.project.try(:user) == user
       end
 
       can :toggle, Todo do |todo|
-         todo.try(:user) == user
+         todo.project.try(:user) == user
       end
 
       can :update, Todo do |todo|
-         todo.try(:user) == user
+         todo.project.try(:user) == user
       end
 
 

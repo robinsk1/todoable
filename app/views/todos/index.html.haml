@@ -11,11 +11,12 @@
 
 .row
   .large-12.columns
-    -if can? :create, Todo
+    -if current_user == @project.user
       -if !params[:project_id].blank?
-        = simple_form_for([:project, @todo])  do |f|
+        = simple_form_for([@project, @todo])  do |f|
           .form-inputs
-            = f.input :description, :label => false, placeholder: 'Describe your to-do'
+            = f.input :description, :as=> :string,  :label => false, placeholder: 'Describe your to-do'
+            = f.input :project_id, :as=> :hidden, :value => @todo.project_id
           .form-actions
             = f.button :submit, :class=>"success button round", :value=>"Create New To-do", :style =>"float:right;"
 
@@ -29,8 +30,8 @@
         - @open.each do |todo|
           .row.todo-element.opened
             .large-9.columns.index-column-element= todo.description
-            -if can? :update, Todo
-              .large-1.columns.index-column-element.toggle= link_to "close", todo_toggle_path(todo), :method=> :put, :remote => true
+            -if can? :update, todo
+              .large-1.columns.index-column-element.toggle= link_to "close", toggle_todo_path(todo), :method=> :put, :remote => true
               .large-1.columns.index-column-element= link_to 'edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo), :class=>"tiny radius button"
               .large-1.columns.index-column-element= link_to 'delete', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
             -else
@@ -46,8 +47,8 @@
         - @closed.each do |todo|
           .row.todo-element.closed
             .large-9.columns.index-column-element= todo.description
-            -if can? :update, Todo
-              .large-1.columns.index-column-element.toggle= link_to "open", todo_toggle_path(todo), :method=> :put, :remote => true
+            -if can? :update, todo
+              .large-1.columns.index-column-element.toggle= link_to "open", toggle_todo_path(todo), :method=> :put, :remote => true
               .large-1.columns.index-column-element= link_to 'edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo), :class=>"tiny radius button"
               .large-1.columns.index-column-element= link_to 'delete', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
             -else

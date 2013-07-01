@@ -11,11 +11,10 @@ Todoable::Application.routes.draw do
   #  resources :projects, :path => "lists"
   #end
 
-
-
-
   resources :todos do
-    put :toggle
+    member do
+      put :toggle
+    end
   end
 
 

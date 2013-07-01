@@ -5,11 +5,13 @@ class TodosController < ApplicationController
   load_and_authorize_resource
 
   def index
+
       @todos = Project.find(params[:project_id]).todos
       @open = @todos.where(:status=> false)
       @closed = @todos.where(:status=> true)
       if current_user
-        @todo = Project.find(params[:project_id]).todos.build
+        @project = Project.find(params[:project_id])
+        @todo = @project.todos.build
       end
     respond_to do |format|
       format.html # index.html.erb
