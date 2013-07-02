@@ -1,17 +1,32 @@
+=javascript_tag do
+  project_id = '#{@project.id}';
+
+
 -unless params[:project_id].blank?
+  -@project = Project.find(params[:project_id])
+  .row
+    .large-10.columns
+      %h1=best_in_place_if current_user_project_owner?, @project, :name
+    .large-1.columns
+      =current_user_project_owner? ? link_to('edit', edit_project_path(@project)).html_safe : ''
+    .large-1.columns
+      Join!
   .row
     .large-12.columns
-      %h1=Project.find(params[:project_id]).name
+      %h2="#{@project.location}"
+  .row
+    .large-12.columns
+      %h3="#{@project.tag_list}"
   .row
     .large-12.columns.todo-description
-      =Project.find(params[:project_id]).description
+      =best_in_place_if current_user_project_owner?, @project, :description
 
 .row
   .large-12.columns.index-column-element
 
 .row
   .large-12.columns
-    -if current_user == @project.user
+    -if signed_in? && current_user_project_owner?
       -if !params[:project_id].blank?
         = simple_form_for([@project, @todo])  do |f|
           .form-inputs
@@ -29,10 +44,10 @@
       .opened-container
         - @open.each do |todo|
           .row.todo-element.opened
-            .large-9.columns.index-column-element= todo.description
+            .large-10.columns.index-column-element
+              = best_in_place_if current_user_project_owner?, todo, :description
             -if can? :update, todo
               .large-1.columns.index-column-element.toggle= link_to "close", toggle_todo_path(todo), :method=> :put, :remote => true
-              .large-1.columns.index-column-element= link_to 'edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo), :class=>"tiny radius button"
               .large-1.columns.index-column-element= link_to 'delete', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
             -else
               .large-2.columns.index-column-element
@@ -46,10 +61,10 @@
       .closed-container
         - @closed.each do |todo|
           .row.todo-element.closed
-            .large-9.columns.index-column-element= todo.description
+            .large-10.columns.index-column-element
+              = best_in_place_if current_user_project_owner?, todo, :description
             -if can? :update, todo
               .large-1.columns.index-column-element.toggle= link_to "open", toggle_todo_path(todo), :method=> :put, :remote => true
-              .large-1.columns.index-column-element= link_to 'edit', params[:project_id].blank? ? edit_todo_path(todo) : edit_project_todo_path(params[:project_id], todo), :class=>"tiny radius button"
               .large-1.columns.index-column-element= link_to 'delete', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
             -else
               .large-2.columns.index-column-element

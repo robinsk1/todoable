@@ -11,6 +11,13 @@ Todoable::Application.routes.draw do
   #  resources :projects, :path => "lists"
   #end
 
+  resources :participation  do
+    member do
+      put :toggle
+    end
+  end
+
+
   resources :todos do
     member do
       put :toggle
@@ -18,10 +25,16 @@ Todoable::Application.routes.draw do
   end
 
 
+
+
   authenticated :user do
     root :to => 'projects#index'
   end
-  root :to => "projects#index"
+
+  root :to => "home#index"
+
+
+
   devise_for :users
   resources :users do
       resources :projects, :path => "lists"

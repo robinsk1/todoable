@@ -1,3 +1,4 @@
+
 jQuery ($) ->
   input = document.getElementById("project_location")
   options =

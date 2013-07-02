@@ -27,8 +27,15 @@
 ##          $(".placeholder").html tagString
 #        $("#project_tag_list").attr "value", tagString
 
+jQuery ->
+  $('.best_in_place').best_in_place()
+
+
 $(document).ready ->
   $("#project_tag_list").tagit()
   $("#project_tag_list").tagit fieldName: "[project]tag_list"
   $("#project_tag_list").tagit availableTags: ["art", "music", "food"]
+
+#  stuff = '#best_in_place_project_'+project_id+'_tag_list'
+# $(stuff).tagit()
 

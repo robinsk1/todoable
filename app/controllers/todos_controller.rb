@@ -103,7 +103,7 @@ class TodosController < ApplicationController
 
 
   def toggle
-    @todo = Todo.find(params[:todo_id])
+    @todo = Todo.find(params[:id])
     result = @todo.status == true ? false : true
     respond_to do |format|
       if @todo.update_attribute(:status, result)
