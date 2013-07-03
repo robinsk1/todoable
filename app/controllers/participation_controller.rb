@@ -1,8 +1,10 @@
 class ParticipationController < ApplicationController
 
-  def toggle
+  def index
 
   end
+
+
 
 
 end

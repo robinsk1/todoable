@@ -5,6 +5,22 @@ class ProjectsController < ApplicationController
 
   #autocomplete :tag, :name
 
+  def joined
+    @projects = current_user.joinups.map {|n| n.project}
+    respond_to do |format|
+     format.html {render :action => :index}
+     format.json { render json: @projects }
+    end
+  end
+
+  def owner
+     @projects = current_user.projects.all
+     respond_to do |format|
+      format.html {render :action => :index}
+      format.json { render json: @projects }
+     end
+  end
+
 
   def index
     if params[:id]
@@ -12,7 +28,6 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.all
     end
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -89,4 +104,27 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def join
+    @participation = current_user.participations.build(:project_id => params[:id])
+       respond_to do |format|
+         if @participation.save
+           format.json { render :nothing => true }
+         else
+           format.json { render json: @participation.errors, status: :unprocessable_entity }
+         end
+       end
+  end
+
+
+  def leave
+    @participation = current_user.participations.find_by_project_id(params[:id])
+    @participation.destroy
+       respond_to do |format|
+         format.json { render :nothing => true }
+       end
+
+    end
+
 end

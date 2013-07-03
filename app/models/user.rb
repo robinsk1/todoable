@@ -6,7 +6,11 @@ class User < ActiveRecord::Base
 
   has_many :todos, :through => :projects
   has_many :participations
-  has_many :projects
+
+  has_many :joinups, :class_name => "Participation", :foreign_key => :user_id, :include => :project
+  #has_many :members, :through => :follows, :foreign_key => :project_id, :source => :user
+  has_many :projects, :dependent => :destroy
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

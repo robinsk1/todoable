@@ -7,9 +7,7 @@ class Project < ActiveRecord::Base
   validates_presence_of :description, :name, :location, :tag_list
 
   resourcify
-
   acts_as_taggable
-
 
   #items => all items of the project
   def items

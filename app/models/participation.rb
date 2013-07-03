@@ -1,6 +1,6 @@
 class Participation < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :user_id, :project_id
   belongs_to :project
-  has_many :todos, :through => :project
+  belongs_to :user
 
 end

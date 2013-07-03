@@ -23,7 +23,6 @@
         .large-2.columns.index-column-element= project.tag_list
         .large-2.columns.index-column-element= project.location
         -if can? :update, project
-          -#.large-2.columns.index-column-element= link_to 'Edit',  edit_project_path(project), :class=>"tiny radius button"
           .large-2.columns.index-column-element= link_to 'Delete', project, :class=>"alert tiny round button", :method => :delete, :data => { :confirm => 'Are you sure?' }
         -else
           .large-4.columns.index-column-element

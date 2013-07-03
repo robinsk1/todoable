@@ -5,12 +5,10 @@
 -unless params[:project_id].blank?
   -@project = Project.find(params[:project_id])
   .row
-    .large-10.columns
+    .large-11.columns
       %h1=best_in_place_if current_user_project_owner?, @project, :name
     .large-1.columns
-      =current_user_project_owner? ? link_to('edit', edit_project_path(@project)).html_safe : ''
-    .large-1.columns
-      Join!
+      =participates_in_list?
   .row
     .large-12.columns
       %h2="#{@project.location}"

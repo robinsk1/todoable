@@ -14,6 +14,11 @@ class   Ability
       can :create, Project
       #can :autocomplete_tag_name, Project
 
+      can :join, Project
+      can :leave, Project
+      can :owner, Project
+      can :joined, Project
+
       can :destroy, Project do |project|
         project.try(:user) == user
       end
@@ -36,6 +41,7 @@ class   Ability
       can :toggle, Todo do |todo|
          todo.project.try(:user) == user
       end
+
 
       can :update, Todo do |todo|
          todo.project.try(:user) == user
