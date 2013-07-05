@@ -1,5 +1,5 @@
-=javascript_tag do
-  project_id = '#{@project.id}';
+-#=javascript_tag do
+-#  project_id = '#{@project.id}';
 
 
 -unless params[:project_id].blank?
@@ -42,11 +42,16 @@
       .opened-container
         - @open.each do |todo|
           .row.todo-element.opened
-            .large-10.columns.index-column-element
-              = best_in_place_if current_user_project_owner?, todo, :description
+            .large-10.columns.index-column-element.cen
+              %p
+                = best_in_place_if current_user_project_owner?, todo, :description
             -if can? :update, todo
-              .large-1.columns.index-column-element.toggle= link_to "close", toggle_todo_path(todo), :method=> :put, :remote => true
-              .large-1.columns.index-column-element= link_to 'delete', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
+              .large-1.columns.index-column-element.cen.toggle
+                %p
+                  = link_to "close", toggle_todo_path(todo), :method=> :put, :remote => true
+              .large-1.columns.index-column-element.cen
+                %p
+                  = link_to 'x', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
             -else
               .large-2.columns.index-column-element
 
@@ -59,11 +64,16 @@
       .closed-container
         - @closed.each do |todo|
           .row.todo-element.closed
-            .large-10.columns.index-column-element
-              = best_in_place_if current_user_project_owner?, todo, :description
+            .large-10.columns.index-column-element.cen
+              %p
+                = best_in_place_if current_user_project_owner?, todo, :description
             -if can? :update, todo
-              .large-1.columns.index-column-element.toggle= link_to "open", toggle_todo_path(todo), :method=> :put, :remote => true
-              .large-1.columns.index-column-element= link_to 'delete', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
+              .large-1.columns.index-column-element.cen.toggle
+                %p
+                  = link_to "open", toggle_todo_path(todo), :method=> :put, :remote => true
+              .large-1.columns.index-column-element.cen
+                %p
+                  = link_to 'x', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
             -else
               .large-2.columns.index-column-element
 %br

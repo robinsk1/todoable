@@ -1,4 +1,6 @@
 Todoable::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :projects, except: :show, :path => "lists" do
     #get :autocomplete_tag_name, :on => :collection
   end

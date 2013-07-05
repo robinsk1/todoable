@@ -9,9 +9,8 @@
   .large-12.columns
     .row
       .large-6.columns.index-column-element
-        to-do list
       .large-2.columns.index-column-element
-        tags
+        category
       .large-2.columns.index-column-element
         location
       .large-2.columns.index-column-element
@@ -19,10 +18,18 @@
   .large-12.columns
     -@projects.each do |project|
       .row.projects.list
-        .large-6.columns.index-column-element= link_to project.name, project_todos_path(project)
-        .large-2.columns.index-column-element= project.tag_list
-        .large-2.columns.index-column-element= project.location
+        .large-6.columns.index-column-element.cen
+          %p
+            = link_to project.name, project_todos_path(project)
+        .large-2.columns.index-column-element.cen
+          %p
+            = project.tag_list
+        .large-2.columns.index-column-element.cen
+          %p
+            = project.location
         -if can? :update, project
-          .large-2.columns.index-column-element= link_to 'Delete', project, :class=>"alert tiny round button", :method => :delete, :data => { :confirm => 'Are you sure?' }
+          .large-2.columns.index-column-element.cen
+            %p
+              = link_to 'x', project, :class=>"alert tiny round button", :method => :delete, :data => { :confirm => 'Are you sure?' }
         -else
           .large-4.columns.index-column-element

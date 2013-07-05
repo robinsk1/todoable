@@ -12,8 +12,8 @@
     / Left Nav Section
     %ul.left
       %li.divider
-      %li
-        =link_to 'city to-do lists', projects_path
+      %li{:class => cp(projects_path)}
+        =link_to 'cities', projects_path
       %li.divider
       %li.has-form
         %form
@@ -117,26 +117,27 @@
         %li
           = link_to 'Logout', destroy_user_session_path, :method=>'delete'
       - else
-        %li
+        %li{:class => cp(new_user_session_path)}
           = link_to 'Login', new_user_session_path
       %li.divider
       - if user_signed_in?
-        %li
-          =link_to "My lists", owner_projects_path
-        %li.divider
-        %li
-          =link_to "Lists i've joined", joined_projects_path
-        %li.divider
-        %li
-          =link_to "All lists", projects_path
-        %li.divider
-        %li
-          = link_to 'Edit account', edit_user_registration_path(current_user)
-          - if current_user.has_role? :admin
-            %li
-              = link_to 'Admin', users_path
+        %li.has-dropdown
+          %a{:href => "#"}
+            =current_user.name
+          %ul.dropdown
+            %li{:class => cp(owner_projects_path)}
+              =link_to "My lists", owner_projects_path
+            %li{:class => cp(joined_projects_path)}
+              =link_to "Lists i've joined", joined_projects_path
+            %li{:class => cp(projects_path)}
+              =link_to "All lists", projects_path
+            %li{:class => cp(edit_user_registration_path)}
+              = link_to 'Edit account', edit_user_registration_path(current_user)
+              - if current_user.has_role? :admin
+                %li
+                  = link_to 'Admin', users_path
       - else
-        %li
+        %li{:class => cp(new_user_registration_path)}
           = link_to 'Sign up', new_user_registration_path
 
       -#%li.has-dropdown

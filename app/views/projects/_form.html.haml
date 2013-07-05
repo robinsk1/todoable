@@ -5,7 +5,7 @@
     = f.input :name, :label => false, placeholder: 'Give your list a name', :class=> error
     = f.input :description, :label => false, placeholder: 'Add some detail to your list (if required)', :class=> error
     -#= f.input :tag_list, :label => false, :url => autocomplete_tag_name_projects_path, :as => :autocomplete, placeholder: "Add tag/s separated by ','"
-    = f.input :tag_list, :label => false, placeholder: 'Add some tags', :class=> error
+    = f.input :tag_list, :label => false, :class=> error
 
   .form-actions
     -button_text =  @project.new_record? ? "Create list" : "Update list"

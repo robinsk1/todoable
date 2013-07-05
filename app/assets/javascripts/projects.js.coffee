@@ -4,12 +4,15 @@
 
 jQuery ->
   $('.best_in_place').best_in_place()
+  $(window).stellar()
+
 
 
 $(document).ready ->
   $("#project_tag_list").tagit()
   $("#project_tag_list").tagit fieldName: "[project]tag_list"
   $("#project_tag_list").tagit availableTags: ["art", "music", "food"]
+  $("#project_tag_list").tagit placeholderText: ("tags")
 
   jQuery('#participation').on 'click', (event) ->
       form_path = undefined
@@ -55,8 +58,4 @@ $(document).ready ->
   #          $(".closed-container").append element
 
         beforeSend: ->
-
-
-#  stuff = '#best_in_place_project_'+project_id+'_tag_list'
-# $(stuff).tagit()
 

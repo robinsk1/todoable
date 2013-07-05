@@ -1212,5 +1212,13 @@ $header-font-family: "PacificoRegular", "Helvetica Neue", "Helvetica", Helvetica
 
 @import 'foundation';
 
+.top-bar-section ul li.active > a {
+  background: rgb(158, 37, 37);
+}
+
+.top-bar-section ul li.active > a:hover {
+  background: rgb(179, 179, 245);
+}
+
 
 

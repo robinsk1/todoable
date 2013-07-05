@@ -12,45 +12,55 @@
  *= require_tree .
 */
 
-//$base-font-size: 100% !default;
-//
-//
-//$em-base: 16px !default;
-//
-//@function emCalc($pxWidth) {
-//  @return $pxWidth / $em-base * 1em;
-//}
-//
-//@import 'foundation';
 
-
-//.left .search .button { float:left; width:50px; margin-left:5px;}
-//.search input {width:200px;float:left;top:5px;}
-//.search form {float:left !important; width:450px !important;}
-
-.index-column-element {
-  min-height: 15px;
+.cen {
+  min-height:1em; width:12em; margin:1em 0;
+}
+.cen p {
+  display:inline-block; vertical-align:middle;
+  margin:0 0 0 1em; width:100%;
+}
+.cen::after {
+   display:inline-block; vertical-align:middle; line-height:1em;
+   width:0; content:"\00A0"; overflow:hidden;
 }
 
 
+.big_title {
+color: #fff;
+text-shadow: 0 2px 6px rgba(0,0,0,0.88);
+font-size: 3.72em;
+line-height: 1.12em;
+margin-bottom: 20px;
+letter-spacing: -1px;
+}
+
+.index-callout-box {
+  padding-top: 150px;
+  text-align: center;
+}
+
+#strapper {
+  background-image: url('/assets/barcelona.jpg');
+  height:400px;
+}
+
+.index-column-element {
+  min-height: 1em;
+}
+
 .row.todo-element.opened{
-  border-width: 1px;
-  border-color: rgba(224, 13, 11, 0.33);
   background-color: rgba(255, 13, 11, 0.18);
-  border-style: solid;
   margin-top: 10px;
   padding-top: 10px;
-  font-size: 13pt;
+  font-size: 1.2em;
 }
 
 .row.todo-element.closed{
-  border-width: 1px;
-  border-color: #3edaaf;
   background-color: #d5ffdf;
-  border-style: solid;
   margin-top: 10px;
   padding-top: 10px;
-  font-size: 13pt;
+  font-size: 1.2em;
 }
 
 .todo-description {
@@ -59,16 +69,13 @@
   padding: 20px;
 }
 
-
-
 .row.projects.list{
-  border-width: 1px;
-  border-color: #3edaaf;
   background-color: #d5ffdf;
-  border-style: solid;
   margin-top: 10px;
   padding-top: 10px;
-  font-size: 13pt;
+  padding-bottom: 5px;
+  font-size: 1em;
+  font-family: arial;
 }
 
 

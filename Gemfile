@@ -39,3 +39,5 @@ gem 'acts-as-taggable-on'
 gem 'rails3-jquery-autocomplete', :git => 'https://github.com/lukaselmer/rails3-jquery-autocomplete.git'
 
 gem 'best_in_place'
+
+gem 'rails_admin'
