@@ -1,8 +1,11 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :name, :location, :tag_list
+  attr_accessible :description, :name, :location, :tag_list, :pictures_attributes
   has_many :todos, :dependent => :destroy
   has_many :participations, :dependent => :destroy
+  has_many :pictures, :as => :imageable, :dependent => :destroy
   belongs_to :user
+
+  accepts_nested_attributes_for :pictures
 
   validates_presence_of :description, :name, :location, :tag_list
 

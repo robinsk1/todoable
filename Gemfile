@@ -41,3 +41,6 @@ gem 'rails3-jquery-autocomplete', :git => 'https://github.com/lukaselmer/rails3-
 gem 'best_in_place'
 
 gem 'rails_admin'
+
+gem 'rack-cache', :require => 'rack/cache'
+gem 'dragonfly', '~>0.9.15'
