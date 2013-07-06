@@ -31,7 +31,7 @@ $em-base: 16px !default;
 
 // $body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: "Lucida Grande", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -127,7 +127,7 @@ $em-base: 16px !default;
 
 // Heading font styles
 
-$header-font-family: "PacificoRegular", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$header-font-family: "Lucinda Grande", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $header-font-weight: bold;
 // $header-font-style: normal;
 // $header-font-color: #222;
@@ -1213,11 +1213,15 @@ $header-font-family: "PacificoRegular", "Helvetica Neue", "Helvetica", Helvetica
 @import 'foundation';
 
 .top-bar-section ul li.active > a {
-  background: rgb(158, 37, 37);
+  border-color: rgba(0,0,0,.4)!important;
+  color: #fff!important;
+  box-shadow: inset 0 0 15px rgba(0,0,0,.6)!important;
 }
 
 .top-bar-section ul li.active > a:hover {
-  background: rgb(179, 179, 245);
+  border-color: rgba(0,0,0,.4)!important;
+  color: #fff!important;
+  box-shadow: inset 0 0 15px rgba(0,0,0,.6)!important;
 }
 
 
