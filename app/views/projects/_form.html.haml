@@ -1,13 +1,15 @@
 = simple_form_for @project, :html=>{ :multipart => true } do |f|
   .form-inputs
     - error = @project.errors.any? ? 'error' : ''
-    = f.input :location, :label => false, :class=> error
+    = f.simple_fields_for :location do |l|
+      = l.input :city, :label => false, :class=> error
     = f.input :name, :label => false, placeholder: 'Give your list a name', :class=> error
     = f.input :description, :label => false, placeholder: 'Add some detail to your list (if required)', :class=> error
-    = f.input :tag_list, :label => false, :class=> error
+    = f.input :tag_list, :label => false, placeholder: 'Add some', :class=> error
+    = image_tag @project.pictures.first.cover_image.thumb('100x100').url if @project.pictures.first.cover_image_uid
     = f.simple_fields_for :pictures do |x|
-      = x.file_field :cover_image
-
+      = x.hidden_field :retained_cover_image
+      = x.file_field :cover_image, :class => 'button'
   .form-actions
     -button_text =  @project.new_record? ? "Create list" : "Update list"
     = f.button :submit, button_text ,:class=>"success button", :style => "float:right;"

@@ -3,7 +3,13 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   load_and_authorize_resource
 
-  #autocomplete :tag, :name
+  def cities
+    @projects = Project.all.reject {|n|!n.try :location}
+      respond_to do |format|
+       format.html
+       format.json { render json: @projects }
+      end
+  end
 
   def joined
     @projects = current_user.joinups.map {|n| n.project}
@@ -50,6 +56,7 @@ class ProjectsController < ApplicationController
   def new
     @project = current_user.projects.build
     @photo = @project.pictures.build
+    @city = @project.build_location
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }

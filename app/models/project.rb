@@ -1,16 +1,41 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :name, :location, :tag_list, :pictures_attributes
+  attr_accessible :description, :name, :tag_list, :pictures_attributes, :location_attributes
   has_many :todos, :dependent => :destroy
   has_many :participations, :dependent => :destroy
   has_many :pictures, :as => :imageable, :dependent => :destroy
+  has_one :location, :as => :locationable
   belongs_to :user
 
-  accepts_nested_attributes_for :pictures
+  accepts_nested_attributes_for :pictures, :location
 
-  validates_presence_of :description, :name, :location, :tag_list
+  validates_presence_of :description, :name, :tag_list, :location
 
   resourcify
   acts_as_taggable
+
+  rails_admin do
+  #   # Found associations:
+
+         configure :location, :has_one_association
+         configure :user, :belongs_to_association
+         configure :todos, :has_many_association
+         configure :participations, :has_many_association
+         configure :roles, :has_many_association
+         #configure :taggings, :has_many_association         # Hidden
+         #configure :base_tags, :has_many_association         # Hidden
+         #configure :tag_taggings, :has_many_association         # Hidden
+         configure :tags, :has_many_association         # Hidden
+
+    #   # Found columns:
+
+         configure :id, :integer
+         configure :name, :string
+         configure :description, :text
+         configure :created_at, :datetime
+         configure :updated_at, :datetime
+         configure :user_id, :integer         # Hidden
+
+  end
 
   #items => all items of the project
   def items

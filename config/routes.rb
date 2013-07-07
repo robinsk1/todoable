@@ -1,6 +1,8 @@
 Todoable::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
+  get "/cities", :to=>"projects#cities", :as => :cities
+
   resources :projects, except: :show, :path => "lists" do
     #get :autocomplete_tag_name, :on => :collection
   end
@@ -21,30 +23,17 @@ Todoable::Application.routes.draw do
   end
 
 
-
-  #resources :users do
-  #  resources :projects, :path => "lists"
-  #end
-
-
-
-
   resources :todos do
     member do
       put :toggle
     end
   end
 
-
-
-
   authenticated :user do
-    root :to => 'projects#index'
+    root :to => 'projects#cities'
   end
 
   root :to => "home#index"
-
-
 
   devise_for :users
   resources :users do

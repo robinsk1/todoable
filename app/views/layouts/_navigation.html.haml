@@ -12,8 +12,8 @@
     / Left Nav Section
     %ul.left
       %li.divider
-      %li{:class => cp(projects_path)}
-        =link_to 'cities', projects_path
+      %li{:class => cp(cities_path)}
+        =link_to 'cities', cities_path
       %li.divider
       %li.has-form
         %form
@@ -135,7 +135,7 @@
               = link_to 'Edit account', edit_user_registration_path(current_user)
               - if current_user.has_role? :admin
                 %li
-                  = link_to 'Admin', users_path
+                  = link_to 'Admin', "/admin"
       - else
         %li{:class => cp(new_user_registration_path)}
           = link_to 'Sign up', new_user_registration_path

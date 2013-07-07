@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130706104419) do
+ActiveRecord::Schema.define(:version => 20130707185507) do
+
+  create_table "locations", :force => true do |t|
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "locationable_type"
+    t.integer  "locationable_id"
+    t.string   "city"
+  end
 
   create_table "participations", :force => true do |t|
     t.integer  "user_id"
@@ -23,10 +31,7 @@ ActiveRecord::Schema.define(:version => 20130706104419) do
   create_table "pictures", :force => true do |t|
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.string   "name"
     t.string   "cover_image_name"
-    t.string   "cover_image_url"
-    t.string   "cover_image"
     t.integer  "imageable_id"
     t.string   "imageable_type"
     t.string   "cover_image_uid"
@@ -38,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20130706104419) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
-    t.string   "location"
   end
 
   create_table "rails_admin_histories", :force => true do |t|

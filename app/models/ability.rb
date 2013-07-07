@@ -6,6 +6,7 @@ class   Ability
     #
     unless user
       can :read, [Todo, Project]
+      can :cities, Project
 
       else
       # All registered users
@@ -52,6 +53,8 @@ class   Ability
       # Admins
       if user.has_role?(:admin)
         can :manage, :all
+        #can :access, :rails_admin   # grant access to rails_admin
+        #can :dashboard
       end
     end
     #

@@ -1,7 +1,3 @@
--#=javascript_tag do
--#  project_id = '#{@project.id}';
-
-
 -unless params[:project_id].blank?
   -@project = Project.find(params[:project_id])
   .row
@@ -11,7 +7,7 @@
       =participates_in_list?
   .row
     .large-12.columns
-      %h2="#{@project.location}"
+      %h2="#{@project.try(:location) ? @project.location.city : ''}"
   .row
     .large-12.columns
       %h3="#{@project.tag_list}"

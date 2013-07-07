@@ -3,16 +3,14 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $('.best_in_place').best_in_place()
-  $(window).stellar()
-
-
+  $('.best_in_place').best_in_place
+  $(window).stellar
 
 $(document).ready ->
-  $("#project_tag_list").tagit()
+  $("#project_tag_list").tagit
+  $("#project_tag_list").tagit placeholderText: "Add some tags"
   $("#project_tag_list").tagit fieldName: "[project]tag_list"
   $("#project_tag_list").tagit availableTags: ["art", "music", "food"]
-  $("#project_tag_list").tagit placeholderText: ("tags")
 
   jQuery('#participation').on 'click', (event) ->
       form_path = undefined

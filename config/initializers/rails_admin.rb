@@ -32,7 +32,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = ['Participation', 'Project', 'Role', 'Status', 'Tag', 'Todo', 'User']
 
   # Include specific models (exclude the others):
-  # config.included_models = ['Participation', 'Project', 'Role', 'Status', 'Tag', 'Todo', 'User']
+  config.included_models = ['Participation', 'Project', 'Role', 'Status', 'Tag', 'Todo', 'User', 'Location', 'Picture']
 
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
