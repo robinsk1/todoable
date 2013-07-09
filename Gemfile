@@ -44,3 +44,5 @@ gem 'rails_admin'
 
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.15'
+
+gem 'rails_admin_tag_list'

@@ -3,6 +3,6 @@
     %ul.small-block-grid-2.large-block-grid-4
       -@projects.each do |p|
         %li
-          =image_tag(city_image(p))
-          %h3.pacifico{:style=> "position:relative;top:-80px;color:#fff;"}
-            =p.location.city
+          = link_to image_tag(city_image(p)), "#"
+          .small_title.pacifico
+            =p[:city]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130707185507) do
+ActiveRecord::Schema.define(:version => 20130709203303) do
 
   create_table "locations", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20130707185507) do
     t.string   "locationable_type"
     t.integer  "locationable_id"
     t.string   "city"
+    t.string   "country"
+    t.string   "user_input"
   end
 
   create_table "participations", :force => true do |t|

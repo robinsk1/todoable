@@ -197,6 +197,9 @@ GEM
       remotipart (~> 1.0)
       safe_yaml (~> 0.6)
       sass-rails (~> 3.1)
+    rails_admin_tag_list (0.1.5)
+      rails (>= 3.1)
+      rails_admin (>= 0.0.1)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -289,6 +292,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails3-jquery-autocomplete!
   rails_admin
+  rails_admin_tag_list
   rolify
   rspec-rails (>= 2.12.2)
   sass-rails (~> 3.2.3)

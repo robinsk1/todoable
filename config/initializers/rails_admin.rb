@@ -11,6 +11,8 @@ RailsAdmin.config do |config|
   # or for a more dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
+  config.attr_accessible_role { :admin }
+
   config.authorize_with :cancan
 
   # RailsAdmin may need a way to know who the current user is]
@@ -51,6 +53,8 @@ RailsAdmin.config do |config|
 
   # Now you probably need to tour the wiki a bit: https://github.com/sferik/rails_admin/wiki
   # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
+
+
 
 
 

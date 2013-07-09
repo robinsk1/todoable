@@ -4,7 +4,18 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def cities
-    @projects = Project.all.reject {|n|!n.try :location}
+    #@projects = Project.all.reject {|n|!n.try :location}
+    counts = Project.joins(:location).count(:group=>:city)
+    @projects = []
+    counts.each do |k,v|
+      projects_with_location = Project.joins(:location).where("locations.city = '#{k}'").joins(:pictures).first
+      proj = !projects_with_location.nil? ? projects_with_location.id : "nil"
+      new_hash = {:city => k, :list_count => v, :proj_id => proj }
+      @projects << (new_hash)
+    end
+    @projects
+    #projs = Project.joins(:location).all
+    #projs.group_by {|p| p.location.city}
       respond_to do |format|
        format.html
        format.json { render json: @projects }
