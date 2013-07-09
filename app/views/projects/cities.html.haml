@@ -3,6 +3,6 @@
     %ul.small-block-grid-2.large-block-grid-4
       -@projects.each do |p|
         %li
-          = link_to image_tag(city_image(p)), "#"
+          = link_to image_tag(city_image(p)), scope_list_by_city_path(p[:city])
           .small_title.pacifico
             =p[:city]

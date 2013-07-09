@@ -42,6 +42,8 @@ class ProjectsController < ApplicationController
   def index
     if params[:id]
       @projects = User.find(params[:id]).projects.all
+    elsif params[:city]
+      @projects = Project.joins(:location).where(["locations.city = ?", params[:city]])
     else
       @projects = Project.all
     end

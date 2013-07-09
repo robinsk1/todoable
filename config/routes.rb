@@ -2,6 +2,7 @@ Todoable::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get "/cities", :to=>"projects#cities", :as => :cities
+  get "/cities/lists/:city",  :to=>"projects#index", :as=> :scope_list_by_city
 
   resources :projects, except: :show, :path => "lists" do
     #get :autocomplete_tag_name, :on => :collection

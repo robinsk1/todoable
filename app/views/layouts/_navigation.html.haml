@@ -129,8 +129,6 @@
               =link_to "My lists", owner_projects_path
             %li{:class => cp(joined_projects_path)}
               =link_to "Lists i've joined", joined_projects_path
-            %li{:class => cp(projects_path)}
-              =link_to "All lists", projects_path
             %li{:class => cp(edit_user_registration_path)}
               = link_to 'Edit account', edit_user_registration_path(current_user)
               - if current_user.has_role? :admin
