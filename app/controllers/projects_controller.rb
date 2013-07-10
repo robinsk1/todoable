@@ -4,7 +4,6 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def cities
-    #@projects = Project.all.reject {|n|!n.try :location}
     counts = Project.joins(:location).count(:group=>:city)
     @projects = []
     counts.each do |k,v|
@@ -13,9 +12,6 @@ class ProjectsController < ApplicationController
       new_hash = {:city => k, :list_count => v, :proj_id => proj }
       @projects << (new_hash)
     end
-    @projects
-    #projs = Project.joins(:location).all
-    #projs.group_by {|p| p.location.city}
       respond_to do |format|
        format.html
        format.json { render json: @projects }
@@ -43,9 +39,10 @@ class ProjectsController < ApplicationController
     if params[:id]
       @projects = User.find(params[:id]).projects.all
     elsif params[:city]
+      @location = params[:city]
       @projects = Project.joins(:location).where(["locations.city = ?", params[:city]])
-    else
-      @projects = Project.all
+    elsif params[:search]
+      @projects = Project.search(params[:search])
     end
     respond_to do |format|
       format.html # index.html.erb

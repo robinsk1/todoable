@@ -4,7 +4,7 @@
       -if can? :create, Project
         =link_to 'Create new city to-do list!', new_project_path, :class=>"button", :style=>"float:right;"
       -else
-        City to-do lists
+        ="#{@location} to-do lists"
 .row
   .large-12.columns
     .row

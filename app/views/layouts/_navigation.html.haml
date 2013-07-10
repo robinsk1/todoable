@@ -16,13 +16,13 @@
         =link_to 'cities', cities_path
       %li.divider
       %li.has-form
-        %form
+        =form_tag projects_path, :method => :get, :id=>"search_form" do
           .row.collapse
             .small-8.columns
-              %input{:type=>"search", :style=>"margin-top:5px;"}
+              =text_field_tag :search, params[:search], :style=>"margin-top:2px;", :type=>"text", :class=>"radius"
             .small-4.columns.pacifico
-              %a{:href=>"#"}
-                GO!
+              %a{:onclick=>"document.getElementById('search_form').submit();"} GO!
+
 
 
 
@@ -114,8 +114,7 @@
       -#      %a{:href => "#"} See all →
       -#%li.divider
       - if user_signed_in?
-        %li
-          = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+
       - else
         %li{:class => cp(new_user_session_path)}
           = link_to 'Login', new_user_session_path
@@ -131,6 +130,8 @@
               =link_to "Lists i've joined", joined_projects_path
             %li{:class => cp(edit_user_registration_path)}
               = link_to 'Edit account', edit_user_registration_path(current_user)
+            %li
+              = link_to 'Logout', destroy_user_session_path, :method=>'delete'
               - if current_user.has_role? :admin
                 %li
                   = link_to 'Admin', "/admin"

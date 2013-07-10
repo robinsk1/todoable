@@ -58,5 +58,9 @@ class Project < ActiveRecord::Base
     items.where(["DATE(created_at) = DATE(?)", Time.now]).all
   end
 
+  def self.search(q)
+    Project.joins(:location).where(["locations.city LIKE ? OR projects.name LIKE ?", q, q])
+  end
+
 
 end
