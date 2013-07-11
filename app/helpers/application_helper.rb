@@ -17,8 +17,10 @@ module ApplicationHelper
   end
 
   def city_image(project)
-    if project[:proj_id] != "nil"
-      Project.find(project[:proj_id]).pictures.first.cover_image.thumb('320x200#').url
+    if (project.kind_of? Project) && !(project.pictures.nil? || project.pictures.empty? )
+        project.pictures.first.cover_image.thumb('320x200#').url
+    elsif project[:proj_id]
+        Project.find(project[:proj_id]).pictures.first.cover_image.thumb('320x200#').url
     else
       "http://placehold.it/320x200"
     end

@@ -1,4 +1,7 @@
 Todoable::Application.routes.draw do
+  root :to => "home#index"
+
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get "/cities", :to=>"projects#cities", :as => :cities
@@ -34,7 +37,6 @@ Todoable::Application.routes.draw do
     root :to => 'projects#cities'
   end
 
-  root :to => "home#index"
 
   devise_for :users
   resources :users do

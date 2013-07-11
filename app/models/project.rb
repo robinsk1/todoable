@@ -59,7 +59,7 @@ class Project < ActiveRecord::Base
   end
 
   def self.search(q)
-    Project.joins(:location).where(["locations.city LIKE ? OR projects.name LIKE ?", q, q])
+    Project.joins(:location).where(['locations.city ILIKE ? OR projects.name ILIKE ?', "%#{q}%", "%#{q}%"])
   end
 
 

@@ -11,6 +11,7 @@ class   Ability
       else
       # All registered users
       # Projects
+      can :cities, Project
       can :read, Project
       can :create, Project
       #can :autocomplete_tag_name, Project
