@@ -1,19 +1,27 @@
--unless params[:project_id].blank?
-  -@project = Project.find(params[:project_id])
-  .row
-    .large-11.columns
-      %h1=best_in_place_if current_user_project_owner?, @project, :name
-    .large-1.columns
-      =participates_in_list?
-  .row
-    .large-12.columns
-      %h2="#{@project.try(:location) ? @project.location.city : ''}"
-  .row
-    .large-12.columns
-      %h3="#{@project.tag_list}"
-  .row
-    .large-12.columns.todo-description
-      =best_in_place_if current_user_project_owner?, @project, :description
+#strapper{:"data-stellar-background-ratio"=>"0.6"}
+  -unless params[:project_id].blank?
+    -@project = Project.find(params[:project_id])
+    .row
+      .large-12.columns
+        %ul.wee-nav-list
+          %li
+            =participates_in_list?
+          %li
+            =link_to "like", "#"
+          %li
+            =link_to "share", "#"
+    .row
+      .large-12.columns
+        %h1.project-home-headers.text-shadow=best_in_place_if current_user_project_owner?, @project, :name
+    .row
+      .large-12.columns
+        %h2.project-home-headers.text-shadow="#{@project.try(:location) ? @project.location.city : ''}"
+    .row
+      .large-12.columns
+        %h3.project-home-headers.text-shadow="#{@project.tag_list}"
+    .row
+      .large-12.columns.todo-description
+        =best_in_place_if current_user_project_owner?, @project, :description
 
 .row
   .large-12.columns.index-column-element
@@ -32,7 +40,7 @@
 - if !@open.nil?
   .row{:style=>"margin-top:10px;"}
     .large-12.columns
-      %h2 To-do!
+      %h2.project-home-headers To-do!
   .row
     .large-12.columns
       .opened-container
@@ -54,7 +62,7 @@
 -if !@closed.nil?
   .row{:style=>"margin-top:20px;"}
     .large-12.columns
-      %h2 Done!
+      %h2.project-home-headers Done!
   .row
     .large-12.columns
       .closed-container

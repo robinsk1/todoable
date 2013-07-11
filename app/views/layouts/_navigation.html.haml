@@ -14,12 +14,14 @@
       %li.divider
       %li{:class => cp(cities_path)}
         =link_to 'cities', cities_path
+      %li{:class => cp(cities_path)}
+        =link_to 'events', cities_path
       %li.divider
       %li.has-form
         =form_tag projects_path, :method => :get, :id=>"search_form" do
           .row.collapse
             .small-8.columns
-              =text_field_tag :search, params[:search], :style=>"margin-top:5px;", :type=>"text", :id=>"border-radius", :placeholder=>"search city lists"
+              =text_field_tag :search, params[:search], :style=>"margin-top:5px;", :type=>"text", :id=>"border-radius", :placeholder=>"search cities/events!"
             .small-4.columns.pacifico
               %a{:onclick=>"document.getElementById('search_form').submit();"} GO!
 
