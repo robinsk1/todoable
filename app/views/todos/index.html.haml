@@ -54,7 +54,8 @@
             -if can? :update, todo
               .large-1.columns.index-column-element.cen.toggle
                 %p
-                  = link_to 'close', toggle_todo_path(todo), :method=> :put, :remote => true, :class=>"icon-buttonsthumbs-down"
+                  = link_to toggle_todo_path(todo), :method=> :put, :remote => true, :data=>{:status=>"closed"} do
+                    %span{:data => {:icon => '@'}}
               .large-1.columns.index-column-element.cen
                 %p
                   =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
@@ -77,7 +78,8 @@
             -if can? :update, todo
               .large-1.columns.index-column-element.cen.toggle
                 %p
-                  = link_to "open", toggle_todo_path(todo), :method=> :put, :remote => true
+                  =link_to toggle_todo_path(todo), :method=> :put, :remote => true, :data=>{:status=>"open"} do
+                    %span{:data => {:icon => '%'}}
               .large-1.columns.index-column-element.cen
                 %p
                   =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
