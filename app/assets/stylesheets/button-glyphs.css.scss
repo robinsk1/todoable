@@ -1,0 +1,219 @@
+@font-face {
+	font-family: 'button-glyphs';
+	src:url('button-glyphs/button-glyphs.eot');
+	src:url('button-glyphs/button-glyphs.eot?#iefix') format('embedded-opentype'),
+		url('button-glyphs/button-glyphs.woff') format('woff'),
+		url('button-glyphs/button-glyphs.ttf') format('truetype'),
+		url('button-glyphs/button-glyphs.svg#button-glyphs') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'button-glyphs';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icons"] {
+*/
+.iconscheckmark, .iconscheck-alt, .iconscheckmark-2, .iconscheckmark-3, .iconscheckbox-checked, .iconscheckmark-circle, .iconstrashcan, .iconsremove, .iconsremove-2, .iconspencil, .iconsheart, .iconsheart-2, .iconsheart-broken, .iconsstar, .iconsfacebook, .iconstwitter, .iconsgoogle-plus, .iconsfeed, .iconsshare, .iconssearch, .iconscog, .iconsbookmarks, .iconsbookmark, .iconscheckmark-4, .iconscancel, .iconsthumbs-up, .iconsthumbs-down, .iconsuser, .iconsusers, .iconsminus, .iconsplus, .iconscheckbox-unchecked, .iconsstar-2, .iconsstar-3, .iconsthumbs-up-2, .iconsthumbs-up-3, .iconsmail, .iconsmail-2, .iconsshare-2, .iconsmail-3, .iconsheart-stroke, .iconsheart-fill, .iconsx, .iconscog-2, .iconscomment-alt2-stroke, .iconsplus-2, .iconsminus-2, .iconsleft-quote, .iconsright-quote, .iconspen-alt-fill, .iconshome, .iconsstar-4, .iconsheart-3, .iconsstar-5, .iconsstar-6, .iconscheckmark-5, .iconscross, .iconsfacebook-2, .iconstwitter-2, .iconsgoogleplus {
+	font-family: 'button-glyphs';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.iconscheckmark:before {
+	content: "\21";
+}
+.iconscheck-alt:before {
+	content: "\22";
+}
+.iconscheckmark-2:before {
+	content: "\23";
+}
+.iconscheckmark-3:before {
+	content: "\24";
+}
+.iconscheckbox-checked:before {
+	content: "\25";
+}
+.iconscheckmark-circle:before {
+	content: "\26";
+}
+.iconstrashcan:before {
+	content: "\27";
+}
+.iconsremove:before {
+	content: "\28";
+}
+.iconsremove-2:before {
+	content: "\29";
+}
+.iconspencil:before {
+	content: "\2a";
+}
+.iconsheart:before {
+	content: "\2b";
+}
+.iconsheart-2:before {
+	content: "\2c";
+}
+.iconsheart-broken:before {
+	content: "\2d";
+}
+.iconsstar:before {
+	content: "\2e";
+}
+.iconsfacebook:before {
+	content: "\2f";
+}
+.iconstwitter:before {
+	content: "\30";
+}
+.iconsgoogle-plus:before {
+	content: "\31";
+}
+.iconsfeed:before {
+	content: "\32";
+}
+.iconsshare:before {
+	content: "\33";
+}
+.iconssearch:before {
+	content: "\34";
+}
+.iconscog:before {
+	content: "\35";
+}
+.iconsbookmarks:before {
+	content: "\36";
+}
+.iconsbookmark:before {
+	content: "\37";
+}
+.iconscheckmark-4:before {
+	content: "\38";
+}
+.iconscancel:before {
+	content: "\39";
+}
+.iconsthumbs-up:before {
+	content: "\3a";
+}
+.iconsthumbs-down:before {
+	content: "\3b";
+}
+.iconsuser:before {
+	content: "\3c";
+}
+.iconsusers:before {
+	content: "\3d";
+}
+.iconsminus:before {
+	content: "\3e";
+}
+.iconsplus:before {
+	content: "\3f";
+}
+.iconscheckbox-unchecked:before {
+	content: "\40";
+}
+.iconsstar-2:before {
+	content: "\41";
+}
+.iconsstar-3:before {
+	content: "\42";
+}
+.iconsthumbs-up-2:before {
+	content: "\43";
+}
+.iconsthumbs-up-3:before {
+	content: "\44";
+}
+.iconsmail:before {
+	content: "\45";
+}
+.iconsmail-2:before {
+	content: "\46";
+}
+.iconsshare-2:before {
+	content: "\47";
+}
+.iconsmail-3:before {
+	content: "\48";
+}
+.iconsheart-stroke:before {
+	content: "\49";
+}
+.iconsheart-fill:before {
+	content: "\4a";
+}
+.iconsx:before {
+	content: "\4b";
+}
+.iconscog-2:before {
+	content: "\4c";
+}
+.iconscomment-alt2-stroke:before {
+	content: "\4d";
+}
+.iconsplus-2:before {
+	content: "\4e";
+}
+.iconsminus-2:before {
+	content: "\4f";
+}
+.iconsleft-quote:before {
+	content: "\50";
+}
+.iconsright-quote:before {
+	content: "\51";
+}
+.iconspen-alt-fill:before {
+	content: "\52";
+}
+.iconshome:before {
+	content: "\53";
+}
+.iconsstar-4:before {
+	content: "\54";
+}
+.iconsheart-3:before {
+	content: "\55";
+}
+.iconsstar-5:before {
+	content: "\56";
+}
+.iconsstar-6:before {
+	content: "\57";
+}
+.iconscheckmark-5:before {
+	content: "\58";
+}
+.iconscross:before {
+	content: "\59";
+}
+.iconsfacebook-2:before {
+	content: "\5a";
+}
+.iconstwitter-2:before {
+	content: "\5b";
+}
+.iconsgoogleplus:before {
+	content: "\5c";
+}

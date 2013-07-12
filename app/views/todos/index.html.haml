@@ -7,9 +7,11 @@
           %li
             =participates_in_list?
           %li
-            =link_to "like", "#"
+            =link_to "#" do
+              %span{:class=>"big-icons", :data=>{:icon=>"+"}}
           %li
-            =link_to "share", "#"
+            =link_to "#" do
+              %span{:class=>"big-icons", :data=>{:icon=>"3"}}
     .row
       .large-12.columns
         %h1.project-home-headers.text-shadow=best_in_place_if current_user_project_owner?, @project, :name
@@ -52,10 +54,11 @@
             -if can? :update, todo
               .large-1.columns.index-column-element.cen.toggle
                 %p
-                  = link_to "close", toggle_todo_path(todo), :method=> :put, :remote => true
+                  = link_to 'close', toggle_todo_path(todo), :method=> :put, :remote => true, :class=>"icon-buttonsthumbs-down"
               .large-1.columns.index-column-element.cen
                 %p
-                  = link_to 'x', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
+                  =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                    %span{:data => {:icon => '('}}
             -else
               .large-2.columns.index-column-element
 
@@ -77,7 +80,8 @@
                   = link_to "open", toggle_todo_path(todo), :method=> :put, :remote => true
               .large-1.columns.index-column-element.cen
                 %p
-                  = link_to 'x', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"alert tiny round button"
+                  =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                    %span{:data => {:icon => '('}}
             -else
               .large-2.columns.index-column-element
 %br
