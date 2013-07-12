@@ -39,10 +39,7 @@ jQuery ($) ->
           element.removeClass("opened").addClass "closed"
           element.remove()
           $(".closed-container").append element
-
       beforeSend: ->
-
-
 
   $("input").keypress (event) ->
     if event.which is 13

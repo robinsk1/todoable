@@ -48,15 +48,15 @@
       .opened-container
         - @open.each do |todo|
           .row.todo-element.opened
-            .large-10.columns.index-column-element.cen
+            .small-8.large-10.columns.index-column-element.cen
               %p
                 = best_in_place_if current_user_project_owner?, todo, :description
             -if can? :update, todo
-              .large-1.columns.index-column-element.cen.toggle
+              .small-2.large-1.columns.index-column-element.cen.toggle
                 %p
                   = link_to toggle_todo_path(todo), :method=> :put, :remote => true, :data=>{:status=>"closed"} do
                     %span{:data => {:icon => '@'}}
-              .large-1.columns.index-column-element.cen
+              .small-2.large-1.columns.index-column-element.cen
                 %p
                   =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
                     %span{:data => {:icon => '('}}
@@ -72,15 +72,15 @@
       .closed-container
         - @closed.each do |todo|
           .row.todo-element.closed
-            .large-10.columns.index-column-element.cen
+            .small-8.large-10.columns.index-column-element.cen
               %p
                 = best_in_place_if current_user_project_owner?, todo, :description
             -if can? :update, todo
-              .large-1.columns.index-column-element.cen.toggle
+              .small-2.large-1.columns.index-column-element.cen.toggle
                 %p
                   =link_to toggle_todo_path(todo), :method=> :put, :remote => true, :data=>{:status=>"open"} do
                     %span{:data => {:icon => '%'}}
-              .large-1.columns.index-column-element.cen
+              .small-2.large-1.columns.index-column-element.cen
                 %p
                   =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
                     %span{:data => {:icon => '('}}
