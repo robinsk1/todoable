@@ -16,11 +16,11 @@ module ApplicationHelper
     "active" if current_page?(path)
   end
 
-  def city_image(project)
+  def city_image(project, size)
     if (project.kind_of? Project) && !(project.pictures.nil? || project.pictures.empty? )
-        project.pictures.first.cover_image.thumb('320x200#').url
+        project.pictures.first.cover_image.thumb(size).url
     elsif project[:proj_id]
-        Project.find(project[:proj_id]).pictures.first.cover_image.thumb('320x200#').url
+        Project.find(project[:proj_id]).pictures.first.cover_image.thumb(size).url
     else
       "http://placehold.it/320x200"
     end

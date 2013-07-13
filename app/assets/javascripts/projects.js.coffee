@@ -14,18 +14,15 @@ $(document).ready ->
       method = undefined
       new_status = undefined
       params = undefined
-      path = undefined
-      regex = undefined
-      todo_id = undefined
+      new_icon = undefined
+      project_id = undefined
       event.preventDefault()
-      path = $(this)[0].pathname
       link = $(this)
-      regex = (new RegExp(/^\/lists\/(.*)\/(.*)$/)).exec(path)
-      project_id = regex[1]
-      method = link.html()
+      project_id = link.attr("data-project")
+      method = link.attr("data-status")
       new_status = ((if method is "join" then "leave" else "join"))
+      new_icon = ((if method is "join" then "O" else "N"))
       form_path = "/lists/"+project_id+"/"+method
-      params = {}
       $.ajaxSetup
         url: form_path
         type: "PUT"
@@ -34,22 +31,8 @@ $(document).ready ->
 
       $.ajax
         complete: ->
-          element = undefined
-          link.html new_status
-          stuff = "/lists/"+project_id+"/"+new_status
-          link.attr('href', stuff)
-          if method is "join"
-  #          element = link.closest(".closed")
-  #          element.removeClass("closed").addClass "opened"
-  #          element.removeClass("alert").addClass "success"
-  #          element.remove()
-  #          $(".opened-container").append element
-          else
-  #          element = link.closest(".opened")
-  #          element.removeClass("opened").addClass "closed"
-  #          element.removeClass("success").addClass "alert"
-  #          element.remove()
-  #          $(".closed-container").append element
+          link.attr("href", "/lists/"+project_id+"/"+new_status )
+          link.attr("data-status", new_status)
+          link.children('span').attr("data-icon", new_icon)
 
-        beforeSend: ->
 

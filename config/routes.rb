@@ -4,6 +4,8 @@ Todoable::Application.routes.draw do
 
   get "/cities", :to=>"projects#cities", :as => :cities
   get "/cities/lists/:city",  :to=>"projects#index", :as=> :scope_list_by_city
+  put "/lists/:id/leave", :to=>"projects#leave", :as=> :leave_project
+  put "/lists/:id/join", :to=>"projects#join", :as=> :join_project
 
   resources :projects, :except=> [:create,:new, :edit, :update, :destroy], :path => "lists"  do
       resources :participations, only: :index
@@ -27,13 +29,8 @@ Todoable::Application.routes.draw do
 
   resources :users, :only => [:index, :show] do
     resources :projects, :except =>[:show], :path => "lists" do
-      member do
-         put :join
-         put :leave
-      end
-
       collection do
-           get 'joined'
+        get 'joined'
       end
     end
   end

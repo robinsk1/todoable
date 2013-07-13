@@ -101,7 +101,8 @@ top:-75px;
 }
 
 #strapper {
-  background-image: url('/assets/barcelona.jpg');
+  //background-image: url(attr(data-image));
+  background-image: URL("/assets/barcelona.jpg");
   height:400px;
 }
 
