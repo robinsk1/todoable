@@ -10,5 +10,4 @@ class CompletesController < ApplicationController
   end
 
 
-
 end

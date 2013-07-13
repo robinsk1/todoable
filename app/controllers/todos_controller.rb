@@ -7,7 +7,6 @@ class TodosController < ApplicationController
     @project = Project.find(params[:project_id])
     @todo = Todo.new(params[:todo])
     @todos = @project.todos
-    @todo.user_id = current_user.id
     @todo.status = false
     @todo.project_id = @project.id
     respond_to do |format|

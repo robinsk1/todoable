@@ -40,7 +40,7 @@
         = simple_form_for([@project, @todo])  do |f|
           .form-inputs
             = f.input :description, :as=> :string,  :label => false, placeholder: 'Describe your to-do'
-            = f.input :id, :as=> :hidden, :value => @todo.project_id
+            = f.input :project_id, :as=> :hidden, :value => @project.id
           .form-actions
             = f.button :submit, :class=>"success button round", :value=>"Create New To-do", :style =>"float:right;"
 
