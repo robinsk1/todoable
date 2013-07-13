@@ -54,9 +54,12 @@
   # GET /projects/1.json
   def show
      @project = Project.find(params[:id])
-     @todos = @project.todos
-     @open = @todos.where(:status=> false)
-     @closed = @todos.where(:status=> true)
+     @closed = Project.find(@project).todos.joins(:completes).where("completes.user_id" => current_user)
+     @open = Project.find(@project).todos
+     group_ids = @closed.map(&:id)
+     @open = Project.find(@project).todos.where(['id not in (?)', group_ids]) unless group_ids.empty?
+     @open.all
+
      if current_user
        @todo = @project.todos.build
      end
