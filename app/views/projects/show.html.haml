@@ -6,8 +6,9 @@
           %li
             =participates_in_list?
           %li
-            =link_to "#" do
-              %span{:class=>"big-icons", :data=>{:icon=>"+"}}
+            - if signed_in? && !current_user_project_owner?
+              =link_to "#" do
+                %span{:class=>"big-icons", :data=>{:icon=>"+"}}
           %li
             =link_to "#" do
               %span{:class=>"big-icons", :data=>{:icon=>"3"}}
