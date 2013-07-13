@@ -8,26 +8,27 @@ jQuery ($) ->
     path = undefined
     regex = undefined
     todo_id = undefined
+    type = undefined
     event.preventDefault()
-    path = $(this)[0].pathname
     link = $(this)
-    regex = (new RegExp(/^\/todos\/(.*)\/toggle$/)).exec(path)
-    todo_id = regex[1]
+    todo_id = $(this).attr("data-todo")
     method = $(this).attr("data-status")
     new_status = ((if method is "open" then "close" else "open"))
     new_icon = ((if method is "open" then "@" else "%"))
-    form_path = "/todos/" + todo_id + "/toggle"
+    form_path = "/todo/"+todo_id+"/complete"
+    type = ((if method is "open" then "DELETE" else "POST"))
+    new_type = ((if method is "open" then "POST" else "DELETE"))
     params = {}
     $.ajaxSetup
       url: form_path
-      type: "PUT"
+      type: type
       cache: false
       dataType: "json"
-
     $.ajax
       complete: ->
         element = undefined
         link.attr("data-status", new_status)
+        link.attr("data-method", new_type)
         link.children('span').attr("data-icon", new_icon)
         if method is "open"
           element = link.closest(".closed")

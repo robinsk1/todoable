@@ -7,8 +7,8 @@ Todoable::Application.routes.draw do
   put "/lists/:id/leave", :to=>"projects#leave", :as=> :leave_project
   put "/lists/:id/join", :to=>"projects#join", :as=> :join_project
 
-  post "/lists/:id/todo/:todo_id/complete", :to=>"completes#create"
-  delete "/lists/:id/todo/:todo_id/todo", :to=>"completes#destroy"
+  post "/todo/:id/complete", :to=>"completes#create", :as=> :complete_todo
+  delete "/todo/:id/complete", :to=>"completes#destroy", :as=> :uncomplete_todo
 
   resources :projects, :except=> [:create,:new, :edit, :update, :destroy], :path => "lists"  do
       resources :participations, only: :index
@@ -20,8 +20,6 @@ Todoable::Application.routes.draw do
         put :toggle
       end
   end
-
-
 
 
   authenticated :user do
