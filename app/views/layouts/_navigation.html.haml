@@ -45,17 +45,17 @@
           = link_to 'Login', new_user_session_path
         %li.divider
       - if user_signed_in?
-        %li{:class => cp(new_project_path)}
-          = link_to 'New List', new_project_path
+        %li{:class => cp(new_user_project_path(current_user))}
+          = link_to 'New List', new_user_project_path(current_user)
         %li.divider
         %li.has-dropdown
           %a{:href => "#"}
             =current_user.name
           %ul.dropdown
-            %li{:class => cp(owner_projects_path)}
-              =link_to "My lists", owner_projects_path
-            %li{:class => cp(joined_projects_path)}
-              =link_to "Joined lists", joined_projects_path
+            %li{:class => cp(user_projects_path(current_user))}
+              =link_to "My lists", user_projects_path(current_user)
+            %li{:class => cp(joined_user_projects_path(current_user))}
+              =link_to "Joined lists", joined_user_projects_path(current_user)
             %li{:class => cp(edit_user_registration_path)}
               = link_to 'Edit account', edit_user_registration_path(current_user)
             %li

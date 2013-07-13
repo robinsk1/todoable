@@ -25,14 +25,14 @@
      format.json { render json: @projects }
     end
   end
-
-  def owner
-     @projects = current_user.projects.all
-     respond_to do |format|
-      format.html {render :action => :index}
-      format.json { render json: @projects }
-     end
-  end
+  #
+  #def owner
+  #   @projects = current_user.projects.all
+  #   respond_to do |format|
+  #    format.html {render :action => :index}
+  #    format.json { render json: @projects }
+  #   end
+  #end
 
 
   def index
@@ -53,8 +53,13 @@
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project = Project.find(params[:id])
-
+     @project = Project.find(params[:id])
+     @todos = @project.todos
+     @open = @todos.where(:status=> false)
+     @closed = @todos.where(:status=> true)
+     if current_user
+       @todo = @project.todos.build
+     end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -86,7 +91,7 @@
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to project_todos_path(@project) }
+        format.html { redirect_to project_path(@project) }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }

@@ -12,7 +12,7 @@
     %ul.small-block-grid-2.large-block-grid-4
       -@projects.each do |p|
         %li
-          = link_to image_tag(city_image(p)), project_todos_path(p)
+          = link_to image_tag(city_image(p)), project_path(p)
           .small_title.pacifico
             =p.name
 

@@ -23,3 +23,18 @@
 
 
 $(function(){ $(document).foundation(); });
+
+$(document).ready(function(){
+
+$('#upload-image').on('change', function (evt){
+            var files = evt.target.files;
+            var f = files[0];
+            var reader = new FileReader();
+              reader.onload = (function(theFile) {
+                return function(e) {
+                  $('#image-preview').html(['<div class="project-image" style="background:url(', e.target.result,') no-repeat left center transparent;"></div>' ].join(''));
+                };
+              })(f);
+              reader.readAsDataURL(f);
+          });
+})

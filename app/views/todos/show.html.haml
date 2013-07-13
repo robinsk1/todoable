@@ -1,13 +1,13 @@
-.row
-  .large-12.columns
-
-    %p#notice= notice
-
-    %p
-      %b Todo:
-      = @todo.description
-    %p
-      %b Status:
-      = @todo.status == true ? "closed" : "open"
-    -if can? :manage, :todo
-      = link_to 'Edit', edit_todo_path(@todo)
+-#.row
+-#  .large-12.columns
+-#
+-#    %p#notice= notice
+-#
+-#    %p
+-#      %b Todo:
+-#      = @todo.description
+-#    %p
+-#      %b Status:
+-#      = @todo.status == true ? "closed" : "open"
+-#    -if can? :manage, :todo
+-#      = link_to 'Edit', edit_todo_path(@todo)

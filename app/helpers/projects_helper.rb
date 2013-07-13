@@ -7,9 +7,9 @@ module ProjectsHelper
   def participates_in_list?
     if signed_in? && !current_user_project_owner?
       if !current_user.participations.find_by_project_id(@project).nil?
-        link_to "leave", leave_project_path(@project), :remote => :true,  :method => :put, :id => "participation"
+        link_to "leave", leave_user_project_path(current_user, @project), :remote => :true,  :method => :put, :id => "participation"
       else
-        link_to "join", join_project_path(@project), :remote => :true,  :method => :put, :id => "participation"
+        link_to "join", join_user_project_path(current_user, @project), :remote => :true,  :method => :put, :id => "participation"
       end
      end
 

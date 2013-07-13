@@ -1,92 +1,92 @@
-#strapper{:"data-stellar-background-ratio"=>"0.6"}
-  -unless params[:project_id].blank?
-    -@project = Project.find(params[:project_id])
-    .row
-      .large-12.columns
-        %ul.wee-nav-list
-          %li
-            =participates_in_list?
-          %li
-            =link_to "#" do
-              %span{:class=>"big-icons", :data=>{:icon=>"+"}}
-          %li
-            =link_to "#" do
-              %span{:class=>"big-icons", :data=>{:icon=>"3"}}
-    .row
-      .large-12.columns
-        %h1.project-home-headers.text-shadow=best_in_place_if current_user_project_owner?, @project, :name
-    .row
-      .large-12.columns
-        %h2.project-home-headers.text-shadow="#{@project.try(:location) ? @project.location.city : ''}"
-    .row
-      .large-12.columns
-        %h3.project-home-headers.text-shadow="#{@project.tag_list}"
-    .row
-      .large-12.columns.todo-description
-        =best_in_place_if current_user_project_owner?, @project, :description
-
-.row
-  .large-12.columns.index-column-element
-
-.row
-  .large-12.columns
-    -if signed_in? && current_user_project_owner?
-      -if !params[:project_id].blank?
-        = simple_form_for([@project, @todo])  do |f|
-          .form-inputs
-            = f.input :description, :as=> :string,  :label => false, placeholder: 'Describe your to-do'
-            = f.input :project_id, :as=> :hidden, :value => @todo.project_id
-          .form-actions
-            = f.button :submit, :class=>"success button round", :value=>"Create New To-do", :style =>"float:right;"
-
-- if !@open.nil?
-  .row{:style=>"margin-top:10px;"}
-    .large-12.columns
-      %h2.project-home-headers To-do!
-  .row
-    .large-12.columns
-      .opened-container
-        - @open.each do |todo|
-          .row.todo-element.opened
-            .small-8.large-10.columns.index-column-element.cen
-              %p
-                = best_in_place_if current_user_project_owner?, todo, :description
-            -if can? :update, todo
-              .small-2.large-1.columns.index-column-element.cen.toggle
-                %p
-                  = link_to toggle_todo_path(todo), :method=> :put, :remote => true, :data=>{:status=>"closed"} do
-                    %span{:data => {:icon => '@'}}
-              .small-2.large-1.columns.index-column-element.cen
-                %p
-                  =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                    %span{:data => {:icon => '('}}
-            -else
-              .large-2.columns.index-column-element
-
--if !@closed.nil?
-  .row{:style=>"margin-top:20px;"}
-    .large-12.columns
-      %h2.project-home-headers Done!
-  .row
-    .large-12.columns
-      .closed-container
-        - @closed.each do |todo|
-          .row.todo-element.closed
-            .small-8.large-10.columns.index-column-element.cen
-              %p
-                = best_in_place_if current_user_project_owner?, todo, :description
-            -if can? :update, todo
-              .small-2.large-1.columns.index-column-element.cen.toggle
-                %p
-                  =link_to toggle_todo_path(todo), :method=> :put, :remote => true, :data=>{:status=>"open"} do
-                    %span{:data => {:icon => '%'}}
-              .small-2.large-1.columns.index-column-element.cen
-                %p
-                  =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                    %span{:data => {:icon => '('}}
-            -else
-              .large-2.columns.index-column-element
-%br
-
-.row
-  .large-12.columns
+-##strapper{:"data-stellar-background-ratio"=>"0.6"}
+-#  -unless params[:project_id].blank?
+-#    -@project = Project.find(params[:project_id])
+-#    .row
+-#      .large-12.columns
+-#        %ul.wee-nav-list
+-#          %li
+-#            =participates_in_list?
+-#          %li
+-#            =link_to "#" do
+-#              %span{:class=>"big-icons", :data=>{:icon=>"+"}}
+-#          %li
+-#            =link_to "#" do
+-#              %span{:class=>"big-icons", :data=>{:icon=>"3"}}
+-#    .row
+-#      .large-12.columns
+-#        %h1.project-home-headers.text-shadow=best_in_place_if current_user_project_owner?, @project, :name
+-#    .row
+-#      .large-12.columns
+-#        %h2.project-home-headers.text-shadow="#{@project.try(:location) ? @project.location.city : ''}"
+-#    .row
+-#      .large-12.columns
+-#        %h3.project-home-headers.text-shadow="#{@project.tag_list}"
+-#    .row
+-#      .large-12.columns.todo-description
+-#        =best_in_place_if current_user_project_owner?, @project, :description
+-#
+-#.row
+-#  .large-12.columns.index-column-element
+-#
+-#.row
+-#  .large-12.columns
+-#    -if signed_in? && current_user_project_owner?
+-#      -if !params[:project_id].blank?
+-#        = simple_form_for([@project, @todo])  do |f|
+-#          .form-inputs
+-#            = f.input :description, :as=> :string,  :label => false, placeholder: 'Describe your to-do'
+-#            = f.input :project_id, :as=> :hidden, :value => @todo.project_id
+-#          .form-actions
+-#            = f.button :submit, :class=>"success button round", :value=>"Create New To-do", :style =>"float:right;"
+-#
+-#- if !@open.nil?
+-#  .row{:style=>"margin-top:10px;"}
+-#    .large-12.columns
+-#      %h2.project-home-headers To-do!
+-#  .row
+-#    .large-12.columns
+-#      .opened-container
+-#        - @open.each do |todo|
+-#          .row.todo-element.opened
+-#            .small-8.large-10.columns.index-column-element.cen
+-#              %p
+-#                = best_in_place_if current_user_project_owner?, todo, :description
+-#            -if can? :update, todo
+-#              .small-2.large-1.columns.index-column-element.cen.toggle
+-#                %p
+-#                  = link_to toggle_todo_path(todo), :method=> :put, :remote => true, :data=>{:status=>"closed"} do
+-#                    %span{:data => {:icon => '@'}}
+-#              .small-2.large-1.columns.index-column-element.cen
+-#                %p
+-#                  =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+-#                    %span{:data => {:icon => '('}}
+-#            -else
+-#              .large-2.columns.index-column-element
+-#
+-#-if !@closed.nil?
+-#  .row{:style=>"margin-top:20px;"}
+-#    .large-12.columns
+-#      %h2.project-home-headers Done!
+-#  .row
+-#    .large-12.columns
+-#      .closed-container
+-#        - @closed.each do |todo|
+-#          .row.todo-element.closed
+-#            .small-8.large-10.columns.index-column-element.cen
+-#              %p
+-#                = best_in_place_if current_user_project_owner?, todo, :description
+-#            -if can? :update, todo
+-#              .small-2.large-1.columns.index-column-element.cen.toggle
+-#                %p
+-#                  =link_to toggle_todo_path(todo), :method=> :put, :remote => true, :data=>{:status=>"open"} do
+-#                    %span{:data => {:icon => '%'}}
+-#              .small-2.large-1.columns.index-column-element.cen
+-#                %p
+-#                  =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+-#                    %span{:data => {:icon => '('}}
+-#            -else
+-#              .large-2.columns.index-column-element
+-#%br
+-#
+-#.row
+-#  .large-12.columns

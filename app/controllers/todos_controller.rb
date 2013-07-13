@@ -4,65 +4,26 @@ class TodosController < ApplicationController
 
   load_and_authorize_resource
 
-  def index
 
-      @todos = Project.find(params[:project_id]).todos
-      @open = @todos.where(:status=> false)
-      @closed = @todos.where(:status=> true)
-      if current_user
-        @project = Project.find(params[:project_id])
-        @todo = @project.todos.build
-      end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @todos }
-    end
-  end
-
-  # GET /todos/1
-  # GET /todos/1.json
-  def show
-    @todo = Todo.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @todo }
-    end
-  end
-
-  # GET /todos/new
-  # GET /todos/new.json
-  def new
-    @project = Project.find(params[:project_id])
-    @todo = current_user.projects.find(@project).todos.build
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @todo }
-    end
-  end
-
-  # GET /todos/1/edit
-  def edit
-    @todo = Todo.find(params[:id])
-  end
 
   # POST /todos
   # POST /todos.json
   def create
+    @project = Project.find(params[:project_id])
     @todo = Todo.new(params[:todo])
-    @todos = Project.find(params[:project_id]).todos
+    @todos = @project.todos
     @todo.user_id = current_user.id
     @todo.status = false
-    @todo.project_id = params[:project_id]
+    @todo.project_id = @project.id
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to project_todos_path(:project_id=>params[:project_id]), notice: 'To-do was successfully created.' }
+        format.html { redirect_to project_path(@project), notice: 'To-do was successfully created.'}
         format.json { render json: @todo, status: :created, location: @todo }
       else
         @todo = @todo
         @open = @todos.where(:status=> false)
         @closed = @todos.where(:status=> true)
-        format.html { render action: "index", alert: 'To-do was not created.'}
+        format.html { redirect_to project_path(@project), alert: 'To-do was not created.'}
         format.json { render json: @todo, status: :unprocessable_entity }
       end
     end
@@ -96,7 +57,7 @@ class TodosController < ApplicationController
     @todo.destroy
 
     respond_to do |format|
-      format.html { redirect_to project_todos_url(@todo.project) }
+      format.html { redirect_to project_url(@todo.project) }
       format.json { head :no_content }
     end
   end

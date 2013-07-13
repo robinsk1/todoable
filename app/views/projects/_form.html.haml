@@ -1,4 +1,4 @@
-= simple_form_for @project, :html=>{ :multipart => true } do |f|
+= simple_form_for ([current_user, @project]), :html=>{ :multipart => true } do |f|
   .form-inputs
     - error = @project.errors.any? ? 'error' : ''
     = f.simple_fields_for :location do |l|
@@ -8,7 +8,11 @@
     = f.input :tag_list, :label => false, placeholder: 'Add some', :class=> error
     = f.simple_fields_for :pictures do |x|
       = x.hidden_field :retained_cover_image
-      = x.file_field :cover_image
+      = x.file_field :cover_image, :id=>"upload-image", :class=>"upload"
+      =link_to '#', :onclick=>"$('.upload').click(); return false;", :class=>"button", :style=>"margin-top:10px;padding-top: 5px;" do
+        %span{:class=>"icon-change"}
+          Change Avatar
+      #image-preview
   .form-actions
     -button_text =  @project.new_record? ? "Create list" : "Update list"
     = f.button :submit, button_text ,:class=>"success button", :style => "float:right;"
