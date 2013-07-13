@@ -21,6 +21,18 @@ class   Ability
       can :owner, Project
       can :joined, Project
 
+      can :create, Complete
+      can :read, Complete
+
+      can :destroy, Complete do |complete|
+        complete.try(:user) == user
+      end
+
+      #can :create, Complete do |complete|
+      #  user.joinups == user
+      #end
+
+
       can :destroy, Project do |project|
         project.try(:user) == user
       end

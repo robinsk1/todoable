@@ -1,10 +1,5 @@
 class TodosController < ApplicationController
-  # GET /todos
-  # GET /todos.json
-
   load_and_authorize_resource
-
-
 
   # POST /todos
   # POST /todos.json

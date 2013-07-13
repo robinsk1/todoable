@@ -4,7 +4,4 @@ class ParticipationController < ApplicationController
 
   end
 
-
-
-
 end
