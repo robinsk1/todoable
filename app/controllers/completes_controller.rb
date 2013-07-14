@@ -1,4 +1,5 @@
 class CompletesController < ApplicationController
+  #load_and_authorize_resource :through => :tñodo
 
   def create
     @completion = current_user.completes.build(:todo_id => params[:id])
@@ -6,7 +7,7 @@ class CompletesController < ApplicationController
          if @completion.save
            format.json { render :nothing => true }
          else
-           format.json { render json: @completion.errors, status: :unprocessable_entity }
+           format.json { render json: @completion.errors }
          end
        end
 

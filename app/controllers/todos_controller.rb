@@ -57,15 +57,4 @@ class TodosController < ApplicationController
   end
 
 
-  def toggle
-    @todo = Todo.find(params[:id])
-    result = @todo.status == true ? false : true
-    respond_to do |format|
-      if @todo.update_attribute(:status, result)
-        format.json { render :nothing => true }
-      else
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 end
