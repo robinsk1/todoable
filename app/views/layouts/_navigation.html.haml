@@ -14,9 +14,9 @@
       %li.divider
       %li{:class => cp(cities_path)}
         =link_to 'cities', cities_path
-      %li{:class => cp(cities_path)}
-        =link_to 'events', cities_path
       %li.divider
+      %li{:class => cp(cities_path)}
+        =link_to 'questions', cities_path
       %li.has-form
         =form_tag projects_path, :method => :get, :id=>"search_form" do
           .row.collapse
@@ -46,7 +46,10 @@
         %li.divider
       - if user_signed_in?
         %li{:class => cp(new_user_project_path(current_user))}
-          = link_to 'New List', new_user_project_path(current_user)
+          = link_to 'Ask', new_user_project_path(current_user)
+        %li.divider
+        %li{:class => cp(new_user_project_path(current_user))}
+          = link_to 'Create', new_user_project_path(current_user)
         %li.divider
         %li.has-dropdown
           %a{:href => "#"}
