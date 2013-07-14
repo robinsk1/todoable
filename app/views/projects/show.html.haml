@@ -35,7 +35,7 @@
 
 .row
   .large-12.columns
-    -if signed_in? && current_user_project_owner?
+    -if can? :create, @todo
       -if !params[:id].blank?
         = simple_form_for([@project, @todo])  do |f|
           .form-inputs

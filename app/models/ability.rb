@@ -32,7 +32,7 @@ class   Ability
 
       # Todos
       can :create, Todo do |todo|
-         todo.project.try(:user) == user
+         (todo.project.try(:user) == user) || (user.joinups.collect(&:project_id).include?(todo.project_id))
       end
 
       can :read, Todo

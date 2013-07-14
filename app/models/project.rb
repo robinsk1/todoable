@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
   has_many :todos, :dependent => :destroy
   has_many :participations, :dependent => :destroy
   has_many :pictures, :as => :imageable, :dependent => :destroy
-  has_one :location, :as => :locationable
+  has_one :location, :as => :locationable, :dependent => :destroy
   belongs_to :user
 
   accepts_nested_attributes_for :pictures, :location

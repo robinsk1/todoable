@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713144150) do
+ActiveRecord::Schema.define(:version => 20130714104907) do
 
   create_table "completes", :force => true do |t|
     t.integer  "todo_id"
@@ -99,10 +99,10 @@ ActiveRecord::Schema.define(:version => 20130713144150) do
 
   create_table "todos", :force => true do |t|
     t.text     "description"
-    t.boolean  "status"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "project_id"
+    t.integer  "author_id"
   end
 
   create_table "users", :force => true do |t|

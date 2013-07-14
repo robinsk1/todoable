@@ -7,8 +7,8 @@ class TodosController < ApplicationController
     @project = Project.find(params[:project_id])
     @todo = Todo.new(params[:todo])
     @todos = @project.todos
-    @todo.status = false
     @todo.project_id = @project.id
+    @todo.author_id = current_user.id
     respond_to do |format|
       if @todo.save
         format.html { redirect_to project_path(@project), notice: 'To-do was successfully created.'}
