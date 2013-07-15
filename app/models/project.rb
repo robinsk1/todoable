@@ -3,12 +3,12 @@ class Project < ActiveRecord::Base
   attr_accessible :user_id, as: :admin
   has_many :todos, :dependent => :destroy
   has_many :participations, :dependent => :destroy
-  has_many :pictures, :as => :imageable, :dependent => :destroy
+  has_one :picture, :as => :imageable, :dependent => :destroy
   has_one :location, :as => :locationable, :dependent => :destroy
   belongs_to :user
   has_many :likes, :as => :likeable, :dependent => :destroy
 
-  accepts_nested_attributes_for :pictures, :location
+  accepts_nested_attributes_for :picture, :location
 
   validates_presence_of :description, :name, :tag_list, :location
 

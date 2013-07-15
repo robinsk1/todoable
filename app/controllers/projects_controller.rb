@@ -7,7 +7,7 @@
     counts = Project.joins(:location).count(:group=>:city)
     @projects = []
     counts.each do |k,v|
-      projects_with_location = Project.joins(:location).where("locations.city = '#{k}'").joins(:pictures).first
+      projects_with_location = Project.joins(:location).where("locations.city = '#{k}'").joins(:picture).first
       proj = !projects_with_location.nil? ? projects_with_location.id : "nil"
       new_hash = {:city => k, :list_count => v, :proj_id => proj }
       @projects << (new_hash)
@@ -36,8 +36,8 @@
 
 
   def index
-    if params[:id]
-      @projects = User.find(params[:id]).projects.all
+    if params[:user_id]
+      @projects = User.find(params[:user_id]).projects.all
     elsif params[:city]
       @location = params[:city]
       @projects = Project.joins(:location).where(["locations.city = ?", params[:city]])
@@ -74,7 +74,7 @@
   # GET /projects/new.json
   def new
     @project = current_user.projects.build
-    @photo = @project.pictures.build
+    @photo = @project.build_picture
     @city = @project.build_location
     respond_to do |format|
       format.html # new.html.erb
