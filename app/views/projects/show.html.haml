@@ -6,15 +6,20 @@
           .large-6.columns
           %ul.wee-nav-list.right
             %li
-              =participates_in_list?
+              -if signed_in? && !current_user_project_owner?
+                =participates_in_list?
+              -else
+                " "
             %li
-              -if signed_in?
+              -if signed_in? && !current_user_project_owner?
                 -if @project.likes.where(:user_id => current_user.id).first
                   =link_to '#', :alt=>"unlike", :id=> "like", :data=>{:status=>"unlike", :"model-class"=>@project.class.to_s.downcase, :"model-id" => @project.id} do
                     %span{:data => {:icon => ','}, :class=>'big-icons'}
                 -else
                   =link_to '#', :alt=>"like", :id=> "like", :data=>{:status=>"like", :"model-class"=>@project.class.to_s.downcase, :"model-id" => @project.id} do
                     %span{:data => {:icon => '+'}, :class=>'big-icons'}
+              -else
+                " "
             %li
               =link_to "#" do
                 %span{:class=>"big-icons", :data=>{:icon=>"3"}}
