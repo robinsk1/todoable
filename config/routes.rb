@@ -10,6 +10,10 @@ Todoable::Application.routes.draw do
   post "/todo/:id/complete", :to=>"completes#create", :as=> :complete_todo
   delete "/todo/:id/complete", :to=>"completes#destroy", :as=> :uncomplete_todo
 
+  post "/like/:model_class/id/:id", :to=>"likes#create", :as=> :like
+  delete "/like/:model_class/id/:id", :to=>"likes#destroy", :as=> :unlike
+
+
   resources :projects, :except=> [:create,:new, :edit, :update, :destroy], :path => "lists"  do
       resources :participations, only: :index
       resources :todos, :only=> [:create]

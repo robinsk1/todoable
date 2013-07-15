@@ -16,6 +16,11 @@
 @import "foundation/variables", "foundation/components/global", "foundation/components/inline-lists";
 
 
+.by-line{
+  margin-top: 10px;
+  font-size: 0.7em;
+}
+
 form div input.upload {position: absolute; width:10px; visibility: hidden;}
 
 

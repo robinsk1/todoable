@@ -6,12 +6,14 @@
           %li
             =participates_in_list?
           %li
-            - if signed_in? && !current_user_project_owner?
-              =link_to "#" do
-                %span{:class=>"big-icons", :data=>{:icon=>"+"}}
+            -if signed_in?
+              -if @project.likes.where(:user_id => current_user.id).first
+                =link_to '#', :alt=>"unlike", :id=> "like", :data=>{:status=>"unlike", :"model-class"=>@project.class.to_s.downcase, :"model-id" => @project.id} do
+                  %span{:data => {:icon => ','}, :class=>'big-icons'}
           %li
             =link_to "#" do
               %span{:class=>"big-icons", :data=>{:icon=>"3"}}
+
     .row
       .large-12.columns
         %h1.project-home-headers.text-shadow=best_in_place_if current_user_project_owner?, @project, :name
@@ -55,7 +57,11 @@
           .row.todo-element.opened
             .small-8.large-10.columns.index-column-element.cen
               %p
-                = best_in_place_if current_user_project_owner?, todo, :description
+                = best_in_place_if current_user_todo_author?(todo), todo, :description
+              %p.by-line
+                -if (todo.author_id != todo.project.user)
+                  by: #{raw link_to todo.author.name, user_path(todo.author)}
+
             -if can? :create, todo.completes.build
               .small-2.large-1.columns.index-column-element.cen.toggle
                 %p
@@ -85,6 +91,10 @@
             .small-8.large-10.columns.index-column-element.cen
               %p
                 = best_in_place_if current_user_project_owner?, todo, :description
+              %p.by-line
+                -if (todo.author_id != todo.project.user)
+                  by: #{raw link_to todo.author.name, user_path(todo.author)}
+
             -if can? :destroy, todo.completes.build
               .small-2.large-1.columns.index-column-element.cen.toggle
                 %p

@@ -63,6 +63,7 @@
      if current_user
        @todo = @project.todos.build
      end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -136,7 +137,7 @@
     @participation = current_user.participations.build(:project_id => params[:id])
        respond_to do |format|
          if @participation.save
-           format.json { render :nothing => true }
+           format.html { redirect_to project_url }
          else
            format.json { render json: @participation.errors, status: :unprocessable_entity }
          end
@@ -148,7 +149,7 @@
     @participation = current_user.participations.find_by_project_id(params[:id])
     @participation.destroy
        respond_to do |format|
-         format.json { render :nothing => true }
+         format.html { redirect_to project_url }
        end
     end
 

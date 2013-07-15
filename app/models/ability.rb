@@ -42,7 +42,7 @@ class   Ability
       end
 
       can :update, Todo do |todo|
-         (todo.project.try(:user) == user)
+         (todo.project.try(:user) == user) || (todo.author == user)
       end
 
       can :create, Complete do |complete|

@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
   has_many :pictures, :as => :imageable, :dependent => :destroy
   has_one :location, :as => :locationable, :dependent => :destroy
   belongs_to :user
+  has_many :likes, :as => :likeable, :dependent => :destroy
 
   accepts_nested_attributes_for :pictures, :location
 

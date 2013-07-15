@@ -1,5 +1,5 @@
 class CompletesController < ApplicationController
-  #load_and_authorize_resource :through => :tñodo
+  #load_and_authorize_resource :through => :todo
 
   def create
     @completion = current_user.completes.build(:todo_id => params[:id])
@@ -10,7 +10,6 @@ class CompletesController < ApplicationController
            format.json { render json: @completion.errors }
          end
        end
-
   end
 
   def destroy
