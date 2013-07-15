@@ -22,17 +22,14 @@ $(document).ready ->
       new_icon = ((if method is "like" then "," else "+"))
       new_status = ((if method is "like" then "unlike" else "like"))
       form_path = "/like/"+model_class+"/id/"+model_id
-#      new_type =  ((if method is "like" then "DELETE" else "POST"))
       params = {}
       $.ajaxSetup
         url: form_path
         type: type
         cache: false
         dataType: "json"
-
       $.ajax
         complete: ->
           link.attr("data-status", new_status)
           link.attr("alt", new_status)
-#          link.attr("data-method", new_type)
           link.children('span').attr("data-icon", new_icon)
