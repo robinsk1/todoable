@@ -52,8 +52,7 @@
           = link_to 'Create', new_user_project_path(current_user)
         %li.divider
         %li.has-dropdown
-          %a{:href => "#"}
-            =current_user.name
+          =link_to current_user.name, user_path(current_user)
           %ul.dropdown
             %li{:class => cp(user_projects_path(current_user))}
               =link_to "My questions", user_projects_path(current_user)
