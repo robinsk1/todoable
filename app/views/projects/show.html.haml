@@ -1,5 +1,10 @@
+-#%span{:class=>"has-tip", :data=>{:tooltip=>"true", :width=>"210"}, :title=>"Bottom and the default position."}
+-#  tip-bottom
 #project-header{:style=>"background-image:URL(#{city_image(@project, '1400x600#')});"}
   -unless params[:id].blank?
+    .row
+      .large-12-columns.right
+        =social_share_button_tag(@project.name)
     .row
       .large-12.columns
         %ul.wee-nav-list.left
@@ -7,10 +12,14 @@
             %li
               =link_to edit_user_project_path(current_user) do
                 %span{:data=>{:icon=>"5"}, :class=>'big-icons'}
-        %ul.wee-nav-list.right
           -if signed_in? && !current_user_project_owner?
             %li
-              =participates_in_list?
+              -if current_user.participations.find_by_project_id(@project).nil?
+                =link_to '#', :alt=>"join", :id=> "participation", :data=>{:status=>"join", :project => @project.id} do
+                  %span{:data => {:icon => 'N'}, :class=>'big-icons'}
+              -else
+                =link_to '#', :alt=>"leave", :id=> "participation", :data=>{:status=>"leave", :project=> @project.id} do
+                  %span{:data => {:icon => 'O'}, :class=>'big-icons'}
           -if signed_in? && !current_user_project_owner?
             %li
               -if @project.likes.where(:user_id => current_user.id).first
@@ -19,9 +28,8 @@
               -else
                 =link_to '#', :alt=>"like", :id=> "like", :data=>{:status=>"like", :"model-class"=>@project.class.to_s.downcase, :"model-id" => @project.id} do
                   %span{:data => {:icon => '+'}, :class=>'big-icons'}
-          %li
-            =link_to "#" do
-              %span{:class=>"big-icons", :data=>{:icon=>"3"}}
+
+
     .row
       .large-12.columns
         %h1.project-home-headers.text-shadow=best_in_place_if current_user_project_owner?, @project, :name
@@ -117,7 +125,6 @@
                     %span{:data => {:icon => '('}}
             -else
               .large-2.columns.index-column-element
-%br
 
 .row
   .large-12.columns

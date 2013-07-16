@@ -18,13 +18,16 @@
 //= require best_in_place
 //= require jquery.stellar
 //= require foundation
-//= require custom.modernizr
+//= require social-share-button
 //= require_tree .
 
 
-$(function(){ $(document).foundation(); });
+
+$(document).foundation();
+
 
 $(document).ready(function(){
+
 
 $('#upload-image').on('change', function (evt){
     var files = evt.target.files;

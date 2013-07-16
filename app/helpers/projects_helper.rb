@@ -9,11 +9,7 @@ module ProjectsHelper
   end
 
   def participates_in_list?
-    if current_user.participations.find_by_project_id(@project).nil?
-      link_to raw("<span data-icon = 'N' class='big-icons'></span"), join_project_path(@project), :alt=>"join", :id=> "participation", :method=> :put, :remote => false, :data=>{:status=>"join", :project => @project.id}
-    else
-      link_to raw("<span data-icon = 'O' class='big-icons'></span>"), leave_project_path(@project), :alt=>"leave", :id=> "participation", :method=> :put, :remote => false, :data=>{:status=>"leave", :project=> @project.id}
-    end
+
   end
 
 end

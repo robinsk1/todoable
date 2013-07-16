@@ -132,25 +132,4 @@
     end
   end
 
-
-  def join
-    @participation = current_user.participations.build(:project_id => params[:id])
-       respond_to do |format|
-         if @participation.save
-           format.html { redirect_to project_url }
-         else
-           format.json { render json: @participation.errors, status: :unprocessable_entity }
-         end
-       end
-  end
-
-
-  def leave
-    @participation = current_user.participations.find_by_project_id(params[:id])
-    @participation.destroy
-       respond_to do |format|
-         format.html { redirect_to project_url }
-       end
-    end
-
 end

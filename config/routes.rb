@@ -4,8 +4,9 @@ Todoable::Application.routes.draw do
 
   get "/cities", :to=>"projects#cities", :as => :cities
   get "/cities/lists/:city",  :to=>"projects#index", :as=> :scope_list_by_city
-  put "/lists/:id/leave", :to=>"projects#leave", :as=> :leave_project
-  put "/lists/:id/join", :to=>"projects#join", :as=> :join_project
+
+  post "/lists/:id/join", :to=>"participations#create", :as=> :join_project
+  delete "/lists/:id/join", :to=>"participations#destroy", :as=> :leave_project
 
   post "/todo/:id/complete", :to=>"completes#create", :as=> :complete_todo
   delete "/todo/:id/complete", :to=>"completes#destroy", :as=> :uncomplete_todo
