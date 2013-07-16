@@ -21,7 +21,7 @@ gem "launchy", ">= 2.2.0", :group => :test
 gem "capybara", ">= 2.0.3", :group => :test
 gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
 gem "compass-rails", ">= 1.0.3", :group => :assets
-gem "zurb-foundation", ">= 4.2.3", :group => :assets
+gem "zurb-foundation", ">= 4.1.9", :group => :assets
 gem "devise", ">= 2.2.3"
 gem "cancan", ">= 1.6.9"
 gem "rolify"
@@ -47,4 +47,3 @@ gem 'dragonfly', '~>0.9.15'
 
 gem 'rails_admin_tag_list'
 gem 'social-share-button'
-#gem 'shareable'
