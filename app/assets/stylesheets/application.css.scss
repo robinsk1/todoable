@@ -17,6 +17,11 @@
 @import "foundation/variables", "foundation/components/global", "foundation/components/inline-lists";
 
 
+#new_todo {
+  height: 2em;
+  font-size: 2em;
+}
+
 .by-line{
   margin-top: 10px;
   font-size: 0.7em;

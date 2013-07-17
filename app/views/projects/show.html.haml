@@ -43,7 +43,10 @@
         %h2.project-home-headers.text-shadow="#{@project.try(:location) ? @project.location.city : ''}"
     .row
       .large-12.columns
-        %h3.project-home-headers.text-shadow="#{@project.tag_list}"
+        -@project.tag_list.each do |t|
+          %span.metro.three-d
+            =t
+
     .row
       .large-12.columns.todo-description
         =best_in_place_if current_user_project_owner?, @project, :description

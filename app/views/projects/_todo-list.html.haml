@@ -1,18 +1,17 @@
-.row
-  .large-12.columns
-    -if can? :create, @todo
-      -if !params[:id].blank?
-        = simple_form_for([@project, @todo])  do |f|
-          .form-inputs
-            = f.input :description, :as=> :string,  :label => false, placeholder: 'Describe your to-do'
-            = f.input :project_id, :as=> :hidden, :value => @project.id
-          .form-actions
-            = f.button :submit, :class=>"success button round", :value=>"Create New To-do", :style =>"float:right;"
+.row.collapse
+  -if can? :create, @todo
+    -if !params[:id].blank?
+      = simple_form_for([@project, @todo])  do |f|
+        = f.input :project_id, :as=> :hidden, :value => @project.id
+        .large-11.columns
+          = f.input :description, :as=> :string, :label => false, placeholder: 'Describe your to-do'
+        .large-1.columns
+          = f.button :submit, :class=>"button expand postfix", :value=>"add!"
 
   - if !@open.nil?
-    .row{:style=>"margin-top:10px;"}
-      .large-12.columns
-        %h2.project-home-headers To-do!
+    -#.row{:style=>"margin-top:10px;"}
+    -#  .large-12.columns
+    -#    %h2.project-home-headers To-do!
     .row
       .large-12.columns
         .opened-container
@@ -43,9 +42,9 @@
 
 
   -if !@closed.nil?
-    .row{:style=>"margin-top:20px;"}
-      .large-12.columns
-        %h2.project-home-headers Done!
+    -#.row{:style=>"margin-top:20px;"}
+    -#  .large-12.columns
+    -#    %h2.project-home-headers Done!
     .row
       .large-12.columns
         .closed-container

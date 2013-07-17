@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :name, :tag_list, :pictures_attributes, :location_attributes, :as =>[:default, :admin]
+  attr_accessible :description, :name, :tag_list, :picture_attributes, :location_attributes, :as =>[:default, :admin]
   attr_accessible :user_id, as: :admin
   has_many :todos, :dependent => :destroy
   has_many :participations, :dependent => :destroy

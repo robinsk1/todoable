@@ -1,0 +1,28 @@
+.metro {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  background: #08C;
+
+  /* Font styles */
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.metro:hover { background: #0AF; }
+
+.metro.three-d {
+  position: relative;
+  box-shadow:
+    1px 1px #53A7EA,
+    2px 2px #53A7EA,
+    3px 3px #53A7EA;
+  transition: all 0.1s ease-in;
+}
+
+.metro.three-d:active {
+  box-shadow: none;
+  top: 3px;
+  left: 3px;
+}

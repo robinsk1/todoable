@@ -15,15 +15,13 @@ Todoable::Application.routes.draw do
   delete "/like/:model_class/id/:id", :to=>"likes#destroy", :as=> :unlike
 
 
-  resources :projects, :except=> [:create,:new, :edit, :update, :destroy], :path => "lists"  do
+  resources :projects, :except=> [:create, :new, :edit, :update, :destroy], :path => "lists"  do
       resources :participations, only: :index
       resources :todos, :only=> [:create]
   end
 
   resources :todos, :except => [:create, :index, :new, :edit, :show] do
-      member do
-        put :toggle
-      end
+
   end
 
 
