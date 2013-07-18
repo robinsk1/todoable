@@ -1,7 +1,7 @@
 .row.collapse
   -if can? :create, @todo
     -if !params[:id].blank?
-      = simple_form_for([@project, @todo])  do |f|
+      = simple_form_for([@project, @todo], :remote => true)  do |f|
         = f.input :project_id, :as=> :hidden, :value => @project.id
         .large-11.columns
           = f.input :description, :as=> :string, :label => false, placeholder: 'Describe your to-do'
@@ -9,65 +9,16 @@
           = f.button :submit, :class=>"button expand postfix", :value=>"add!"
 
   - if !@open.nil?
-    -#.row{:style=>"margin-top:10px;"}
-    -#  .large-12.columns
-    -#    %h2.project-home-headers To-do!
     .row
       .large-12.columns
         .opened-container
           - @open.each do |todo|
-            .row.todo-element.opened
-              .small-8.large-10.columns.index-column-element.cen
-                %p
-                  = best_in_place_if current_user_todo_author?(todo), todo, :description
-                %p.by-line
-                  -if (todo.author_id != todo.project.user)
-                    by: #{raw link_to todo.author.name, user_path(todo.author)}
-
-              -if can? :create, todo.completes.build
-                .small-2.large-1.columns.index-column-element.cen.toggle
-                  %p
-                    = link_to complete_todo_path(todo), :method=> :post, :remote => true, :data=>{:status=>"close", :todo=>todo.id} do
-                      %span{:data => {:icon => '@'}}
-              -else
-                .large-2.columns.index-column-element
-              -if can? :destroy, todo
-                .small-2.large-1.columns.index-column-element.cen
-                  %p
-                    =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                      %span{:data => {:icon => '('}}
-              -else
-                .large-2.columns.index-column-element
-
+            =render :partial=>'opened', :locals => {:todo => todo}
 
 
   -if !@closed.nil?
-    -#.row{:style=>"margin-top:20px;"}
-    -#  .large-12.columns
-    -#    %h2.project-home-headers Done!
     .row
       .large-12.columns
         .closed-container
           - @closed.each do |todo|
-            .row.todo-element.closed
-              .small-8.large-10.columns.index-column-element.cen
-                %p
-                  = best_in_place_if current_user_project_owner?, todo, :description
-                %p.by-line
-                  -if (todo.author_id != todo.project.user)
-                    by: #{raw link_to todo.author.name, user_path(todo.author)}
-
-              -if can? :destroy, todo.completes.build
-                .small-2.large-1.columns.index-column-element.cen.toggle
-                  %p
-                    =link_to uncomplete_todo_path(todo), :method=> :delete, :remote => true, :data=>{:status=>"open", :todo=>todo.id} do
-                      %span{:data => {:icon => '%'}}
-              -else
-                .large-2.columns.index-column-element
-              -if can? :destroy, todo
-                .small-2.large-1.columns.index-column-element.cen
-                  %p
-                    =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                      %span{:data => {:icon => '('}}
-              -else
-                .large-2.columns.index-column-element
+            =render :partial=>'closed', :locals => {:todo => todo}
