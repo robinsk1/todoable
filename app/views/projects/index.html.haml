@@ -5,7 +5,7 @@
     -elsif params[:action] == "owner"
       %h1="my lists"
     -elsif params[:city]
-      %h1="#{@location} to-do lists"
+      %h1="#{@location.split(',')[0]} to-do lists"
 
 .row
   .large-12.columns
