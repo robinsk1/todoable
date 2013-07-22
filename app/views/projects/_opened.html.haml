@@ -1,22 +1,28 @@
-.row.todo-element.opened
-  .small-8.large-10.columns.index-column-element.cen
-    %p
-      = best_in_place_if current_user_todo_author?(todo), todo, :description
-    %p.by-line
-      -if (todo.author_id != todo.project.user)
-        by: #{raw link_to todo.author.name, user_path(todo.author)}
+.row.opened{:style=>"margin-top:2em;"}
+  .large-12.columns.todo-element
+    .row
+      .large-10.columns
+        = best_in_place_if current_user_todo_author?(todo), todo, :description
+      -if can? :create, todo.completes.build
+        .large-1.columns.toggle
+          = link_to complete_todo_path(todo), :method=> :post, :remote => true, :data=>{:status=>"close", :todo=>todo.id} do
+            %span{:data => {:icon => '@'}}
+      -else
+        .large-2.columns
+      -if can? :destroy, todo
+        .large-1.columns
+          =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+            %span{:data => {:icon => '('}}
+      -else
+        .large-2.columns
+    .row
+      .large-2.columns
+        -if (todo.author_id != todo.project.user)
+          by: #{raw link_to todo.author.name, user_path(todo.author)}
+      .large-1.columns
+        vote
+      .large-1.columns
+        comment
+      .large-offset-8.columns
 
-  -if can? :create, todo.completes.build
-    .small-2.large-1.columns.index-column-element.cen.toggle
-      %p
-        = link_to complete_todo_path(todo), :method=> :post, :remote => true, :data=>{:status=>"close", :todo=>todo.id} do
-          %span{:data => {:icon => '@'}}
-  -else
-    .large-2.columns.index-column-element
-  -if can? :destroy, todo
-    .small-2.large-1.columns.index-column-element.cen
-      %p
-        =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-          %span{:data => {:icon => '('}}
-  -else
-    .large-2.columns.index-column-element
+

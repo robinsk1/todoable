@@ -17,6 +17,16 @@ class Todo < ActiveRecord::Base
     end
   end
 
+  def open?(user)
+    if completes.empty?
+      true
+    elsif completes.where("completes.user_id" => user)
+      false
+    else
+      true
+    end
+
+  end
 
 
 end

@@ -18,7 +18,7 @@ $(document).ready ->
         method = link.attr("data-status")
         new_status = ((if method is "join" then "leave" else "join"))
         new_icon = ((if method is "join" then "O" else "N"))
-        form_path = "/lists/"+project_id+"/join.js"
+        form_path = "/lists/"+project_id+"/join"
         type = ((if method is "join" then "POST" else "DELETE"))
 
         $.ajaxSetup
@@ -28,11 +28,9 @@ $(document).ready ->
           dataType: 'script'
 
         $.ajax
-          complete: (data)->
+          complete: ->
             link.attr("data-status", new_status)
             link.children('span').attr("data-icon", new_icon)
-#            $('#todo-list-partial').effect("highlight", {}, 3000);
-            eval(data)
 
 
 

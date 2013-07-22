@@ -81,15 +81,23 @@ form div input.upload {position: absolute; width:10px; visibility: hidden;}
 }
 
 .cen {
-  min-height:1em; width:12em; margin:1em 0;
+  min-height:1em;
+  width:12em;
+  margin:1em 0;
 }
 .cen p {
-  display:inline-block; vertical-align:middle;
-  margin:0 0 0 1em; width:100%;
+  display:inline-block;
+  vertical-align:middle;
+  margin:0 0 0 1em;
+  width:100%;
 }
 .cen::after {
-   display:inline-block; vertical-align:middle; line-height:1em;
-   width:0; content:"\00A0"; overflow:hidden;
+  display:inline-block;
+  vertical-align:middle;
+  line-height:1em;
+  width:0;
+  content:"\00A0";
+  overflow:hidden;
 }
 
 .big_title {
@@ -124,26 +132,23 @@ top:-75px;
   height:400px;
 }
 
-#project-header {
-  //height:400px;
-}
 
 .index-column-element {
   min-height: 1em;
 }
 
-.row.todo-element.opened{
-  background-color: rgba(255, 13, 11, 0.18);
+.row.todo-element{
   margin-top: 10px;
   padding-top: 10px;
   font-size: 1.2em;
 }
 
-.row.todo-element.closed{
+.opened{
+  background-color: rgba(255, 13, 11, 0.18);
+}
+
+.closed {
   background-color: #d5ffdf;
-  margin-top: 10px;
-  padding-top: 10px;
-  font-size: 1.2em;
 }
 
 .todo-description {

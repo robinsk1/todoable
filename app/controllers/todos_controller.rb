@@ -12,13 +12,13 @@ class TodosController < ApplicationController
     respond_to do |format|
       if @todo.save
         format.js
-        format.json { render json: @todo, status: :created, location: @todo }
+        #format.json { render json: @todo, status: :created, location: @todo }
       else
         #@ctodo = @ctodo
         #@open = @todos.where(:status=> false)
         #@closed = @todos.where(:status=> true)
         format.js
-        format.json { render json: @todo, status: :unprocessable_entity }
+        #format.json { render json: @todo, status: :unprocessable_entity }
       end
     end
   end
