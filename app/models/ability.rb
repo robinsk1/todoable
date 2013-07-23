@@ -1,7 +1,7 @@
 class   Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, params)
     # Define abilities for the passed in user here. For example:
     #
     unless user
@@ -49,10 +49,10 @@ class   Ability
         user.joinups.collect(&:project_id).include?(complete.todo.project_id) ||  (complete.todo.project.user == user)
       end
 
-      can :destroy, Complete do |complete|
-        user.joinups.collect(&:project_id).include?(complete.todo.project_id) ||  (complete.todo.project.user == user)
-      end
 
+      can :destroy, Complete do |complete|
+        (user.joinups.collect(&:project_id).include?(complete.todo.project_id)) ||  (complete.todo.project.user == user)
+      end
 
 
       # Admins

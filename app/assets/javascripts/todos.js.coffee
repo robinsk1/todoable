@@ -23,7 +23,7 @@ jQuery ($) ->
       url: form_path
       type: type
       cache: false
-      dataType: "json"
+      dataType: "script"
     $.ajax
       complete: ->
         element = undefined

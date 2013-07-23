@@ -4,7 +4,6 @@ class LikesController < ApplicationController
 
   def create
      obj = get_obj
-
      @like = obj.likes.build(:user_id => current_user.id)
      respond_to do |format|
       if @like.save
@@ -25,7 +24,6 @@ class LikesController < ApplicationController
     end
   end
 
-end
 
 
 private
@@ -34,3 +32,6 @@ def get_obj
    klass = params[:model_class].capitalize
    klass.constantize.find(params[:id])
 end
+
+end
+

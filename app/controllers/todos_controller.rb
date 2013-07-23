@@ -12,13 +12,8 @@ class TodosController < ApplicationController
     respond_to do |format|
       if @todo.save
         format.js
-        #format.json { render json: @todo, status: :created, location: @todo }
       else
-        #@ctodo = @ctodo
-        #@open = @todos.where(:status=> false)
-        #@closed = @todos.where(:status=> true)
         format.js
-        #format.json { render json: @todo, status: :unprocessable_entity }
       end
     end
   end
@@ -27,7 +22,6 @@ class TodosController < ApplicationController
   # PUT /todos/1.json
   def update
     @todo = Todo.find(params[:id])
-
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
         if !params[:todo][:project_id].blank?

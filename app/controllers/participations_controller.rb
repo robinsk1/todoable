@@ -3,13 +3,13 @@ class ParticipationsController < ApplicationController
   def create
      common
      participation = current_user.participations.build(:project_id => params[:id])
-        respond_to do |format|
-          if participation.save
-            format.js {}
-          else
-            format.json { render json: participation.errors, status: :unprocessable_entity }
-          end
+      respond_to do |format|
+        if participation.save
+          format.js {}
+        else
+          format.json { render json: participation.errors, status: :unprocessable_entity }
         end
+      end
    end
 
 
@@ -17,9 +17,9 @@ class ParticipationsController < ApplicationController
      common
      participation = current_user.participations.find_by_project_id(params[:id])
      participation.destroy
-        respond_to do |format|
-          format.js{}
-        end
+      respond_to do |format|
+        format.js{}
+      end
    end
 
   private
