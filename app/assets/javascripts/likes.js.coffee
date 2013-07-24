@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-  jQuery('#like').on 'click', (event) ->
+  $('#todo-list-partial').delegate '.like', "click", ->
       form_path = undefined
       link = undefined
       method = undefined

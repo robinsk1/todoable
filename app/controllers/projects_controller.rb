@@ -59,6 +59,7 @@
      group_ids = @closed.map(&:id)
      @open = Project.find(@project).todos.where(['id not in (?)', group_ids]) unless group_ids.empty?
      @open.all
+     @closed.all
 
      if current_user
        @todo = @project.todos.build

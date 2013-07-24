@@ -13,7 +13,7 @@
     %ul.left
       %li.divider
       %li{:class => cp(cities_path)}
-        =link_to 'cities', cities_path
+        =link_to 'stuff', projects_path
       %li.divider
       %li.has-form
         =form_tag projects_path, :method => :get, :id=>"search_form" do
@@ -43,9 +43,10 @@
           = link_to 'Login', new_user_session_path
         %li.divider
       - if user_signed_in?
-        %li{:class => cp(new_user_project_path(current_user))}
-          = link_to new_user_project_path(current_user) do
-            %span{:data => {:icon => 'N'}}
+        - if can? :create, Project
+          %li{:class => cp(new_user_project_path(current_user))}
+            = link_to new_user_project_path(current_user) do
+              %span{:data => {:icon => 'N'}}
         %li.divider
         %li.has-dropdown
           =link_to current_user.name, user_path(current_user)

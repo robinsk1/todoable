@@ -3,7 +3,7 @@
     .row
       .large-10.columns
         = best_in_place_if current_user_todo_author?(todo), todo, :description
-      -if can? :create, todo.completes.build
+      -if can? :destroy, todo.completes.where(:user_id => current_user).first
         .large-1.columns.toggle
           =link_to uncomplete_todo_path(todo), :method=> :delete, :remote => true, :data=>{:status=>"open", :todo=>todo.id} do
             %span{:data => {:icon => '%'}}
@@ -23,4 +23,13 @@
         vote
       .large-1.columns
         comment
-      .large-offset-8.columns
+      .large-1.columns
+        -if signed_in? && !current_user_project_owner?
+          #liker
+            -if todo.likes.where(:user_id => current_user.id).first
+              =link_to '#', :alt=>"unlike", :class=> "like", :data=>{:status=>"unlike", :"model-class"=>"todo", :"model-id" => todo.id} do
+                %span{:data => {:icon => ','}, :class=>'big-icons'}
+            -else
+              =link_to '#', :alt=>"like", :class=> "like", :data=>{:status=>"like", :"model-class"=>"todo", :"model-id" => todo.id} do
+                %span{:data => {:icon => '+'}, :class=>'big-icons'}
+      .large-offset-7.columns

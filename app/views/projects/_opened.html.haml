@@ -23,6 +23,15 @@
         vote
       .large-1.columns
         comment
-      .large-offset-8.columns
+      .large-2.columns
+        -if signed_in? && !current_user_project_owner?
+          #liker
+            -if todo.likes.where(:user_id => current_user.id).first
+              =link_to '#', :alt=>"unlike", :class=> "like", :data=>{:status=>"unlike", :"model-class"=>"todo", :"model-id" => todo.id} do
+                %span{:data => {:icon => ','}, :class=>'big-icons'}
+            -else
+              =link_to '#', :alt=>"like", :class=> "like", :data=>{:status=>"like", :"model-class"=>"todo", :"model-id" => todo.id} do
+                %span{:data => {:icon => '+'}, :class=>'big-icons'}
+      .large-offset-6.columns
 
 

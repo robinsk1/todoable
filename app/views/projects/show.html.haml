@@ -8,7 +8,7 @@
     .row
       .large-12.columns
         %ul.wee-nav-list.left
-          -if signed_in? && current_user_project_owner?
+          -if can? :update, @project
             %li
               =link_to edit_user_project_path(current_user) do
                 %span{:data=>{:icon=>"5"}, :class=>'big-icons'}
@@ -17,17 +17,19 @@
               -if current_user.participations.find_by_project_id(@project).nil?
                 =link_to '#', :alt=>"join", :id=> "participation", :data=>{:status=>"join", :project => @project.id} do
                   %span{:data => {:icon => 'N'}, :class=>'big-icons'}
+                    follow
               -else
                 =link_to '#', :alt=>"leave", :id=> "participation", :data=>{:status=>"leave", :project=> @project.id} do
                   %span{:data => {:icon => 'O'}, :class=>'big-icons'}
-          -if signed_in? && !current_user_project_owner?
-            %li
-              -if @project.likes.where(:user_id => current_user.id).first
-                =link_to '#', :alt=>"unlike", :id=> "like", :data=>{:status=>"unlike", :"model-class"=>@project.class.to_s.downcase, :"model-id" => @project.id} do
-                  %span{:data => {:icon => ','}, :class=>'big-icons'}
-              -else
-                =link_to '#', :alt=>"like", :id=> "like", :data=>{:status=>"like", :"model-class"=>@project.class.to_s.downcase, :"model-id" => @project.id} do
-                  %span{:data => {:icon => '+'}, :class=>'big-icons'}
+                    unfollow
+          -#-if signed_in? && !current_user_project_owner?
+          -#  %li
+          -#    -if @project.likes.where(:user_id => current_user.id).first
+          -#      =link_to '#', :alt=>"unlike", :id=> "like", :data=>{:status=>"unlike", :"model-class"=>@project.class.to_s.downcase, :"model-id" => @project.id} do
+          -#        %span{:data => {:icon => ','}, :class=>'big-icons'}
+          -#    -else
+          -#      =link_to '#', :alt=>"like", :id=> "like", :data=>{:status=>"like", :"model-class"=>@project.class.to_s.downcase, :"model-id" => @project.id} do
+          -#        %span{:data => {:icon => '+'}, :class=>'big-icons'}
 
 
     .row
