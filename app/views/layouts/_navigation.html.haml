@@ -51,8 +51,8 @@
         %li.has-dropdown
           =link_to current_user.name, user_path(current_user)
           %ul.dropdown
-            %li{:class => cp(user_projects_path(current_user))}
-              =link_to "My lists", user_projects_path(current_user)
+            -#%li{:class => cp(user_projects_path(current_user))}
+            -#  =link_to "My lists", user_projects_path(current_user)
             %li{:class => cp(joined_user_projects_path(current_user))}
               =link_to "Joined lists", joined_user_projects_path(current_user)
             %li{:class => cp(edit_user_registration_path)}

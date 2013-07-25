@@ -18,5 +18,12 @@
     -@completes.each do |c|
       =c.todo.description if !c.todo.nil?
 
+.row
+  .large-12.columns
+    %h3 likes
+    -@likes.each do |l|
+      =l.description
+
+
 
 
