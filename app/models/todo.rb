@@ -5,6 +5,8 @@ class Todo < ActiveRecord::Base
   has_many :likes, :as => :likeable, :dependent => :destroy
   validates_presence_of :description
 
+  acts_as_voteable
+
   resourcify
 
 

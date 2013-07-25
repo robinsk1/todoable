@@ -47,3 +47,5 @@ gem 'dragonfly', '~>0.9.15'
 
 gem 'rails_admin_tag_list'
 gem 'social-share-button'
+
+gem 'thumbs_up'

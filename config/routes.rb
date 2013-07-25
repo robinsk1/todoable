@@ -14,6 +14,10 @@ Todoable::Application.routes.draw do
   post "/like/:model_class/id/:id", :to=>"likes#create", :as=> :like
   delete "/like/:model_class/id/:id", :to=>"likes#destroy", :as=> :unlike
 
+  post "/up/:model_class/id/:id", :to=>"votes#for", :as => :vote_for
+  post "/down/:model_class/id/:id", :to=>"votes#against", :as => :vote_against
+
+
 
   resources :projects, :except=> [:create, :new, :edit, :update, :destroy], :path => "lists"  do
       resources :participations, only: :index

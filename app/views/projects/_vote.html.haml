@@ -1,0 +1,9 @@
+%ul.inline-list
+  %li
+    =link_to vote_for_path("todo", todo.id), :alt=>"for", :class=> "vote", :id=>"#{todo.id}_todo_vote_for", :data=>{:remote=>"true", :method=>:post}  do
+      %span{:data => {:icon => ':'}, :class=>'todo-icons'}
+        =todo.votes_for
+  %li
+    =link_to vote_against_path("todo", todo.id), :alt=>"against", :class=> "vote", :id=>"#{todo.id}_todo_vote_against", :data=>{:remote=>"true",:method=>:post} do
+      %span{:data => {:icon => ';'}, :class=>'todo-icons'}
+        =todo.votes_against

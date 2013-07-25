@@ -14,7 +14,6 @@
       - @open.each do |todo|
         =render :partial=>'projects/todo', :locals => {:todo => todo, :open=> "true"}
 
-
 -if !@closed.nil?
   .row
     .large-12.columns.closed-container
