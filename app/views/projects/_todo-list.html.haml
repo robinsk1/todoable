@@ -12,11 +12,11 @@
   .row
     .large-12.columns.opened-container
       - @open.each do |todo|
-        =render :partial=>'projects/opened', :locals => {:todo => todo, :state=> "opened"}
+        =render :partial=>'projects/todo', :locals => {:todo => todo, :open=> "true"}
 
 
 -if !@closed.nil?
   .row
     .large-12.columns.closed-container
       - @closed.each do |todo|
-        =render :partial=>'projects/closed', :locals => {:todo => todo, :state=>"closed"}
+        =render :partial=>'projects/todo', :locals => {:todo => todo, :open=>"false"}

@@ -1,14 +1,22 @@
-.row.opened{:style=>"margin-top:2em;"}
+.row{:style=>"margin-top:2em;", :class=> open == "true" ? "opened" : "closed"}
   .large-12.columns.todo-element
     .row
       .large-10.columns
         = best_in_place_if current_user_todo_author?(todo), todo, :description
-      -if can? :create, todo.completes.build
-        .large-1.columns.toggle
-          = link_to complete_todo_path(todo), :method=> :post, :remote => true, :data=>{:status=>"close", :todo=>todo.id} do
-            %span{:data => {:icon => '@'}}
-      -else
-        .large-2.columns
+      -if open == "true"
+        -if can? :create, todo.completes.build
+          .large-1.columns.toggle
+            = link_to complete_todo_path(todo), :method=> :post, :remote => true, :data=>{:status=>"close", :todo=>todo.id} do
+              %span{:data => {:icon => '@'}}
+        -else
+          .large-2.columns
+      -elsif open == "false"
+        -if can? :destroy, todo.completes.where(:user_id => current_user).first
+          .large-1.columns.toggle
+            =link_to uncomplete_todo_path(todo), :method=> :delete, :remote => true, :data=>{:status=>"open", :todo=>todo.id} do
+              %span{:data => {:icon => '%'}}
+        -else
+          .large-2.columns
       -if can? :destroy, todo
         .large-1.columns
           =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do

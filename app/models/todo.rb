@@ -17,12 +17,10 @@ class Todo < ActiveRecord::Base
   end
 
   def open?(user)
-    if completes.empty?
+    if (completes.empty?) || (completes.where(["completes.user_id != ?", user.id]))
       true
-    elsif completes.where("completes.user_id" => user)
+    else completes.where(["completes.user_id = ?", user.id])
       false
-    else
-      true
     end
 
   end

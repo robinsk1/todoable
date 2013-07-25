@@ -1,4 +1,4 @@
-$('<%=j(render(:partial => 'projects/opened', :locals=>{:todo=>@todo}))%>')
+$('<%=j(render(:partial => 'projects/todo', :locals=>{:todo=>@todo}))%>')
         .prependTo(".opened-container")
         .effect("highlight", {}, 3000);
 
