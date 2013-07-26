@@ -49,3 +49,5 @@ gem 'rails_admin_tag_list'
 gem 'social-share-button'
 
 gem 'thumbs_up'
+
+gem 'masonry-rails'

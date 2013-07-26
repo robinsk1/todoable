@@ -10,6 +10,11 @@
  *
  *= require_self
  *= require social-share-button
+ *= require isotope
+ *= require isotope/elements
+ *= require isotope/colorshapes
+ *= require isotope/options
+ *= require isotope/base
  *= require_tree .
 */
 
@@ -43,7 +48,7 @@ form div input.upload {position: absolute; width:10px; visibility: hidden;}
 }
 
 .todo-icons{
-  font-size: 0.85em;
+  font-size: 0.65em;
 }
 
 .right {
@@ -136,9 +141,8 @@ top:-75px;
 }
 
 #strapper {
-  //background-image: url(attr(data-image));
   background-image: URL("/assets/barcelona.jpg");
-  height:400px;
+  height:300px;
 }
 
 
@@ -146,9 +150,11 @@ top:-75px;
   min-height: 1em;
 }
 
-.row.todo-element{
-  margin-top: 10px;
-  padding-top: 10px;
+.todo-element{
+  //min-height: 150px;
+  //min-width: 90px;
+  //margin: 5px;
+  //padding: 10px;
   font-size: 1.2em;
 }
 
@@ -161,8 +167,8 @@ top:-75px;
 }
 
 .todo-description {
-  min-height: 200px;
-  background-color: #fffaf0;
+  min-height: 50px;
+  background-color: #f9f9f9;
   padding: 20px;
 }
 

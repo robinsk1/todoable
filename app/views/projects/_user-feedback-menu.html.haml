@@ -1,8 +1,5 @@
 %ul.inline-list
   %li
-    -if (todo.author_id != todo.project.user)
-      #{raw link_to todo.author.name, user_path(todo.author)}
-  %li
     =link_to vote_for_path("todo", todo.id), :alt=>"for", :class=> "vote", :id=>"#{todo.id}_todo_vote_for", :data=>{:remote=>"true", :method=>:post}  do
       %span{:data => {:icon => ':'}, :class=>'todo-icons'}
         =todo.votes_for

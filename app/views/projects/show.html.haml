@@ -1,6 +1,6 @@
 -#%span{:class=>"has-tip", :data=>{:tooltip=>"true", :width=>"210"}, :title=>"Bottom and the default position."}
 -#  tip-bottom
-#project-header{:style=>"background-image:URL(#{city_image(@project, '1400x600#')});"}
+#project-header{:style=>"background-image:URL(#{city_image(@project, '1600x400#')});height:400px"}
   -unless params[:id].blank?
     .row
       .large-12-columns.right
@@ -46,7 +46,7 @@
         =best_in_place_if current_user_project_owner?, @project, :description
 
 .row
-  .large-12.columns.index-column-element
+  .large-12.columns
 
 #todo-list-partial
   =render :partial =>"todo-list"

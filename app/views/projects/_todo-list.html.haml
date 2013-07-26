@@ -7,15 +7,14 @@
           = f.input :description, :as=> :string, :label => false, placeholder: 'Describe your to-do'
         .large-1.columns
           = f.button :submit, :class=>"button expand postfix", :value=>"add!"
+.row
+  #todo-elements-container
+    - if !@open.nil?
+      .opened-container
+        -@open.each do |todo|
+          =render :partial=>'projects/todo', :locals => {:todo => todo, :open=> "true"}
 
-- if !@open.nil?
-  .row
-    .large-12.columns.opened-container
-      - @open.each do |todo|
-        =render :partial=>'projects/todo', :locals => {:todo => todo, :open=> "true"}
-
--if !@closed.nil?
-  .row
-    .large-12.columns.closed-container
-      - @closed.each do |todo|
-        =render :partial=>'projects/todo', :locals => {:todo => todo, :open=>"false"}
+    -if !@closed.nil?
+      .closed-container
+        -@closed.each do |todo|
+          =render :partial=>'projects/todo', :locals => {:todo => todo, :open=>"false"}

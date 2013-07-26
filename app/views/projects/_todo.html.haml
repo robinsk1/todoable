@@ -1,27 +1,27 @@
-.row{:style=>"margin-top:2em;", :class=> open == "true" ? "opened" : "closed"}
-  .large-12.columns.todo-element
-    .row
-      .large-10.columns
-        = best_in_place_if current_user_todo_author?(todo), todo, :description
-      .large-2.columns
-        %ul.inline-list
-          -if open == "true"
-            -if can? :create, todo.completes.build
-              %li.toggle
-                = link_to complete_todo_path(todo), :method=> :post, :remote => true, :data=>{:status=>"close", :todo=>todo.id} do
-                  %span{:data => {:icon => '@'}}
-          -if open == "false"
-            -if can? :destroy, todo.completes.where(:user_id => current_user).first
-              %li.toggle
-                =link_to uncomplete_todo_path(todo), :method=> :delete, :remote => true, :data=>{:status=>"open", :todo=>todo.id} do
-                  %span{:data => {:icon => '%'}}
-          -if can? :destroy, todo
-            %li
-              =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                %span{:data => {:icon => '('}}
-    .row
-      .large-8.columns
-        =render :partial => "projects/user-feedback-menu", :locals =>{:todo => todo}
-      .large-offset-4.columns
+.large-3.columns.todo-element{:class=> open == "true" ? "opened" : "closed"}
+  .row
+    .large-12.columns
+      %ul.inline-list.right
+        -if open == "true"
+          -if can? :create, todo.completes.build
+            %li.toggle
+              = link_to complete_todo_path(todo), :method=> :post, :remote => true, :data=>{:status=>"close", :todo=>todo.id} do
+                %span{:data => {:icon => '@'}}
+        -if open == "false"
+          -if can? :destroy, todo.completes.where(:user_id => current_user).first
+            %li.toggle
+              =link_to uncomplete_todo_path(todo), :method=> :delete, :remote => true, :data=>{:status=>"open", :todo=>todo.id} do
+                %span{:data => {:icon => '%'}}
+        -if can? :destroy, todo
+          %li
+            =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+              %span{:data => {:icon => '('}}
+  .row
+    .large-12.columns
+      = best_in_place_if current_user_todo_author?(todo), todo, :description
+  .row
+    .large-12.columns
+      = render :partial => "projects/user-feedback-menu", :locals =>{:todo => todo}
+
 
 
