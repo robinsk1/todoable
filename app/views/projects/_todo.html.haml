@@ -3,31 +3,24 @@
     .row
       .large-10.columns
         = best_in_place_if current_user_todo_author?(todo), todo, :description
-      -if open == "true"
-        -if can? :create, todo.completes.build
-          .large-1.columns.toggle
-            = link_to complete_todo_path(todo), :method=> :post, :remote => true, :data=>{:status=>"close", :todo=>todo.id} do
-              %span{:data => {:icon => '@'}}
-        -else
-          .large-2.columns
-      -elsif open == "false"
-        -if can? :destroy, todo.completes.where(:user_id => current_user).first
-          .large-1.columns.toggle
-            =link_to uncomplete_todo_path(todo), :method=> :delete, :remote => true, :data=>{:status=>"open", :todo=>todo.id} do
-              %span{:data => {:icon => '%'}}
-        -else
-          .large-2.columns
-      -if can? :destroy, todo
-        .large-1.columns
-          =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-            %span{:data => {:icon => '('}}
-      -else
-        .large-2.columns
-    .row
       .large-2.columns
-        -if (todo.author_id != todo.project.user)
-          by: #{raw link_to todo.author.name, user_path(todo.author)}
-      .large-6.columns
+        %ul.inline-list
+          -if open == "true"
+            -if can? :create, todo.completes.build
+              %li.toggle
+                = link_to complete_todo_path(todo), :method=> :post, :remote => true, :data=>{:status=>"close", :todo=>todo.id} do
+                  %span{:data => {:icon => '@'}}
+          -if open == "false"
+            -if can? :destroy, todo.completes.where(:user_id => current_user).first
+              %li.toggle
+                =link_to uncomplete_todo_path(todo), :method=> :delete, :remote => true, :data=>{:status=>"open", :todo=>todo.id} do
+                  %span{:data => {:icon => '%'}}
+          -if can? :destroy, todo
+            %li
+              =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+                %span{:data => {:icon => '('}}
+    .row
+      .large-8.columns
         =render :partial => "projects/user-feedback-menu", :locals =>{:todo => todo}
       .large-offset-4.columns
 
