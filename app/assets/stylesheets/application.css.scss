@@ -48,7 +48,8 @@ form div input.upload {position: absolute; width:10px; visibility: hidden;}
 }
 
 .todo-icons{
-  font-size: 0.65em;
+  margin-top: 5px;
+  font-size: 1em;
 }
 
 .right {
@@ -151,10 +152,15 @@ top:-75px;
 }
 
 .todo-element{
+
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  border:10px solid white;
+  background:green;
   //min-height: 150px;
   //min-width: 90px;
   //margin: 5px;
-  //padding: 10px;
   font-size: 1.2em;
 }
 
