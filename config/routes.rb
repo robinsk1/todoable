@@ -17,6 +17,8 @@ Todoable::Application.routes.draw do
   post "/up/:model_class/id/:id", :to=>"votes#for", :as => :vote_for
   post "/down/:model_class/id/:id", :to=>"votes#against", :as => :vote_against
 
+  get '/lists/tags/:tag', to: 'projects#index', as: :tag
+
 
 
   resources :projects, :except=> [:create, :new, :edit, :update, :destroy], :path => "lists"  do

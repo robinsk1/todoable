@@ -2,7 +2,7 @@
   .large-12.columns{:style=>"margin-bottom:10px;"}
     -ActsAsTaggableOn::Tag.all.each do |t|
       %span.metro.three-d
-        =t
+        =link_to t, tag_path(t.name)
 
 .row
   .large-12.columns

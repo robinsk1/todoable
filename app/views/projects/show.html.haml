@@ -35,17 +35,9 @@
       .large-4.columns
         .row
           %h1.project-home-headers.percentage
-            "percentage"
-
-    .row.collapse
-      -if can? :create, @todo
-        -if !params[:id].blank?
-          = simple_form_for([@project, @todo], :remote => true, :html => {:'data-type' => 'script'})  do |f|
-            = f.input :project_id, :as=> :hidden, :value => @project.id
-            .large-11.columns
-              = f.input :description, :as=> :string, :label => false, placeholder: 'Describe your to-do'
-            .large-1.columns
-              = f.button :submit, :class=>"button expand postfix", :value=>"add!"
+            ="#{@complete.percent_of(@total).to_i}%"
+    #todo-form
+      =render :partial => 'todo-form'
 
 .row
   .large-12.columns
