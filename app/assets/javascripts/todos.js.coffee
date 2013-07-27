@@ -35,12 +35,19 @@ jQuery ($) ->
           element.removeClass("closed").addClass "opened"
           element.remove()
           $(".opened-container").append element
+          total = $(".opened").length +  $(".closed").length
+          perc = ($(".closed").length / total) * 100
+          $('.percentage').html(Math.round(perc) + "%");
+          $('.percentage').effect("highlight", {}, 3000);
         else
           element = link.closest(".opened")
           element.removeClass("opened").addClass "closed"
           element.remove()
           $(".closed-container").append element
-      beforeSend: ->
+          total = $(".opened").length +  $(".closed").length
+          perc = ($(".closed").length / total) * 100
+          $('.percentage').html(Math.round(perc) + "%");
+          $('.percentage').effect("highlight", {}, 3000);
 
   $("input").keypress (event) ->
     if event.which is 13

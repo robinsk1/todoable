@@ -5,7 +5,7 @@ class CompletesController < ApplicationController
     authorize! :create, @completion
        respond_to do |format|
          if @completion.save
-           format.js { render :nothing => true }
+           format.js
          else
            format.js { render json: @completion.errors }
          end
@@ -17,7 +17,7 @@ class CompletesController < ApplicationController
     authorize! :destroy, @completion
      respond_to do |format|
       if @completion.destroy
-       format.js { render :nothing => true }
+       format.js
       else
         format.js { render json: @completion.errors }
       end
