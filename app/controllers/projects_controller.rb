@@ -7,7 +7,7 @@
     counts = Project.joins(:location).count(:group=>:city)
     @projects = []
     counts.each do |k,v|
-      projects_with_location = Project.joins(:location).where("locations.city = '#{k}'").joins(:pictures).first
+      projects_with_location = Project.joins(:location).where("locations.city = '#{k}'").joins(:picture).first
       proj = !projects_with_location.nil? ? projects_with_location.id : "nil"
       new_hash = {:city => k, :list_count => v, :proj_id => proj }
       @projects << (new_hash)
@@ -36,8 +36,8 @@
 
 
   def index
-    if params[:id]
-      @projects = User.find(params[:id]).projects.all
+    if params[:user_id]
+      @projects = User.find(params[:user_id]).projects.all
     elsif params[:city]
       @location = params[:city]
       @projects = Project.joins(:location).where(["locations.city = ?", params[:city]])
@@ -54,12 +54,17 @@
   # GET /projects/1.json
   def show
      @project = Project.find(params[:id])
-     @todos = @project.todos
-     @open = @todos.where(:status=> false)
-     @closed = @todos.where(:status=> true)
+     @closed = Project.find(@project).todos.joins(:completes).where("completes.user_id" => current_user)
+     @open = Project.find(@project).todos
+     group_ids = @closed.map(&:id)
+     @open = Project.find(@project).todos.where(['id not in (?)', group_ids]) unless group_ids.empty?
+     @open.all
+     @closed.all
+
      if current_user
        @todo = @project.todos.build
      end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -70,7 +75,7 @@
   # GET /projects/new.json
   def new
     @project = current_user.projects.build
-    @photo = @project.pictures.build
+    @photo = @project.build_picture
     @city = @project.build_location
     respond_to do |format|
       format.html # new.html.erb
@@ -127,26 +132,5 @@
       format.json { head :no_content }
     end
   end
-
-
-  def join
-    @participation = current_user.participations.build(:project_id => params[:id])
-       respond_to do |format|
-         if @participation.save
-           format.json { render :nothing => true }
-         else
-           format.json { render json: @participation.errors, status: :unprocessable_entity }
-         end
-       end
-  end
-
-
-  def leave
-    @participation = current_user.participations.find_by_project_id(params[:id])
-    @participation.destroy
-       respond_to do |format|
-         format.json { render :nothing => true }
-       end
-    end
 
 end
