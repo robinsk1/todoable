@@ -31,19 +31,21 @@
         .row
           .large-12.columns
             %h2.project-home-headers.text-shadow="#{@project.try(:location) ? @project.location.city : ''}"
-        .row
-          .large-12.columns
-            -@project.tag_list.each do |t|
-              %span.metro.three-d
-                =t
+
       .large-4.columns
         .row
           %h1.project-home-headers.percentage
-            100%
+            ="#{@per}%"
 
-    .row
-      .large-12.columns.todo-description
-        =best_in_place_if current_user_project_owner?, @project, :description
+    .row.collapse
+      -if can? :create, @todo
+        -if !params[:id].blank?
+          = simple_form_for([@project, @todo], :remote => true, :html => {:'data-type' => 'script'})  do |f|
+            = f.input :project_id, :as=> :hidden, :value => @project.id
+            .large-11.columns
+              = f.input :description, :as=> :string, :label => false, placeholder: 'Describe your to-do'
+            .large-1.columns
+              = f.button :submit, :class=>"button expand postfix", :value=>"add!"
 
 .row
   .large-12.columns

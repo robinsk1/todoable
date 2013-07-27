@@ -61,6 +61,8 @@
      @open.all
      @closed.all
 
+     @per = (@closed.size / @open.size) * 100
+
      if current_user
        @todo = @project.todos.build
      end

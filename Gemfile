@@ -50,4 +50,4 @@ gem 'social-share-button'
 
 gem 'thumbs_up'
 
-gem 'masonry-rails'
+#gem 'masonry-rails'

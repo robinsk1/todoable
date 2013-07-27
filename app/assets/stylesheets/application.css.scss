@@ -10,11 +10,6 @@
  *
  *= require_self
  *= require social-share-button
- *= require isotope
- *= require isotope/elements
- *= require isotope/colorshapes
- *= require isotope/options
- *= require isotope/base
  *= require_tree .
 */
 
@@ -83,7 +78,7 @@ form div input.upload {position: absolute; width:10px; visibility: hidden;}
 }
 
 .percentage {
-  font-size: 8em;
+  font-size: 6em;
 }
 
 .text-shadow{

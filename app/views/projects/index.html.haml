@@ -1,4 +1,10 @@
 .row
+  .large-12.columns{:style=>"margin-bottom:10px;"}
+    -ActsAsTaggableOn::Tag.all.each do |t|
+      %span.metro.three-d
+        =t
+
+.row
   .large-12.columns
     -if params[:action] == "joined"
       %h1="joined lists"

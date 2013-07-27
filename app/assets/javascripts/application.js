@@ -17,10 +17,7 @@
 //= require jquery.purr
 //= require best_in_place
 //= require jquery.stellar
-//= require jquery.isotope
-
 //= require foundation
-//= require jquery.inview.js
 //= require custom.modernizr
 //= require social-share-button
 //= require_tree .
