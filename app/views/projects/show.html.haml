@@ -16,12 +16,10 @@
             %li
               -if current_user.participations.find_by_project_id(@project).nil?
                 =link_to '#', :alt=>"join", :id=> "participation", :data=>{:status=>"join", :project => @project.id} do
-                  %span{:data => {:icon => 'N'}, :class=>'big-icons'}
-                    follow
+                  %span{:data => {:icon => 'N'}, :class=>'big-icons'}="&nbsp;follow".html_safe
               -else
                 =link_to '#', :alt=>"leave", :id=> "participation", :data=>{:status=>"leave", :project=> @project.id} do
-                  %span{:data => {:icon => 'O'}, :class=>'big-icons'}
-                    unfollow
+                  %span{:data => {:icon => 'O'}, :class=>'big-icons'}="&nbsp;unfollow".html_safe
     .row.transparent-bg-project#opacity-10
       .large-8.columns
         .row
@@ -35,7 +33,7 @@
       .large-4.columns
         .row
           %h1.project-home-headers.percentage
-            ="#{@complete.percent_of(@total).to_i}% done"
+            ="you are <span id='perc-num'>#{@complete.percent_of(@total).to_i}</span>% done".html_safe
     .row
       .large-12.columns
         %ul.block-grid

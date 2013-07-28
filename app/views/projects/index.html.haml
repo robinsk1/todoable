@@ -15,9 +15,10 @@
 
 .row
   .large-12.columns
-    %ul.project-list
-      -@projects.each do |p|
-        %li{:data => {'tooltip' => true}, :class=>"has-tip", :title=>p.name}
-          = link_to image_tag(city_image(p, '320x200#')), project_path(p), :class=>"th"
+    -#%ul.project-list
+    -#  -@projects.each do |p|
+    -#    %li{:data => {'tooltip' => true}, :class=>"has-tip", :title=>p.name}
+    -#      = link_to image_tag(city_image(p, '320x200#')), project_path(p), :class=>"th"
+    =render :partial => "projects/card"
 
 

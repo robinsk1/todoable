@@ -17,7 +17,7 @@ $(document).ready ->
         project_id = link.attr("data-project")
         method = link.attr("data-status")
         new_status = ((if method is "join" then "leave" else "join"))
-        new_text = ((if method is "join" then "unfollow" else "follow"))
+        new_text = ((if method is "join" then "&nbsp;unfollow" else "&nbsp;follow"))
         new_icon = ((if method is "join" then "O" else "N"))
         form_path = "/lists/"+project_id+"/join"
         type = ((if method is "join" then "POST" else "DELETE"))

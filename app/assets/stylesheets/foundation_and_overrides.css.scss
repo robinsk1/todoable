@@ -1229,7 +1229,7 @@ $has-tip-border-bottom-hover: false;
 @import "foundation/components/global";
 @import "foundation/components/block-grid";
 
-$per-row: 5;
+$per-row: 3;
 $spacing: $block-grid-default-spacing;
 $base-styles: true;
 
@@ -1237,9 +1237,8 @@ $base-styles: true;
   @include block-grid($per-row, $spacing, $base-styles);
 }
 
-
 .project-list > li {
-  height: 120px;
+  height: 270px;
 }
 
 
