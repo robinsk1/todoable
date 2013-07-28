@@ -37,7 +37,6 @@
     -#        %a{:href => "#"} See all →
     / Right Nav Section
     %ul.right
-      %li.divider
       - unless user_signed_in?
         %li{:class => cp(new_user_session_path)}
           = link_to 'Login', new_user_session_path
@@ -47,7 +46,6 @@
           %li{:class => cp(new_user_project_path(current_user))}
             = link_to new_user_project_path(current_user) do
               %span{:data => {:icon => 'N'}}
-        %li.divider
         %li.has-dropdown
           =link_to current_user.name, user_path(current_user)
           %ul.dropdown
