@@ -37,7 +37,7 @@ jQuery ($) ->
           $(".opened-container").append element
           total = $(".opened").length +  $(".closed").length
           perc = ($(".closed").length / total) * 100
-          $('.percentage').html(Math.round(perc) + "%");
+          $('.percentage').html(Math.round(perc) + "% done");
           $('.percentage').effect("highlight", {}, 3000);
         else
           element = link.closest(".opened")
@@ -46,7 +46,7 @@ jQuery ($) ->
           $(".closed-container").append element
           total = $(".opened").length +  $(".closed").length
           perc = ($(".closed").length / total) * 100
-          $('.percentage').html(Math.round(perc) + "%");
+          $('.percentage').html(Math.round(perc) + "% done");
           $('.percentage').effect("highlight", {}, 3000);
 
   $("input").keypress (event) ->

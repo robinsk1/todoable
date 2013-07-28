@@ -14,7 +14,13 @@
       =p.project.name
 .row
   .large-12.columns
-    %h3 completed todos
+    %h3 Completed Todos
+    -@completes.each do |c|
+      =c.todo.description if !c.todo.nil?
+
+.row
+  .large-12.columns
+    %h3 Completed Projects
     -@completes.each do |c|
       =c.todo.description if !c.todo.nil?
 

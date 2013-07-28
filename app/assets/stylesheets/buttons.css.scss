@@ -1,8 +1,8 @@
 .metro {
   display: inline-block;
-  padding: 10px;
-  margin: 10px;
-  background: #08C;
+  padding: 5px;
+  margin: 5px;
+  background: rgba(0, 0, 0, 0.88);
 
   /* Font styles */
   color: white;
@@ -10,14 +10,14 @@
   text-decoration: none;
 }
 
-.metro:hover { background: #0AF; }
+.metro:hover { background: #6c6c6c; }
 
 .metro.three-d {
   position: relative;
   box-shadow:
-    1px 1px #53A7EA,
-    2px 2px #53A7EA,
-    3px 3px #53A7EA;
+    1px 1px #323232,
+    2px 2px #323232,
+    3px 3px #323232;
   transition: all 0.1s ease-in;
 }
 

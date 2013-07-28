@@ -15,10 +15,9 @@
 
 .row
   .large-12.columns
-    %ul.small-block-grid-2.large-block-grid-4
+    %ul.project-list
       -@projects.each do |p|
-        %li
+        %li{:data => {'tooltip' => true}, :class=>"has-tip", :title=>p.name}
           = link_to image_tag(city_image(p, '320x200#')), project_path(p), :class=>"th"
-          .small_title.pacifico
-            =p.name
+
 

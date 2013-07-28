@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   has_one :location, :as => :locationable, :dependent => :destroy
   belongs_to :user
   has_many :likes, :as => :likeable, :dependent => :destroy
+  has_many :users, :through => :participations
 
   accepts_nested_attributes_for :picture, :location
 
@@ -14,7 +15,6 @@ class Project < ActiveRecord::Base
 
   resourcify
   acts_as_taggable
-
 
   #items => all items of the project
   def items

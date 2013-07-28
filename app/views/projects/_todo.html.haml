@@ -1,26 +1,28 @@
 .large-12.columns.todo-element{:class=> open == "true" ? "opened" : "closed"}
   .row
-    .large-12.columns
+    .large-12.columns{:style=>"margin-top:5px;max-height:1.5em;"}
       %ul.inline-list.right
         -if open == "true"
           -if can? :create, todo.completes.build
             %li.toggle
               = link_to complete_todo_path(todo), :method=> :post, :remote => true, :data=>{:status=>"close", :todo=>todo.id} do
-                %span{:data => {:icon => '@'}}
+                %span{:data => {:icon => '9'}}
+                  close
         -if open == "false"
           -if can? :destroy, todo.completes.where(:user_id => current_user).first
             %li.toggle
               =link_to uncomplete_todo_path(todo), :method=> :delete, :remote => true, :data=>{:status=>"open", :todo=>todo.id} do
-                %span{:data => {:icon => '%'}}
+                %span{:data => {:icon => '8'}}
+                  open
         -if can? :destroy, todo
           %li
             =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
               %span{:data => {:icon => '('}}
   .row
-    .large-12.columns
+    .large-12.columns.todo-description
       = best_in_place_if current_user_todo_author?(todo), todo, :description
   .row
-    .large-12.columns{:style=>"height:30px;"}
+    .large-12.columns{:style=>"padding-bottom:0.5em;height:1.5em;"}
       = render :partial => "projects/user-feedback-menu", :locals =>{:todo => todo}
 
 

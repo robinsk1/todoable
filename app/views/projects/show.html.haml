@@ -5,8 +5,8 @@
     .row
       .large-12-columns.right
         =social_share_button_tag(@project.name)
-    .row
-      .large-12.columns
+    .row.transparent-bg-project#opacity-10{:style=>"margin-top:5px"}
+      .large-3.columns
         %ul.wee-nav-list.left
           -if can? :update, @project
             %li
@@ -22,7 +22,7 @@
                 =link_to '#', :alt=>"leave", :id=> "participation", :data=>{:status=>"leave", :project=> @project.id} do
                   %span{:data => {:icon => 'O'}, :class=>'big-icons'}
                     unfollow
-    .row
+    .row.transparent-bg-project#opacity-10
       .large-8.columns
         .row
           .large-12.columns
@@ -35,7 +35,15 @@
       .large-4.columns
         .row
           %h1.project-home-headers.percentage
-            ="#{@complete.percent_of(@total).to_i}%"
+            ="#{@complete.percent_of(@total).to_i}% done"
+    .row
+      .large-12.columns
+        %ul.block-grid
+          -@project.users.each do |u|
+            %li
+              =u.name
+
+
     #todo-form
       =render :partial => 'todo-form'
 

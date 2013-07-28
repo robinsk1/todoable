@@ -2,6 +2,9 @@
 // Foundation Variables
 //
 
+
+
+
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with brower-based text zoom or user-set defaults.
 $base-font-size: 100% !default;
@@ -1132,10 +1135,10 @@ $header-font-family: "Lucinda Grande", "Helvetica Neue", "Helvetica", Helvetica,
 // Tooltip Variables
 //
 
-// $has-tip-border-bottom: dotted 1px #ccc;
+$has-tip-border-bottom: false;
 // $has-tip-font-weight: bold;
 // $has-tip-font-color: #333;
-// $has-tip-border-bottom-hover: dotted 1px darken($primary-color, 20%);
+$has-tip-border-bottom-hover: false;
 // $has-tip-font-color-hover: $primary-color;
 // $has-tip-cursor-type: help;
 
@@ -1220,5 +1223,24 @@ $header-font-family: "Lucinda Grande", "Helvetica Neue", "Helvetica", Helvetica,
 }
 
 @import 'foundation';
+
+
+@import "foundation/variables";
+@import "foundation/components/global";
+@import "foundation/components/block-grid";
+
+$per-row: 5;
+$spacing: $block-grid-default-spacing;
+$base-styles: true;
+
+.project-list {
+  @include block-grid($per-row, $spacing, $base-styles);
+}
+
+
+.project-list > li {
+  height: 120px;
+}
+
 
 

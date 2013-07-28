@@ -5,10 +5,12 @@ class VotesController < ApplicationController
   def for
     respond_to do |format|
       if current_user.vote_exclusively_for(@obj)
-      @result =  @obj.votes_for
+        @for =  @obj.votes_for
+        @against = @obj.votes_against
        format.js {}
       else
-      @result =  @obj.votes_for
+      @for =  @obj.votes_for
+      @against = @obj.votes_against
        format.js { render :json => @result, notice: 'Something went wrong!' }
       end
     end
@@ -17,10 +19,12 @@ class VotesController < ApplicationController
   def against
     respond_to do |format|
       if current_user.vote_exclusively_against(@obj)
-      @result =  @obj.votes_against
+        @for =  @obj.votes_for
+        @against = @obj.votes_against
        format.js {}
       else
-      @result =  @obj.votes_against
+       @for =  @obj.votes_for
+       @against = @obj.votes_against
        format.js { render :json => @result, notice: 'Something went wrong!' }
       end
     end
