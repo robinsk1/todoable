@@ -1,8 +1,9 @@
-%ul.project-list.grid.cs-style-3
+%ul.project-list.grid.cs-style-4
   -@projects.each do |p|
     %li
       %figure
-        = image_tag(city_image(p, '400x300#'))
+        %div
+          = image_tag(city_image(p, '400x300#'))
         %figcaption
           %h3{:style=>"font-size:1.2em;"}
             =p.name
