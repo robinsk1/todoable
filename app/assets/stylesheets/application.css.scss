@@ -12,10 +12,15 @@
  *= require social-share-button
  *= require_tree .
 */
+
+$input-prefix-bg: #2ba6cb;
 $icon-colour: #2ba6cb;
+$bg: $input-prefix-bg;
+
 @import "compass/css3/border-radius";
 @import "compass/css3";
 @import "foundation/variables", "foundation/components/global", "foundation/components/inline-lists";
+@import "foundation/components/buttons", "foundation/components/forms", "foundation/components/grid";
 
 .project-thumbs {
   height: 150px;
@@ -246,4 +251,15 @@ ul.nav li {
   font-size: 1.5em;
   font-weight: bold;
   background-color: #ececec;
+}
+
+
+.devise-prefix-class {
+  @include prefix-postfix-base;
+  @include prefix;
+  @include grid-column($columns:2,$float:left);
+}
+
+input[type="text"].devise-input-class {
+  @include grid-column($columns:10);
 }

@@ -2,10 +2,21 @@
   .large-12.columns
     %h2 Sign in
     = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-      = f.input :email, :autofocus => true
-      = f.input :password
-      = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-      = f.button :submit, "Sign in", :class => 'button'
+      .row.collapse
+        %span.devise-prefix-class
+          email
+        .large-3.columns
+          = f.input :email, :autofocus => true, :label=> false
+      .row.collapse
+        %span.devise-prefix-class
+          password
+        .large-3.columns
+          = f.input :password, :label=> false
+      -#= f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+      = f.button :submit, "Sign in", :class => 'button success'
     = render "devise/shared/links"
+
+
+
 
 
