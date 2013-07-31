@@ -1230,7 +1230,11 @@ $has-tip-border-bottom-hover: false;
 @import "foundation/components/block-grid";
 
 $per-row: 3;
+$per-row-user:30;
+
 $spacing: $block-grid-default-spacing;
+$spacing-user: 5px;
+
 $base-styles: true;
 
 .project-list {
@@ -1239,6 +1243,14 @@ $base-styles: true;
 
 .project-list > li {
   height: 270px;
+}
+
+.user-photo-grid {
+  @include block-grid($per-row-user, $spacing-user, $base-styles);
+}
+
+.user-photo-grid > li {
+  height: 20px;
 }
 
 

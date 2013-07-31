@@ -1,6 +1,6 @@
 -#%span{:class=>"has-tip", :data=>{:tooltip=>"true", :width=>"210"}, :title=>"Bottom and the default position."}
 -#  tip-bottom
-#project-header{:style=>"background-image:URL(#{city_image(@project, '1600x400#')});height:400px"}
+#project-header{:style=>"background-image:URL(#{city_image(@project, '1600x400#')});height:auto;"}
   -unless params[:id].blank?
     .row
       .large-12-columns.right
@@ -16,10 +16,10 @@
             %li
               -if current_user.participations.find_by_project_id(@project).nil?
                 =link_to '#', :alt=>"join", :id=> "participation", :data=>{:status=>"join", :project => @project.id} do
-                  %span{:data => {:icon => 'N'}, :class=>'big-icons'}="&nbsp;follow".html_safe
+                  %span{:data => {:icon => 'N', :tooltip=>true}, :title=>"If you follow this list you can add todos or register todos as complete",:class=>'big-icons'}="&nbsp;follow".html_safe
               -else
                 =link_to '#', :alt=>"leave", :id=> "participation", :data=>{:status=>"leave", :project=> @project.id} do
-                  %span{:data => {:icon => 'O'}, :class=>'big-icons'}="&nbsp;unfollow".html_safe
+                  %span{:data => {:icon => 'O', :tooltip=>true}, :title=>"If you leave this list you won't be able to add todos and your participation in this list will be deleted", :class=>'big-icons'}="&nbsp;unfollow".html_safe
     .row.transparent-bg-project#opacity-10
       .large-8.columns
         .row
@@ -33,14 +33,16 @@
       .large-4.columns
         .row
           %h1.project-home-headers.percentage
-            ="you are <span id='perc-num'>#{@complete.percent_of(@total).to_i}</span>% done".html_safe
+            ="you are <span id='perc-num'>#{@complete.percent_of(@total).to_i}</span>% complete".html_safe
     .row
       .large-12.columns
-        %ul.block-grid
+        %ul.user-photo-grid
           -@project.users.each do |u|
             %li
-              =u.name
-
+              -if !u.picture.nil?
+                =link_to image_tag(u.picture.cover_image.thumb("15x15#").url), user_path(u)
+              -else
+                =link_to u.name, user_path(u)
 
     #todo-form
       =render :partial => 'todo-form'

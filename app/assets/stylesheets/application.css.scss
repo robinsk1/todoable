@@ -25,7 +25,7 @@
 
 
 .todo-description{
-  font-family: pacificoregular;
+  font-family: JOSEFIN_SANSTHIN;
   font-size: 1.2em;
   background-color: rgba(255, 13, 11, 0.18);
   min-height: 50px;
@@ -104,6 +104,10 @@ form div input.upload {position: absolute; width:10px; visibility: hidden;}
   color: #ffffff;
 }
 
+.josefin{
+  font-family: JOSEFIN_SANSTHIN;
+}
+
 .percentage {
   font-size: 4em;
 }
@@ -179,9 +183,6 @@ top:-75px;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
   border:10px solid white;
-  //min-height: 150px;
-  //min-width: 90px;
-  //margin: 5px;
   font-size: 1.2em;
 }
 
@@ -191,10 +192,6 @@ top:-75px;
 
 .closed {
   background-color: #d5ffdf;
-}
-
-.todo-description {
-
 }
 
 .row.projects.list{

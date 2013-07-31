@@ -46,23 +46,24 @@
           %li{:class => cp(new_user_project_path(current_user))}
             = link_to new_user_project_path(current_user) do
               %span{:data => {:icon => 'N'}}
-        %li.has-dropdown
-          =link_to current_user.name, user_path(current_user)
-          %ul.dropdown
-            -#%li{:class => cp(user_projects_path(current_user))}
-            -#  =link_to "My lists", user_projects_path(current_user)
-            %li{:class => cp(joined_user_projects_path(current_user))}
-              =link_to "Joined lists", joined_user_projects_path(current_user)
-            %li{:class => cp(edit_user_registration_path)}
-              = link_to 'Edit account', edit_user_registration_path(current_user)
-            %li
-              = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-              - if current_user.has_role? :admin
-                %li
-                  = link_to 'Admin', "/admin"
+        %li
+          %li
+            =link_to image_tag(current_user.picture.cover_image.thumb("25x25#").url), user_path(current_user)
+          %li.has-dropdown
+            = link_to current_user.name, user_path(current_user)
+            %ul.dropdown
+              %li{:class => cp(joined_user_projects_path(current_user))}
+                =link_to "Joined lists", joined_user_projects_path(current_user)
+              %li{:class => cp(edit_user_registration_path)}
+                = link_to 'Edit account', edit_user_registration_path(current_user)
+              %li
+                = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+                - if current_user.has_role? :admin
+                  %li
+                    = link_to 'Admin', "/admin"
       - else
-        %li{:class => cp(new_user_registration_path)}
-          = link_to 'Sign up', new_user_registration_path
+        -#%li{:class => cp(new_user_registration_path)}
+        -#  = link_to 'Sign up', new_user_registration_path
 
 
 

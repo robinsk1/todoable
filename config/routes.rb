@@ -35,7 +35,8 @@ Todoable::Application.routes.draw do
     root :to => 'projects#cities'
   end
 
-  devise_for :users
+  #devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   resources :users, :only => [:index, :show] do
     resources :projects, :except =>[:show], :path => "lists" do

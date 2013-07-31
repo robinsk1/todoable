@@ -50,4 +50,7 @@ gem 'social-share-button'
 
 gem 'thumbs_up'
 
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
 #gem 'masonry-rails'
