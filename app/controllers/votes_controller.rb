@@ -5,13 +5,13 @@ class VotesController < ApplicationController
   def for
     respond_to do |format|
       if current_user.vote_exclusively_for(@obj)
-        @for =  @obj.votes_for
-        @against = @obj.votes_against
-       format.js {}
+        @vote_for =  @obj.votes_for
+        @vote_against = @obj.votes_against
+        format.json {render :json => {:vote_for => @vote_for, :vote_against => @vote_against}}
       else
-      @for =  @obj.votes_for
-      @against = @obj.votes_against
-       format.js { render :json => @result, notice: 'Something went wrong!' }
+      @vote_for =  @obj.votes_for
+      @vote_against = @obj.votes_against
+       format.json render :json => { :vote_for => @vote_for, :vote_against => @vote_against, notice: 'error!'}
       end
     end
   end
@@ -19,13 +19,13 @@ class VotesController < ApplicationController
   def against
     respond_to do |format|
       if current_user.vote_exclusively_against(@obj)
-        @for =  @obj.votes_for
-        @against = @obj.votes_against
-       format.js {}
+        @vote_for =  @obj.votes_for
+        @vote_against = @obj.votes_against
+        format.json {render :json => {:vote_for => @vote_for, :vote_against => @vote_against}}
       else
-       @for =  @obj.votes_for
-       @against = @obj.votes_against
-       format.js { render :json => @result, notice: 'Something went wrong!' }
+       @vote_for =  @obj.votes_for
+       @vote_against = @obj.votes_against
+       format.json render :json => { :vote_for => @vote_for, :vote_against => @vote_against, notice: 'error!'}
       end
     end
   end
