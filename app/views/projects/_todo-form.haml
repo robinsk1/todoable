@@ -1,0 +1,9 @@
+.row.collapse
+  -if can? :create, @todo
+    -if !params[:id].blank?
+      = simple_form_for([@project, @todo], :remote => true, :html => {:'data-type' => 'script'})  do |f|
+        = f.input :project_id, :as=> :hidden, :value => @project.id
+        .large-11.columns
+          = f.input :description, :as=> :string, :label => false, placeholder: 'Only relevant content pls.Thanx ;)'
+        .large-1.columns
+          = f.button :submit, :class=>"button expand postfix", :value=>"add!"

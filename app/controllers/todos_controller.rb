@@ -1,10 +1,5 @@
 class TodosController < ApplicationController
-  # GET /todos
-  # GET /todos.json
-
   load_and_authorize_resource
-
-
 
   # POST /todos
   # POST /todos.json
@@ -12,19 +7,13 @@ class TodosController < ApplicationController
     @project = Project.find(params[:project_id])
     @todo = Todo.new(params[:todo])
     @todos = @project.todos
-    @todo.user_id = current_user.id
-    @todo.status = false
     @todo.project_id = @project.id
+    @todo.author_id = current_user.id
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to project_path(@project), notice: 'To-do was successfully created.'}
-        format.json { render json: @todo, status: :created, location: @todo }
+        format.js
       else
-        @todo = @todo
-        @open = @todos.where(:status=> false)
-        @closed = @todos.where(:status=> true)
-        format.html { redirect_to project_path(@project), alert: 'To-do was not created.'}
-        format.json { render json: @todo, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -33,7 +22,6 @@ class TodosController < ApplicationController
   # PUT /todos/1.json
   def update
     @todo = Todo.find(params[:id])
-
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
         if !params[:todo][:project_id].blank?
@@ -63,15 +51,4 @@ class TodosController < ApplicationController
   end
 
 
-  def toggle
-    @todo = Todo.find(params[:id])
-    result = @todo.status == true ? false : true
-    respond_to do |format|
-      if @todo.update_attribute(:status, result)
-        format.json { render :nothing => true }
-      else
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 end

@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  require 'fixnum'
+
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
@@ -17,13 +19,15 @@ module ApplicationHelper
   end
 
   def city_image(project, size)
-    if (project.kind_of? Project) && !(project.pictures.nil? || project.pictures.empty? )
-        project.pictures.first.cover_image.thumb(size).url
+    if (project.kind_of? Project) && !(project.picture.nil?)
+        project.picture.cover_image.thumb(size).url
     elsif project[:proj_id]
-        Project.find(project[:proj_id]).pictures.first.cover_image.thumb(size).url
+        Project.find(project[:proj_id]).picture.cover_image.thumb(size).url
     else
       "http://placehold.it/320x200"
     end
   end
+
+
 
 end

@@ -2,29 +2,32 @@
 #strapper{:"data-stellar-background-ratio"=>"0.6"}
   .row
     .large-12.columns.index-callout-box
-      %h1.big_title.pacifico
+      %h1.big-title.pacifico
         things to-do in cities you love!
-
-
-%hr/
 / Three-up Content Blocks
-.row
+.row{:style=>"margin-top:10px;"}
   .large-4.columns
-    %h4 Discover things to-do.
-    %p Check out curated list of things to-do for popular cities and events all around the world
+    %h4.home-page-icons
+      %span{:data => {:icon => '4'}, :class=>'todo-icons'}
+        Find
+    %p.home-page-text Check out a community curated list of things to-do for popular cities and events all around the world
   .large-4.columns
-    %h4 Create your own to-do lists.
-    %p Creating your own to-do lists is easy. Share your local knowledge and expertise about the best places to see, eat, and have fun.
+    %h4.home-page-icons
+      %span{:data => {:icon => '*'}, :class=>'todo-icons'}
+        Create
+    %p.home-page-text Share your local knowledge and expertise about the best places to see, eat, and have fun.
   .large-4.columns
-    %h4 Share and join to-do lists.
-    %p Share and collaborate in group to-do lists. Check your progress against other list participants and add your own to-dos to their lists
+    %h4.home-page-icons
+      %span{:data => {:icon => '='}, :class=>'todo-icons'}
+        Join
+    %p.home-page-text Share and collaborate in group to-do lists. Check your progress against other list participants and add your own to-dos to their lists
 / Call to Action Panel
 .row
   .large-12.columns
     .panel
-      %h4 Get in touch!
+      %h4 Wanna get started!
       .row
         .large-9.columns
-          %p We'd love to hear from you, you attractive person you.
+          %p We'd love to get to know you BB :) !
         .large-3.columns
-          %a.radius.button.right{:href => "#"} Contact Us
+          %a.radius.button.success.right{:href => "#"} Sign-up!

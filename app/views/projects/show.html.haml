@@ -1,97 +1,56 @@
-#strapper{:data=>{:"stellar-background-ratio"=>"0.6", :image=>'/assets/barcelona.jpg'}}
+-#%span{:class=>"has-tip", :data=>{:tooltip=>"true", :width=>"210"}, :title=>"Bottom and the default position."}
+-#  tip-bottom
+#project-header{:style=>"background-image:URL(#{city_image(@project, '1600x400#')});height:auto;"}
   -unless params[:id].blank?
     .row
-      .large-12.columns
-        %ul.wee-nav-list
-          %li
-            =participates_in_list?
-          %li
-            - if signed_in? && !current_user_project_owner?
-              =link_to "#" do
-                %span{:class=>"big-icons", :data=>{:icon=>"+"}}
-          %li
-            =link_to "#" do
-              %span{:class=>"big-icons", :data=>{:icon=>"3"}}
-    .row
-      .large-12.columns
-        %h1.project-home-headers.text-shadow=best_in_place_if current_user_project_owner?, @project, :name
-    .row
-      .large-12.columns
-        %h3.project-home-headers.text-shadow
-          created by:
-          =link_to @project.user.name, user_path(@project.user)
-    .row
-      .large-12.columns
-        %h2.project-home-headers.text-shadow="#{@project.try(:location) ? @project.location.city : ''}"
-    .row
-      .large-12.columns
-        %h3.project-home-headers.text-shadow="#{@project.tag_list}"
-    .row
-      .large-12.columns.todo-description
-        =best_in_place_if current_user_project_owner?, @project, :description
+      .large-12-columns.right
+        =social_share_button_tag(@project.name)
+    .row.transparent-bg-project#opacity-10{:style=>"margin-top:5px"}
+      .large-3.columns
+        %ul.wee-nav-list.left
+          -if can? :update, @project
+            %li
+              =link_to edit_user_project_path(current_user) do
+                %span{:data=>{:icon=>"5"}, :class=>'big-icons'}
+          -if signed_in? && !current_user_project_owner?
+            %li
+              -if current_user.participations.find_by_project_id(@project).nil?
+                =link_to '#', :alt=>"join", :id=> "participation", :data=>{:status=>"join", :project => @project.id} do
+                  %span{:data => {:icon => 'N', :tooltip=>true}, :title=>"If you follow this list you can add todos or register todos as complete",:class=>'big-icons'}="&nbsp;follow".html_safe
+              -else
+                =link_to '#', :alt=>"leave", :id=> "participation", :data=>{:status=>"leave", :project=> @project.id} do
+                  %span{:data => {:icon => 'O', :tooltip=>true}, :title=>"If you leave this list you won't be able to add todos and your participation in this list will be deleted", :class=>'big-icons'}="&nbsp;unfollow".html_safe
+    .row.transparent-bg-project#opacity-10
+      .large-8.columns
+        .row
+          .large-12.columns
+            %h1.project-home-headers.text-shadow
+              =best_in_place_if current_user_project_owner?, @project, :name
+        .row
+          .large-12.columns
+            %h2.project-home-headers.text-shadow="#{@project.try(:location) ? @project.location.city : ''}"
 
-.row
-  .large-12.columns.index-column-element
+      .large-4.columns
+        .row
+          %h1.project-home-headers.percentage
+            ="you are <span id='perc-num'>#{@complete.percent_of(@total).to_i}</span>% complete".html_safe
+    .row
+      .large-12.columns
+        %ul.user-photo-grid
+          -@project.users.each do |u|
+            %li
+              -if !u.picture.nil?
+                =link_to image_tag(u.picture.cover_image.thumb("15x15#").url), user_path(u)
+              -else
+                =link_to u.name, user_path(u)
 
-.row
-  .large-12.columns
-    -if signed_in? && current_user_project_owner?
-      -if !params[:id].blank?
-        = simple_form_for([@project, @todo])  do |f|
-          .form-inputs
-            = f.input :description, :as=> :string,  :label => false, placeholder: 'Describe your to-do'
-            = f.input :id, :as=> :hidden, :value => @todo.project_id
-          .form-actions
-            = f.button :submit, :class=>"success button round", :value=>"Create New To-do", :style =>"float:right;"
-
-- if !@open.nil?
-  .row{:style=>"margin-top:10px;"}
-    .large-12.columns
-      %h2.project-home-headers To-do!
-  .row
-    .large-12.columns
-      .opened-container
-        - @open.each do |todo|
-          .row.todo-element.opened
-            .small-8.large-10.columns.index-column-element.cen
-              %p
-                = best_in_place_if current_user_project_owner?, todo, :description
-            -if can? :update, todo
-              .small-2.large-1.columns.index-column-element.cen.toggle
-                %p
-                  = link_to toggle_todo_path(todo), :method=> :put, :remote => true, :data=>{:status=>"closed"} do
-                    %span{:data => {:icon => '@'}}
-              .small-2.large-1.columns.index-column-element.cen
-                %p
-                  =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                    %span{:data => {:icon => '('}}
-            -else
-              .large-2.columns.index-column-element
-
--if !@closed.nil?
-  .row{:style=>"margin-top:20px;"}
-    .large-12.columns
-      %h2.project-home-headers Done!
-  .row
-    .large-12.columns
-      .closed-container
-        - @closed.each do |todo|
-          .row.todo-element.closed
-            .small-8.large-10.columns.index-column-element.cen
-              %p
-                = best_in_place_if current_user_project_owner?, todo, :description
-            -if can? :update, todo
-              .small-2.large-1.columns.index-column-element.cen.toggle
-                %p
-                  =link_to toggle_todo_path(todo), :method=> :put, :remote => true, :data=>{:status=>"open"} do
-                    %span{:data => {:icon => '%'}}
-              .small-2.large-1.columns.index-column-element.cen
-                %p
-                  =link_to todo, :method => :delete, :data => { :confirm => 'Are you sure?' } do
-                    %span{:data => {:icon => '('}}
-            -else
-              .large-2.columns.index-column-element
-%br
+    #todo-form
+      =render :partial => 'todo-form'
 
 .row
   .large-12.columns
+
+#todo-list-partial
+  =render :partial =>"todo-list"
+.row
+  .large-12.columns{:style=>"height:3em;"}

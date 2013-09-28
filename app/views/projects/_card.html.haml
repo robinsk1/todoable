@@ -1,0 +1,22 @@
+%ul.project-list.grid.cs-style-4
+  -@projects.each do |p|
+    %li
+      %figure
+        %div
+          = image_tag(city_image(p, '400x300#'))
+        %figcaption
+          %h3{:style=>"font-size:1.2em;"}
+            =p.name
+          -#%span
+          =link_to "view", project_path(p)
+
+
+
+
+
+  -#%ul.small-block-grid-2.large-block-grid-4
+      -#  -@projects.each do |p|
+      -#    %li
+      -#      = link_to image_tag(city_image(p, '320x200#')), scope_list_by_city_path(p[:city]), :class=>"th"
+      -#      .small_title.pacifico
+      -#        =p[:city].split(",")[0]

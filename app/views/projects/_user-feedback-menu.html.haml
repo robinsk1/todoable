@@ -1,0 +1,20 @@
+%ul.inline-list
+  %li
+    =link_to '#', :alt=>"for", :class=> "vote up", :data=>{:status=>"up", :"model-class"=>"todo", :"model-id" => todo.id}  do
+      %span{:data => {:icon => ':'}, :class=>'todo-icons'}=todo.votes_for
+  %li
+    =link_to '#', :alt=>"against", :class=> "vote down",  :data=>{:status=>"down", :"model-class"=>"todo", :"model-id" => todo.id} do
+      %span{:data => {:icon => ';'}, :class=>'todo-icons'}=todo.votes_against
+  %li
+    -if signed_in? && !current_user_project_owner?
+      #liker
+        -if todo.likes.where(:user_id => current_user.id).first
+          =link_to '#', :alt=>"unlike", :class=> "like", :data=>{:status=>"unlike", :"model-class"=>"todo", :"model-id" => todo.id} do
+            %span{:data => {:icon => ','}, :class=>'todo-icons'}
+        -else
+          =link_to '#', :alt=>"like", :class=> "like", :data=>{:status=>"like", :"model-class"=>"todo", :"model-id" => todo.id} do
+            %span{:data => {:icon => '+'}, :class=>'todo-icons'}
+  %li
+    =link_to "#", :alt=>"against", :class=> "vote", :id=>"#{todo.id}_todo_vote_against", :data=>{:remote=>"true",:method=>:post} do
+      %span{:data => {:icon => 'M'}, :class=>'todo-icons'}
+

@@ -1,0 +1,3 @@
+$(this).children('span').text(<%=@against%>);
+$(this).children('span').effect("highlight", {}, 3000);
+$(this).children('span').text(<%=@for%>);

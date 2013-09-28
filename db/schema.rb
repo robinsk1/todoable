@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130710100415) do
+ActiveRecord::Schema.define(:version => 20130928115950) do
+
+  create_table "completes", :force => true do |t|
+    t.integer  "todo_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  create_table "likes", :force => true do |t|
+    t.string   "likeable_type"
+    t.integer  "likeable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "locations", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -47,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20130710100415) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
+    t.string   "state"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -73,13 +89,6 @@ ActiveRecord::Schema.define(:version => 20130710100415) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
-  create_table "statuses", :force => true do |t|
-    t.integer  "todo_id"
-    t.boolean  "complete"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -99,11 +108,10 @@ ActiveRecord::Schema.define(:version => 20130710100415) do
 
   create_table "todos", :force => true do |t|
     t.text     "description"
-    t.boolean  "status"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "project_id"
-    t.integer  "user_id"
+    t.integer  "author_id"
   end
 
   create_table "users", :force => true do |t|
@@ -120,6 +128,8 @@ ActiveRecord::Schema.define(:version => 20130710100415) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -131,5 +141,19 @@ ActiveRecord::Schema.define(:version => 20130710100415) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "votes", :force => true do |t|
+    t.boolean  "vote",          :default => false, :null => false
+    t.integer  "voteable_id",                      :null => false
+    t.string   "voteable_type",                    :null => false
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
+  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity", :unique => true
+  add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
 
 end

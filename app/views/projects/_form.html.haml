@@ -6,12 +6,12 @@
     = f.input :name, :label => false, placeholder: 'Give your list a name', :class=> error
     = f.input :description, :label => false, placeholder: 'Add some detail to your list (if required)', :class=> error
     = f.input :tag_list, :label => false, placeholder: 'Add some', :class=> error
-    = f.simple_fields_for :pictures do |x|
+    = f.simple_fields_for :picture do |x|
       = x.hidden_field :retained_cover_image
       = x.file_field :cover_image, :id=>"upload-image", :class=>"upload"
       =link_to '#', :onclick=>"$('.upload').click(); return false;", :class=>"button", :style=>"margin-top:10px;padding-top: 5px;" do
         %span{:class=>"icon-change"}
-          Change Avatar
+          change image
       #image-preview
   .form-actions
     -button_text =  @project.new_record? ? "Create list" : "Update list"

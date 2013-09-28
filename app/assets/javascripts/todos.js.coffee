@@ -8,38 +8,46 @@ jQuery ($) ->
     path = undefined
     regex = undefined
     todo_id = undefined
+    type = undefined
     event.preventDefault()
-    path = $(this)[0].pathname
     link = $(this)
-    regex = (new RegExp(/^\/todos\/(.*)\/toggle$/)).exec(path)
-    todo_id = regex[1]
+    todo_id = $(this).attr("data-todo")
     method = $(this).attr("data-status")
     new_status = ((if method is "open" then "close" else "open"))
-    new_icon = ((if method is "open" then "@" else "%"))
-    form_path = "/todos/" + todo_id + "/toggle"
+    new_icon = ((if method is "open" then "9" else "8"))
+    form_path = "/todo/"+todo_id+"/complete"
+    type = ((if method is "open" then "DELETE" else "POST"))
+    new_type = ((if method is "open" then "POST" else "DELETE"))
     params = {}
     $.ajaxSetup
       url: form_path
-      type: "PUT"
+      type: type
       cache: false
-      dataType: "json"
-
+      dataType: "script"
     $.ajax
       complete: ->
         element = undefined
         link.attr("data-status", new_status)
+        link.attr("data-method", new_type)
         link.children('span').attr("data-icon", new_icon)
         if method is "open"
           element = link.closest(".closed")
           element.removeClass("closed").addClass "opened"
-          element.remove()
-          $(".opened-container").append element
+#          element.remove()
+          element.hide().appendTo(".opened-container").fadeIn()
+          total = $(".opened").length +  $(".closed").length
+          perc = ($(".closed").length / total) * 100
+          $('#perc-num').html(Math.round(perc));
+          $('#perc-num').effect("highlight", {}, 3000);
         else
           element = link.closest(".opened")
           element.removeClass("opened").addClass "closed"
-          element.remove()
-          $(".closed-container").append element
-      beforeSend: ->
+#          element.remove()
+          element.hide().appendTo(".closed-container").fadeIn()
+          total = $(".opened").length +  $(".closed").length
+          perc = ($(".closed").length / total) * 100
+          $('#perc-num').html(Math.round(perc));
+          $('#perc-num').effect("highlight", {}, 3000);
 
   $("input").keypress (event) ->
     if event.which is 13

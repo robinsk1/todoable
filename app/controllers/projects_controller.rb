@@ -25,14 +25,7 @@
      format.json { render json: @projects }
     end
   end
-  #
-  #def owner
-  #   @projects = current_user.projects.all
-  #   respond_to do |format|
-  #    format.html {render :action => :index}
-  #    format.json { render json: @projects }
-  #   end
-  #end
+
 
 
   def index
@@ -43,6 +36,8 @@
       @projects = Project.joins(:location).where(["locations.city = ?", params[:city]])
     elsif params[:search]
       @projects = Project.search(params[:search])
+    elsif params[:tag]
+      @projects = Project.tagged_with(params[:tag])
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -60,6 +55,9 @@
      @open = Project.find(@project).todos.where(['id not in (?)', group_ids]) unless group_ids.empty?
      @open.all
      @closed.all
+
+     @total = Project.find(@project).todos.size
+     @complete = @closed.size
 
      if current_user
        @todo = @project.todos.build

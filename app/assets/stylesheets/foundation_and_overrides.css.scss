@@ -2,6 +2,9 @@
 // Foundation Variables
 //
 
+
+
+
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with brower-based text zoom or user-set defaults.
 $base-font-size: 100% !default;
@@ -1132,15 +1135,15 @@ $header-font-family: "Lucinda Grande", "Helvetica Neue", "Helvetica", Helvetica,
 // Tooltip Variables
 //
 
-// $has-tip-border-bottom: dotted 1px #ccc;
+$has-tip-border-bottom: false;
 // $has-tip-font-weight: bold;
 // $has-tip-font-color: #333;
-// $has-tip-border-bottom-hover: dotted 1px darken($primary-color, 20%);
+$has-tip-border-bottom-hover: false;
 // $has-tip-font-color-hover: $primary-color;
 // $has-tip-cursor-type: help;
 
 // $tooltip-padding: emCalc(8px);
-// $tooltip-bg: #000;
+//$tooltip-bg: #000;
 // $tooltip-font-size: emCalc(15px);
 // $tooltip-font-weight: bold;
 // $tooltip-font-color: #fff;
@@ -1163,7 +1166,7 @@ $header-font-family: "Lucinda Grande", "Helvetica Neue", "Helvetica", Helvetica,
 // Height and margin
 
 // $topbar-height: 45px;
-// $topbar-margin-bottom: emCalc(30px);
+$topbar-margin-bottom: 0;
 
 // Input height for top bar
 
@@ -1207,11 +1210,6 @@ $header-font-family: "Lucinda Grande", "Helvetica Neue", "Helvetica", Helvetica,
 // $topbar-media-query: "only screen and (min-width: "#{$topbar-breakpoint}")";
 
 
-@import 'foundation';
-
-
-
-
 .top-bar-section ul li.active > a {
   border-color: rgba(0,0,0,.4)!important;
   color: #fff!important;
@@ -1222,6 +1220,37 @@ $header-font-family: "Lucinda Grande", "Helvetica Neue", "Helvetica", Helvetica,
   border-color: rgba(0,0,0,.4)!important;
   color: #fff!important;
   box-shadow: inset 0 0 15px rgba(0,0,0,.6)!important;
+}
+
+@import 'foundation';
+
+
+@import "foundation/variables";
+@import "foundation/components/global";
+@import "foundation/components/block-grid";
+
+$per-row: 3;
+$per-row-user:30;
+
+$spacing: $block-grid-default-spacing;
+$spacing-user: 5px;
+
+$base-styles: true;
+
+.project-list {
+  @include block-grid($per-row, $spacing, $base-styles);
+}
+
+.project-list > li {
+  height: 270px;
+}
+
+.user-photo-grid {
+  @include block-grid($per-row-user, $spacing-user, $base-styles);
+}
+
+.user-photo-grid > li {
+  height: 20px;
 }
 
 

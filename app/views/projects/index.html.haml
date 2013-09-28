@@ -1,18 +1,24 @@
 .row
+  .large-12.columns{:style=>"margin-bottom:10px;"}
+    -ActsAsTaggableOn::Tag.all.each do |t|
+      %span.metro.three-d
+        =link_to t, tag_path(t.name)
+
+.row
   .large-12.columns
     -if params[:action] == "joined"
       %h1="joined lists"
     -elsif params[:action] == "owner"
       %h1="my lists"
     -elsif params[:city]
-      %h1="#{@location} to-do lists"
+      %h1="#{@location.split(',')[0]} to-do lists"
 
 .row
   .large-12.columns
-    %ul.small-block-grid-2.large-block-grid-4
-      -@projects.each do |p|
-        %li
-          = link_to image_tag(city_image(p, '320x200#')), project_path(p)
-          .small_title.pacifico
-            =p.name
+    -#%ul.project-list
+    -#  -@projects.each do |p|
+    -#    %li{:data => {'tooltip' => true}, :class=>"has-tip", :title=>p.name}
+    -#      = link_to image_tag(city_image(p, '320x200#')), project_path(p), :class=>"th"
+    =render :partial => "projects/card"
+
 

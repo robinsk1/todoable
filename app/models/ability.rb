@@ -13,25 +13,24 @@ class   Ability
       # Projects
       can :cities, Project
       can :read, Project
-      can :create, Project
+      #can :create, Project
       #can :autocomplete_tag_name, Project
 
       can :join, Project
       can :leave, Project
-      can :owner, Project
       can :joined, Project
 
       can :destroy, Project do |project|
         project.try(:user) == user
       end
 
-      can :update, Project do |project|
-        project.try(:user) == user
-      end
+      #can :update, Project do |project|
+      #  project.try(:user) == user
+      #end
 
       # Todos
       can :create, Todo do |todo|
-         todo.project.try(:user) == user
+         (todo.project.try(:user) == user) || (user.joinups.collect(&:project_id).include?(todo.project_id))
       end
 
       can :read, Todo
@@ -40,16 +39,21 @@ class   Ability
          todo.project.try(:user) == user
       end
 
-      can :toggle, Todo do |todo|
-         todo.project.try(:user) == user
-      end
-
-
       can :update, Todo do |todo|
-         todo.project.try(:user) == user
+         (todo.project.try(:user) == user) || (todo.author == user)
       end
 
+      #completes
 
+      can :read, Complete
+
+      can :create, Complete do |complete|
+        (user.joinups.collect(&:project_id).include?(complete.todo.project_id)) ||  (complete.todo.project.user == user)
+      end
+
+      can :destroy, Complete do |complete|
+        (user.joinups.collect(&:project_id).include?(complete.todo.project_id)) ||  (complete.todo.project.user == user)
+      end
 
       # Admins
       if user.has_role?(:admin)

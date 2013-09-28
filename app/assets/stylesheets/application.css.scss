@@ -9,12 +9,44 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require social-share-button
  *= require_tree .
 */
 
-@import "compass/css3/border-radius";
-@import "foundation/variables", "foundation/components/global", "foundation/components/inline-lists";
+$input-prefix-bg: #2ba6cb;
+$icon-colour: #2ba6cb;
+$bg: $input-prefix-bg;
 
+@import "compass/css3/border-radius";
+@import "compass/css3";
+@import "foundation/variables", "foundation/components/global", "foundation/components/inline-lists";
+@import "foundation/components/buttons", "foundation/components/forms", "foundation/components/grid";
+
+.project-thumbs {
+  height: 150px;
+  min-height: 150px;
+  overflow:auto;
+}
+
+
+.todo-description{
+  font-family: JOSEFIN_SANSTHIN;
+  font-size: 1.2em;
+  background-color: rgba(255, 13, 11, 0.18);
+  min-height: 50px;
+  padding: 10px;
+}
+
+
+#new_todo {
+  height: 2em;
+  font-size: 2em;
+}
+
+.by-line{
+  margin-top: 10px;
+  font-size: 0.7em;
+}
 
 form div input.upload {position: absolute; width:10px; visibility: hidden;}
 
@@ -25,14 +57,38 @@ form div input.upload {position: absolute; width:10px; visibility: hidden;}
   width:300px;
 }
 
+.transparent-bg-project{
+  width: auto;
+  height: auto;
+}
+
+
+#opacity-10 {
+  background: rgb(54, 25, 25);
+  background: rgba(54, 25, 25, .5);
+}
+
 
 .big-icons{
   font-size: 2em;
+  padding-bottom: 5px;
+}
+
+.todo-icons{
+  margin-top: 5px;
+  font-size: 1em;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float:left;
 }
 
 .wee-nav-list{
 @include inline-list;
-float: right;
 }
 
 .blur {
@@ -53,6 +109,14 @@ float: right;
   color: #ffffff;
 }
 
+.josefin{
+  font-family: JOSEFIN_SANSTHIN;
+}
+
+.percentage {
+  font-size: 4em;
+}
+
 .text-shadow{
   text-shadow: 0 4px 8px rgba(0,0,0,0.88);
 }
@@ -63,24 +127,34 @@ float: right;
 }
 
 .cen {
-  min-height:1em; width:12em; margin:1em 0;
+  min-height:1em;
+  width:12em;
+  margin:1em 0;
 }
 .cen p {
-  display:inline-block; vertical-align:middle;
-  margin:0 0 0 1em; width:100%;
+  display:inline-block;
+  vertical-align:middle;
+  margin:0 0 0 1em;
+  width:100%;
 }
 .cen::after {
-   display:inline-block; vertical-align:middle; line-height:1em;
-   width:0; content:"\00A0"; overflow:hidden;
+  display:inline-block;
+  vertical-align:middle;
+  line-height:1em;
+  width:0;
+  content:"\00A0";
+  overflow:hidden;
 }
 
-.big_title {
+.big-title {
 color: #fff;
 text-shadow: 0 2px 6px rgba(0,0,0,0.88);
 font-size: 3.72em;
 line-height: 1.12em;
 margin-bottom: 20px;
 letter-spacing: -1px;
+position: relative;
+top: -60px;
 }
 
 .small_title {
@@ -101,33 +175,30 @@ top:-75px;
 }
 
 #strapper {
-  //background-image: url(attr(data-image));
   background-image: URL("/assets/barcelona.jpg");
-  height:400px;
+  height:300px;
 }
+
 
 .index-column-element {
   min-height: 1em;
 }
 
-.row.todo-element.opened{
+.todo-element{
+
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  border:10px solid white;
+  font-size: 1.2em;
+}
+
+.opened{
   background-color: rgba(255, 13, 11, 0.18);
-  margin-top: 10px;
-  padding-top: 10px;
-  font-size: 1.2em;
 }
 
-.row.todo-element.closed{
+.closed {
   background-color: #d5ffdf;
-  margin-top: 10px;
-  padding-top: 10px;
-  font-size: 1.2em;
-}
-
-.todo-description {
-  min-height: 200px;
-  background-color: #fffaf0;
-  padding: 20px;
 }
 
 .row.projects.list{
@@ -162,4 +233,33 @@ ul.nav li {
 #flash_alert {
   background-color: #FCC;
   border: solid 1px #C66;
+}
+
+
+.home-page-icons{
+  text-align:center;
+  color: $icon-colour;
+  padding: 5px;
+  background-color: #ececec;
+  font-family: pacificoregular;
+}
+
+.home-page-text{
+  padding: 10px;
+
+  font-family: josefin_sansthin;
+  font-size: 1.5em;
+  font-weight: bold;
+  background-color: #ececec;
+}
+
+
+.devise-prefix-class {
+  @include prefix-postfix-base;
+  @include prefix;
+  @include grid-column($columns:2,$float:left);
+}
+
+input[type="text"].devise-input-class {
+  @include grid-column($columns:10);
 }
