@@ -17,6 +17,23 @@ class Project < ActiveRecord::Base
   acts_as_taggable
 
   #items => all items of the project
+
+  state_machine :initial => :draft do
+
+    event :publish do
+      transition :draft => :published
+    end
+
+    event :reject do
+      transition :draft => :rejected
+    end
+
+
+    event :edit do
+      transition :published => :draft
+    end
+
+  end
   def items
     self.todos
   end
@@ -38,6 +55,24 @@ class Project < ActiveRecord::Base
 
   def self.search(q)
     Project.joins(:location).where(['locations.city ILIKE ? OR projects.name ILIKE ?', "%#{q}%", "%#{q}%"])
+  end
+
+  rails_admin do
+      list do
+        field :description
+        field :name
+        field :state, :state
+      end
+
+      edit do
+        field :description
+        field :name
+        field :state, :state
+      end
+      state({
+          events: {reject: 'btn-warning', edit: 'btn-warning', publish: 'btn-warning'},
+          states: {draft: 'btn-warning', published: 'btn-warning', rejected: 'btn-warning'}
+        })
   end
 
 

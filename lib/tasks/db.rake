@@ -20,7 +20,6 @@ namespace :db do
   desc "projects"
    task :seed_projects => :environment do
     [Project].each(&:delete_all)
-
     user = User.find(2)
 
     puts user.inspect

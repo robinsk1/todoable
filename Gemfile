@@ -53,4 +53,7 @@ gem 'thumbs_up'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
+gem 'state_machine'
+gem 'rails_admin_state'
+
 #gem 'masonry-rails'

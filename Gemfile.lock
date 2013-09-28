@@ -225,6 +225,8 @@ GEM
       remotipart (~> 1.0)
       safe_yaml (~> 0.6)
       sass-rails (~> 3.1)
+    rails_admin_state (1.0.0)
+      rails_admin
     rails_admin_tag_list (0.1.5)
       rails (>= 3.1)
       rails_admin (>= 0.0.1)
@@ -269,6 +271,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    state_machine (1.2.0)
     statistics2 (0.54)
     thin (1.5.1)
       daemons (>= 1.0.9)
@@ -327,12 +330,14 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails3-jquery-autocomplete!
   rails_admin
+  rails_admin_state
   rails_admin_tag_list
   rolify
   rspec-rails (>= 2.12.2)
   sass-rails (~> 3.2.3)
   simple_form (>= 2.1.0)
   social-share-button
+  state_machine
   thin (>= 1.5.0)
   thumbs_up
   uglifier (>= 1.0.3)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130728213421) do
+ActiveRecord::Schema.define(:version => 20130928115950) do
 
   create_table "completes", :force => true do |t|
     t.integer  "todo_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20130728213421) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
+    t.string   "state"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
